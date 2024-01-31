@@ -1,9 +1,11 @@
-import Home from '@/pages/home.mdx'
+import React from 'react'
 
-export default function Page() {
+const App: React.FC = () => {
   return (
-    <article className="w-full p-8 py-12 prose prose-base md:prose-lg prose-sky dark:prose-invert">
-      <Home />
-    </article>
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <h1 className="text-3xl font-mono">Hello world</h1>
+    </main>
   )
 }
+
+export default App
