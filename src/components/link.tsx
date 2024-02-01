@@ -4,7 +4,7 @@ import React from 'react'
 interface LinkProps extends NextLinkProps {
   href: string
   children: React.ReactNode | React.ReactNode[]
-  variant?: 'default' | 'navigation' | 'badge'
+  variant?: 'default' | 'navigation' | 'badge' | 'none'
 }
 
 export const Link: React.FC<LinkProps> = ({
@@ -15,6 +15,7 @@ export const Link: React.FC<LinkProps> = ({
 }) => {
   const variants = {
     default: '',
+    none: 'no-underline',
     navigation:
       'transition-all flex px-2 font-medium hover:text-muted-foreground',
     badge:
