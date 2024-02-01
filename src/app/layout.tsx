@@ -3,9 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 
 import { Container } from '@/components/container'
+import { Header } from '@/components/header'
 import { ThemeProvider } from '@/components/theme-provider'
-import { ToggleTheme } from '@/components/toggle-theme'
-import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -48,30 +47,8 @@ export default function RootLayout({
         >
           <Container>
             <div className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-              <header className="w-full flex justify-between items-center -ml-[8px] mb-16 tracking-tight">
-                <nav className="flex flex-row items-start">
-                  <Link
-                    href="/"
-                    className="transition-all flex px-2 font-medium hover:text-muted-foreground"
-                  >
-                    home
-                  </Link>
-                  <Link
-                    href="/work"
-                    className="transition-all flex px-2 font-medium hover:text-muted-foreground"
-                  >
-                    work
-                  </Link>
-                  <Link
-                    href="/projects"
-                    className="transition-all flex px-2 font-medium hover:text-muted-foreground"
-                  >
-                    projects
-                  </Link>
-                </nav>
-                <ToggleTheme />
-              </header>
-              {children}
+              <Header />
+              <main className="flex-1">{children}</main>
             </div>
           </Container>
         </ThemeProvider>
