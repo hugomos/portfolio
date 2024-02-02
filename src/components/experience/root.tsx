@@ -1,9 +1,9 @@
 import React from 'react'
 
-interface WorkRootProps {
+interface ExperienceRootProps {
   children: React.ReactNode | React.ReactNode[]
 }
 
-export const WorkRoot: React.FC<WorkRootProps> = ({ children }) => {
+export const ExperienceRoot: React.FC<ExperienceRootProps> = ({ children }) => {
   return <div className="prose prose-neutral dark:prose-invert">{children}</div>
 }

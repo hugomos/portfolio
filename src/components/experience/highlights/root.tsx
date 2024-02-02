@@ -1,10 +1,10 @@
 import React from 'react'
 
-interface WorkHighlightsRootProps {
+interface ExperienceHighlightsRootProps {
   children: React.ReactNode | React.ReactNode[]
 }
 
-export const WorkHighlightsRoot: React.FC<WorkHighlightsRootProps> = ({
+export const ExperienceHighlightsRoot: React.FC<ExperienceHighlightsRootProps> = ({
   children,
 }) => {
   return <ul>{children}</ul>
