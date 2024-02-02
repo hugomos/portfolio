@@ -8,12 +8,7 @@ const ExperiencePage: React.FC = () => {
     <main className="flex-1">
       <Section.Root>
         <Section.Header>
-          <Section.Title>my work</Section.Title>
-          <Section.Resume>
-            On a mission to build products developers love, and, along the way,
-            write another page in the history of technology and development.
-            Here's a summary of my work so far.
-          </Section.Resume>
+          <Section.Title>professional experience</Section.Title>
         </Section.Header>
         <Section.Divider />
         <Section.Content>
@@ -21,7 +16,9 @@ const ExperiencePage: React.FC = () => {
             <Experience.Title>
               Athenas Consultoria Agrícola e Laboratórios
             </Experience.Title>
-            <Experience.Subtitle>Software Developer</Experience.Subtitle>
+            <Experience.Subtitle>
+              Software Developer, 2021 - Present
+            </Experience.Subtitle>
             <Experience.Resume>
               I joined Athenas early as part of the{' '}
               <Link href="https://www.sp.senac.br/jovem-aprendiz-empresa">
