@@ -8,7 +8,7 @@ export const Header: React.FC<HeaderProps> = ({ ...props }) => {
   const links = [
     { href: '/', label: 'home' },
     { href: '/work', label: 'work' },
-    { href: '/projects', label: 'projects' },
+    { href: '/experience', label: 'experience' },
   ]
   return (
     <header
