@@ -1,19 +1,22 @@
+import { cn } from '@/lib/utils'
 import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 import React from 'react'
 
-interface LinkProps extends NextLinkProps {
+interface LinkProps extends NextLinkProps, React.ComponentPropsWithoutRef<'a'> {
   href: string
   children: React.ReactNode | React.ReactNode[]
-  variant?: 'default' | 'navigation' | 'badge' | 'none'
+  variant?: 'default' | 'navigation' | 'badge' | 'none' | 'icon'
 }
 
 export const Link: React.FC<LinkProps> = ({
   href,
   children,
   variant = 'default',
+  className = '',
   ...props
 }) => {
   const variants = {
+    icon: 'flex items-center gap-1',
     default: '',
     none: 'no-underline',
     navigation:
@@ -28,7 +31,7 @@ export const Link: React.FC<LinkProps> = ({
     <NextLink
       href={href}
       target={target}
-      className={variants[variant]}
+      className={cn([variants[variant], className])}
       {...props}
     >
       {children}
