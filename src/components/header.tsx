@@ -10,6 +10,7 @@ export const Header: React.FC<HeaderProps> = ({ ...props }) => {
     { href: '/work', label: 'work' },
     { href: '/experience', label: 'experience' },
   ]
+
   return (
     <header
       className="w-full flex justify-between items-center -ml-[8px] mb-16 tracking-tight"
