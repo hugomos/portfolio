@@ -1,4 +1,4 @@
-import { NextApiRequest } from 'next'
+import { NextRequest } from 'next/server'
 
 interface Repository {
   id: number
@@ -47,7 +47,7 @@ async function fetchRepositoriesWithTopics(
   return repositoriesWithTopics
 }
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url as string)
 
   const username = searchParams.get('username')

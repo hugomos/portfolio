@@ -1,14 +1,22 @@
 import { Section } from '@/components/section'
-import { Work } from '@/components/work'
+import { IWork, Work } from '@/components/work'
 
 import React from 'react'
 
-const WorkPage: React.FC = async () => {
-  const response = await fetch(
-    'https://hugomos.com/api/repositories?username=hugomos&topics=portfolio',
-  )
+// async function getData(): Promise<IWork[]> {
+//   const res = await fetch(
+//     'https://hugomos.com/api/repositories?username=hugomos&topics=portfolio',
+//   )
 
-  const works = await response.json()
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch data')
+//   }
+
+//   return await res.json()
+// }
+
+const WorkPage: React.FC = async () => {
+  const works: IWork[] = []
 
   return (
     <Section.Root>
