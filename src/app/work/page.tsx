@@ -3,20 +3,20 @@ import { IWork, Work } from '@/components/work'
 
 import React from 'react'
 
-// async function getData(): Promise<IWork[]> {
-//   const res = await fetch(
-//     'https://hugomos.com/api/repositories?username=hugomos&topics=portfolio',
-//   )
+async function getData(): Promise<IWork[]> {
+  const res = await fetch(
+    'https://www.hugomos.com/api/repositories?username=hugomos&topics=portfolio',
+  )
 
-//   if (!res.ok) {
-//     throw new Error('Failed to fetch data')
-//   }
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
 
-//   return await res.json()
-// }
+  return await res.json()
+}
 
 const WorkPage: React.FC = async () => {
-  const works: IWork[] = []
+  const works: IWork[] = await getData()
 
   return (
     <Section.Root>
