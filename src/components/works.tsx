@@ -1,30 +1,35 @@
+'use client'
+
+import { Repository } from '@/app/api/repositories/route'
 import React from 'react'
+import useSWR from 'swr'
 import { Work } from './work'
 
-interface IWork {
-  id: number
-  name: string
-  description: string
-  topics: string[]
-  html_url: string
-}
-
-export const Works: React.FC = async () => {
-  const works: IWork[] = []
+export const Works: React.FC = () => {
+  const { data, isLoading } = useSWR(
+    '/api/repositories',
+    () =>
+      fetch('https://hugomos.com/api/repositories?topics=portfolio').then(
+        (res) => res.json(),
+      ),
+    {
+      refreshInterval: 1000 * 60 * 10, // 10 minutes
+    },
+  )
 
   return (
     <>
-      {works.length > 1 ? (
-        <div className="grid grid-cols-1 gap-x-0 gap-y-4 md:grid-cols-2">
-          {works.map((work) => (
-            <Work key={work.name} work={work} />
-          ))}
-        </div>
-      ) : (
+      {isLoading || !data ? (
         <p>
           Looks like there's nothing here yet... Grab a coffee and come back
           later.
         </p>
+      ) : (
+        <div className="space-y-6">
+          {data.map((work: Repository) => (
+            <Work key={work.name} work={work} />
+          ))}
+        </div>
       )}
     </>
   )
