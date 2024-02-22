@@ -1,5 +1,13 @@
 import React from 'react'
-import { IWork, Work } from './work'
+import { Work } from './work'
+
+interface IWork {
+  id: number
+  name: string
+  description: string
+  topics: string[]
+  html_url: string
+}
 
 export const Works: React.FC = async () => {
   const works: IWork[] = []
