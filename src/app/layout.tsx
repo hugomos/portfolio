@@ -1,3 +1,5 @@
+import { Analytics } from '@vercel/analytics/react'
+
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -48,7 +50,10 @@ export default function RootLayout({
           <Container>
             <div className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
               <Header />
-              <main className="flex-1">{children}</main>
+              <main className="flex-1">
+                {children}
+                <Analytics />
+              </main>
             </div>
           </Container>
         </ThemeProvider>
