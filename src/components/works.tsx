@@ -1,20 +1,9 @@
 import React from 'react'
 import { IWork, Work } from './work'
 
-async function getData(): Promise<IWork[]> {
-  const res = await fetch(
-    'https://www.hugomos.com/api/repositories?username=hugomos&topics=portfolio',
-  )
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
-
-  return await res.json()
-}
 
 export const Works: React.FC = async () => {
-  const works: IWork[] = await getData()
+  const works: IWork[] = []
 
   return (
     <>
