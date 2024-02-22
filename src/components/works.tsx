@@ -1,7 +1,6 @@
 import React from 'react'
 import { IWork, Work } from './work'
 
-
 export const Works: React.FC = async () => {
   const works: IWork[] = []
 
