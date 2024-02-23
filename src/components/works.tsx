@@ -8,10 +8,7 @@ import { Work } from './work'
 export const Works: React.FC = () => {
   const { data, isLoading } = useSWR(
     '/api/repositories',
-    () =>
-      fetch('https://www.hugomos.com/api/repositories?topics=portfolio').then(
-        (res) => res.json(),
-      ),
+    () => fetch('/api/repositories?topics=portfolio').then((res) => res.json()),
     {
       refreshInterval: 1000 * 60 * 10, // 10 minutes
     },
