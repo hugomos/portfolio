@@ -8,6 +8,7 @@ import { capitalize } from '@/utils/string/capitalize'
 import { ExternalLinkIcon, GitHubLogoIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import React from 'react'
+import Markdown from 'react-markdown'
 import useSWR from 'swr'
 
 interface WorkDetailsProps {
@@ -44,14 +45,7 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({ params: { slug } }) => {
           </Section.Header>
           <Section.Divider />
           <SectionContent>
-            <h2 className="text-xl font-semibold">Overview</h2>
-            <div className="prose dark:prose-invert">
-              <p>{`${capitalize(data.name)} was created on ${data.created_at} and was last updated on ${data.updated_at}. It currently has ${data.stargazers_count} stars in the Github repository.`}</p>
-              <p>
-                {`The language used in ${capitalize(data.name)} is ${capitalize(data.language)}, and its topics are ${data.topics.join(', ')}.`}
-              </p>
-            </div>
-            <div className="flex items-center gap-4 pt-6">
+            <div className="flex items-center gap-4 pb-6">
               <Link href={data.html_url} target="_blank" className="flex">
                 <Button variant="outline" className="p-5">
                   <GitHubLogoIcon className="size-4 mr-2" />
@@ -66,6 +60,10 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({ params: { slug } }) => {
                   </Button>
                 </Link>
               )}
+            </div>
+            <div className="prose dark:prose-invert w-full">
+              <h3>Overview</h3>
+              <Markdown>{data.readme}</Markdown>
             </div>
           </SectionContent>
         </>
