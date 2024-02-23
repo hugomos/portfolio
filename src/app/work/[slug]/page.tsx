@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { RepositoryDetails } from '@/utils/getUserRepositoryBySlug'
 import { capitalize } from '@/utils/string/capitalize'
 import { ExternalLinkIcon, GitHubLogoIcon } from '@radix-ui/react-icons'
+import Link from 'next/link'
 import React from 'react'
 import useSWR from 'swr'
 
@@ -51,15 +52,19 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({ params: { slug } }) => {
               </p>
             </div>
             <div className="flex items-center gap-4 pt-6">
-              <Button variant="outline">
-                <GitHubLogoIcon className="size-4 mr-2" />
-                View on GitHub
-              </Button>
-              {data.homepage && (
-                <Button>
-                  <ExternalLinkIcon className="size-4 mr-2" />
-                  Visit Homepage
+              <Link href={data.html_url} target="_blank" className="flex">
+                <Button variant="outline" className="p-5">
+                  <GitHubLogoIcon className="size-4 mr-2" />
+                  View on GitHub
                 </Button>
+              </Link>
+              {data.homepage && (
+                <Link href={data.homepage} target="_blank" className="flex">
+                  <Button className="p-5">
+                    <ExternalLinkIcon className="size-4 mr-2" />
+                    Visit Homepage
+                  </Button>
+                </Link>
               )}
             </div>
           </SectionContent>
