@@ -61,9 +61,9 @@ const WorkDetails: React.FC<WorkDetailsProps> = ({ params: { slug } }) => {
                 </Link>
               )}
             </div>
-            <div className="prose dark:prose-invert w-full">
+            <div className="prose dark:prose-invert min-w-full">
               <h3>Overview</h3>
-              <Markdown>{data.readme}</Markdown>
+              <Markdown className="text-justify">{data.readme}</Markdown>
             </div>
           </SectionContent>
         </>
