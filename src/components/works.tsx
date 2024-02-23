@@ -9,7 +9,7 @@ export const Works: React.FC = () => {
   const { data, isLoading } = useSWR(
     '/api/repositories',
     () =>
-      fetch('https://hugomos.com/api/repositories?topics=portfolio').then(
+      fetch('https://www.hugomos.com/api/repositories?topics=portfolio').then(
         (res) => res.json(),
       ),
     {
@@ -17,9 +17,13 @@ export const Works: React.FC = () => {
     },
   )
 
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
+
   return (
     <>
-      {isLoading || !data ? (
+      {!data ? (
         <p>
           Looks like there's nothing here yet... Grab a coffee and come back
           later.
