@@ -5,5 +5,5 @@ interface SectionResumeProps {
 }
 
 export const SectionResume: React.FC<SectionResumeProps> = ({ children }) => {
-  return <p className="prose prose-neutral dark:prose-invert">{children}</p>
+  return <p className="prose min-w-full dark:prose-invert">{children}</p>
 }
