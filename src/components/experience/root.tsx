@@ -5,5 +5,5 @@ interface ExperienceRootProps {
 }
 
 export const ExperienceRoot: React.FC<ExperienceRootProps> = ({ children }) => {
-  return <div className="prose prose-neutral dark:prose-invert">{children}</div>
+  return <div className="prose min-w-full dark:prose-invert">{children}</div>
 }
