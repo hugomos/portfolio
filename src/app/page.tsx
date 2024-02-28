@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
         <Section.Divider />
         <div className="flex items-center gap-2 w-full">
           <Link
-            href="https://github.com/hugomos/"
+            href="/github"
             variant="icon"
             className="hover:underline"
           >
@@ -50,7 +50,7 @@ const HomePage: React.FC = () => {
           </Link>
 
           <Link
-            href="https://linkedin.com/in/hugomos/"
+            href="/linkedin"
             variant="icon"
             className="hover:underline"
           >
