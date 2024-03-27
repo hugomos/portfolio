@@ -3,7 +3,7 @@
 import { Section } from '@/components/section'
 import { SectionContent } from '@/components/section/content'
 import { Button } from '@/components/ui/button'
-import { RepositoryDetails } from '@/utils/getUserRepositoryBySlug'
+import { FindRepositoryBySlugResponse } from '@/server/modules/repository/application/dto/find-repository-by-slug'
 import { capitalize } from '@/utils/string/capitalize'
 import { ExternalLinkIcon, GitHubLogoIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
@@ -18,9 +18,12 @@ interface WorkDetailsProps {
 }
 
 const WorkDetails: React.FC<WorkDetailsProps> = ({ params: { slug } }) => {
-  const { data, isLoading } = useSWR<RepositoryDetails>(
-    `/api/repositories/${slug}`,
-    () => fetch(`/api/repositories/${slug}`).then((res) => res.json()),
+  const { data, isLoading } = useSWR<FindRepositoryBySlugResponse>(
+    '/api/hugomos/repositories/slug',
+    () => fetch(`/api/hugomos/repositories/${slug}`).then((res) => res.json()),
+    {
+      refreshInterval: 1000 * 60 * 10, // 10 minutes
+    },
   )
 
   if (!data && !isLoading) {
