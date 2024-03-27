@@ -19,7 +19,11 @@ export async function GET(
       `${BASE_URL}repos/${username}/${slug}/contents/README.md?ref=main`,
     )
 
-    if (!repositoryResponse.ok || !readmeResponse.ok) return null
+    if (!repositoryResponse.ok || !readmeResponse.ok)
+      return new Response(JSON.stringify({}), {
+        status: 404,
+        statusText: 'Repository or README not found',
+      })
 
     const repository: FindRepositoryBySlugResponse =
       await repositoryResponse.json()
@@ -40,6 +44,9 @@ export async function GET(
     return new Response(JSON.stringify(repositoryDetails))
   } catch (error: any) {
     console.error(error.message)
-    return null
+    return new Response(JSON.stringify({}), {
+      status: 500,
+      statusText: 'Internal server error',
+    })
   }
 }

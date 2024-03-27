@@ -1,11 +1,11 @@
-import { Repository } from '@/app/api/repositories/route'
 import React from 'react'
 
+import { ListRepositoriesByTopicsResponse } from '@/server/modules/repository/application/dto/list-repositories-by-topics'
 import { capitalize } from '@/utils/string/capitalize'
 import Link from 'next/link'
 
 interface WorkProps {
-  work: Repository
+  work: ListRepositoriesByTopicsResponse
 }
 
 export const Work: React.FC<WorkProps> = ({ work }) => {

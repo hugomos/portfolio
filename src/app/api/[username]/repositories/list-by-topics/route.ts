@@ -20,7 +20,11 @@ export async function GET(
 
   try {
     const response = await fetch(`${BASE_URL}users/${username}/repos`)
-    if (!response.ok) return null
+    if (!response.ok)
+      return new Response(JSON.stringify({}), {
+        status: 404,
+        statusText: 'User or repository not found',
+      })
 
     let repositories: ListRepositoriesByTopicsResponse[] = await response.json()
     repositories = repositories
@@ -43,6 +47,9 @@ export async function GET(
     return new Response(JSON.stringify(repositories))
   } catch (error) {
     console.error(error)
-    return null
+    return new Response(JSON.stringify({}), {
+      status: 500,
+      statusText: 'Internal server error',
+    })
   }
 }
