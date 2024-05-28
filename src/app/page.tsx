@@ -40,6 +40,14 @@ const HomePage: React.FC = () => {
       <Section.Content>
         <Section.Divider />
         <div className="flex items-center gap-2 w-full">
+          <Link
+            href="https://drive.google.com/file/d/1PfInJxAYsAzjn-c3bz6e0jOta0Z7D5u-/view?usp=sharing"
+            variant="icon"
+            className="hover:underline"
+          >
+            <ArrowTopRightIcon />
+            Resume
+          </Link>
           <Link href="/github" variant="icon" className="hover:underline">
             <ArrowTopRightIcon />
             GitHub
