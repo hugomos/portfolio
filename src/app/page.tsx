@@ -9,13 +9,9 @@ const HomePage: React.FC = () => {
       <Section.Header>
         <Section.Title>hey, I'm hugomos 👋</Section.Title>
         <Section.Resume>
-          I am a software developer, technology enthusiast, and very practical.
-          Currently, I work in the development team at{' '}
-          <Link href="https://athenasagricola.com.br">
-            Athenas Consultoria Agrícola e Laboratórios
-          </Link>
-          , where I build tools and plugins focused on precision agriculture. I
-          use{' '}
+          I'm a software developer passionate about technology and very
+          practical. I have experience in developing tools and process
+          automations. I use{' '}
           <Link href="https://www.python.org/" variant="badge">
             Python
           </Link>
@@ -24,17 +20,14 @@ const HomePage: React.FC = () => {
             Typescript
           </Link>
           ,{' '}
-          <Link href="https://qgis.org/pt_BR/site/" variant="badge">
-            QGIS
+          <Link href="https://www.djangoproject.com" variant="badge">
+            Django
           </Link>
           , and{' '}
-          <Link
-            href="https://www.esri.com/pt-br/arcgis/about-arcgis/overview"
-            variant="badge"
-          >
-            ArcGIS
+          <Link href="https://nextjs.org" variant="badge">
+            NextJS
           </Link>{' '}
-          in the development of these solutions.
+          to create efficient solutions.
         </Section.Resume>
       </Section.Header>
       <Section.Content>
