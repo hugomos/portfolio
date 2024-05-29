@@ -19,25 +19,28 @@ const ExperiencePage: React.FC = () => {
               Software Developer, 2022 - Present
             </Experience.Subtitle>
             <Experience.Resume>
-              I significantly contributed to the development of resources and
-              important improvements for the company's internal processes,
+              I made significant contributions to the development of resources
+              and important improvements for the company's internal processes,
               positively impacting dozens of clients. My achievements include:
             </Experience.Resume>
             <Experience.Highlights.Root>
               <Experience.Highlights.Item>
-                Designing and developing a plugin for QGIS, allowing data
-                visualization in graphs, creating sample collection tasks, and
-                visualizing and generating routes for sending to the collection
-                app.
+                Planning and developing a QGIS plugin focused on optimizing
+                essential processes for soil sample collection and statistical
+                data analysis for the Consulting sector. This involved
+                integrating tools for data visualization in graphs, creating
+                sample collection tasks, and generating routes for submission to
+                the collection application.
               </Experience.Highlights.Item>
               <Experience.Highlights.Item>
-                Collaborating on the planning and delivery of the current system
-                used in the Consulting department.
+                Identifying and fixing critical bugs in the production
+                environment, ensuring the stability and reliability of the
+                applications
               </Experience.Highlights.Item>
               <Experience.Highlights.Item>
-                Developing and implementing functionalities for automatic update
-                and upload of georeferenced geometries in the sample collection
-                app.
+                Thoroughly crafting technical documentation covering processes,
+                scripts, and developed applications, making it easier for the
+                team to understand and maintain.
               </Experience.Highlights.Item>
             </Experience.Highlights.Root>
           </Experience.Root>
@@ -51,22 +54,26 @@ const ExperiencePage: React.FC = () => {
             </Experience.Subtitle>
             <Experience.Resume>
               I had the opportunity to learn about the processes and challenges
-              of the Consulting and IT departments, as well as deepen my
+              of both consulting and IT sectors, while also deepening my
               knowledge in precision agriculture and soil chemical analysis. My
               achievements during this period include:
             </Experience.Resume>
             <Experience.Highlights.Root>
               <Experience.Highlights.Item>
                 Developing a hub using Django, which centralizes technical
-                documentation of the company's internal processes and scripts.
+                documentation of the company's internal processes and scripts,
+                enabling easy access and knowledge sharing among teams.
               </Experience.Highlights.Item>
               <Experience.Highlights.Item>
-                Deepening my understanding of the Python language, technical
-                documentation development, architectures, and design patterns.
+                Gaining a profound understanding of the Python language,
+                resulting in the ability to develop detailed technical
+                documentation, architectures, and design patterns for internal
+                applications and systems.
               </Experience.Highlights.Item>
               <Experience.Highlights.Item>
-                Working closely with the consulting and IT teams to improve
-                process efficiency and service quality.
+                Collaborating closely with consulting and IT teams to enhance
+                process efficiency and service quality, by identifying
+                optimization opportunities and implementing effective solutions.
               </Experience.Highlights.Item>
             </Experience.Highlights.Root>
           </Experience.Root>
