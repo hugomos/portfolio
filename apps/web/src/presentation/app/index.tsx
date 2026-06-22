@@ -1,10 +1,14 @@
 import type React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router'
+import { Home } from './home'
 
 
 export const App: React.FC = () => {
   return (
-    <main>
-      <h1>App</h1>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
