@@ -3,27 +3,27 @@ import { env } from "@portfolio/env/server";
 import Fastify from "fastify";
 
 const baseCorsConfig = {
-  origin: env.CORS_ORIGIN,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-  credentials: true,
-  maxAge: 86400,
+	origin: env.CORS_ORIGIN,
+	methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+	allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+	credentials: true,
+	maxAge: 86400,
 };
 
 const fastify = Fastify({
-  logger: true,
+	logger: true,
 });
 
 fastify.register(fastifyCors, baseCorsConfig);
 
 fastify.get("/", async () => {
-  return "OK";
+	return "OK";
 });
 
 fastify.listen({ port: 3000 }, (err) => {
-  if (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-  console.log("Server running on port 3000");
+	if (err) {
+		fastify.log.error(err);
+		process.exit(1);
+	}
+	console.log("Server running on port 3000");
 });
