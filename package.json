@@ -1,0 +1,38 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:web": "turbo -F web dev",
+    "dev:server": "turbo -F server dev",
+    "db:push": "turbo -F @portfolio/db db:push",
+    "db:studio": "turbo -F @portfolio/db db:studio",
+    "db:generate": "turbo -F @portfolio/db db:generate",
+    "db:migrate": "turbo -F @portfolio/db db:migrate",
+    "db:start": "turbo -F @portfolio/db db:start",
+    "db:watch": "turbo -F @portfolio/db db:watch",
+    "db:stop": "turbo -F @portfolio/db db:stop",
+    "db:down": "turbo -F @portfolio/db db:down",
+    "check": "biome check --write ."
+  },
+  "dependencies": {
+    "@portfolio/env": "workspace:*",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.16",
+    "@portfolio/config": "workspace:*",
+    "@types/node": "^22.13.14",
+    "turbo": "^2.9.16",
+    "typescript": "catalog:"
+  },
+  "packageManager": "pnpm@10.33.2"
+}

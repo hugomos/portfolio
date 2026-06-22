@@ -1,0 +1,31 @@
+// Better-T-Stack
+//
+// Website: https://www.better-t-stack.dev/
+// Stack Builder: https://www.better-t-stack.dev/new
+// Analytics: https://www.better-t-stack.dev/analytics
+// Showcase: https://www.better-t-stack.dev/showcase
+// Sponsor: https://github.com/sponsors/AmanVarshney01
+//
+// Add new addons with: pnpm dlx create-better-t-stack add
+// This file is safe to delete
+
+{
+  "$schema": "https://r2.better-t-stack.dev/schema.json",
+  "version": "3.33.2",
+  "createdAt": "2026-06-22T18:03:41.427Z",
+  "reproducibleCommand": "pnpm create better-t-stack@latest portfolio --frontend react-router --backend fastify --runtime node --database postgres --orm drizzle --api none --auth none --payments none --addons turborepo biome skills --examples none --db-setup docker --web-deploy none --server-deploy none --git --package-manager pnpm --install",
+  "database": "postgres",
+  "orm": "drizzle",
+  "backend": "fastify",
+  "runtime": "node",
+  "frontend": ["react-router"],
+  "addons": ["turborepo", "biome", "skills"],
+  "examples": [],
+  "auth": "none",
+  "payments": "none",
+  "packageManager": "pnpm",
+  "dbSetup": "docker",
+  "api": "none",
+  "webDeploy": "none",
+  "serverDeploy": "none",
+}
