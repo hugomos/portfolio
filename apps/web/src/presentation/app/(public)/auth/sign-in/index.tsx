@@ -1,5 +1,5 @@
 import type React from "react";
-import { SectionTitle } from "@/presentation/app/(public)/@components/section-title";
+import { SectionTitle } from "@/presentation/components/section-title";
 import { Button } from "@/presentation/components/ui/button";
 import {
 	Field,

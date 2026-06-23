@@ -2,9 +2,10 @@ import { GithubLogoIcon } from "@phosphor-icons/react";
 import { ArrowLeft, Globe } from "lucide-react";
 import type React from "react";
 import { Link, useNavigate } from "react-router";
+import { SectionTitle } from "@/presentation/components/section-title";
 import { Button } from "@/presentation/components/ui/button";
 import { Separator } from "@/presentation/components/ui/separator";
-import { SectionTitle } from "../../@components/section-title";
+
 import { MarkdownContent } from "./components/markdown-content";
 
 const STATUS_STYLES: Record<string, string> = {

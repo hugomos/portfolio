@@ -7,8 +7,7 @@ export const RedirectIfAuthenticated: React.FC = () => {
 	const location = useLocation();
 
 	// const { user, userIsLoading } = useMe()
-	// const user = { name: "john doe", email: "yTtI2@example.com" };
-	const user = null;
+	const user = { name: "john doe", email: "yTtI2@example.com" };
 	const userIsLoading = false;
 
 	useEffect(() => {
@@ -16,7 +15,7 @@ export const RedirectIfAuthenticated: React.FC = () => {
 			navigate("/~/admin", { replace: true, state: { from: location } });
 			return;
 		}
-	}, [navigate, location]);
+	}, [navigate, location, user]);
 
 	if (userIsLoading) {
 		return (

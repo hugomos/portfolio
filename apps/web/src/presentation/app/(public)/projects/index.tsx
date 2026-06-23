@@ -1,5 +1,5 @@
 import type React from "react";
-import { SectionTitle } from "../@components/section-title";
+import { SectionTitle } from "@/presentation/components/section-title";
 import { ProjectGroup } from "./@components/project-group";
 import type { Project } from "./@components/project-item";
 

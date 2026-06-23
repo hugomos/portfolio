@@ -1,8 +1,10 @@
 import type React from "react";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { ThemeProvider } from "../components/theme-provider";
-import { Admin } from "./(admin)";
 import { AuthGuard } from "./(admin)/@components/auth-guard";
+import { AdminRootLayout } from "./(admin)/_layout";
+import { Experiences } from "./(admin)/experiences";
+import { Projects } from "./(admin)/projects";
 import { Index } from "./(public)";
 import { PublicRootLayout } from "./(public)/_layout";
 import { RedirectIfAuthenticated } from "./(public)/auth/@components/redirect-if-authenticated";
@@ -23,8 +25,14 @@ export const App: React.FC = () => {
 						<Route path="/auth/sign-in" element={<SignIn />} />
 					</Route>
 
-					<Route element={<AuthGuard />}>
-						<Route path="/~/admin" element={<Admin />} />
+					<Route path="/~/admin">
+						<Route element={<AuthGuard />}>
+							<Route element={<AdminRootLayout />}>
+								<Route index element={<Navigate to="projects" replace />} />
+								<Route path="projects" element={<Projects />} />
+								<Route path="experiences" element={<Experiences />} />
+							</Route>
+						</Route>
 					</Route>
 				</Routes>
 			</BrowserRouter>

@@ -1,6 +1,6 @@
 import type React from "react";
+import { SectionTitle } from "@/presentation/components/section-title";
 import { Separator } from "@/presentation/components/ui/separator";
-import { SectionTitle } from "../../@components/section-title";
 import { ExperienceItem } from "./components/experience-item";
 
 const experiences = [
