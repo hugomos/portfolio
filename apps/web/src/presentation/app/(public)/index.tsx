@@ -1,5 +1,5 @@
 import type React from "react";
-import { Hero } from "./@components/hero";
+import { Hero } from "./@sections/hero";
 
 export const Index: React.FC = () => {
 	return (
