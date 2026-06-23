@@ -1,4 +1,5 @@
 import type React from "react";
+import { SectionTitle } from "@/presentation/app/(public)/@components/section-title";
 import { Button } from "@/presentation/components/ui/button";
 import {
 	Field,
@@ -6,7 +7,6 @@ import {
 	FieldLabel,
 } from "@/presentation/components/ui/field";
 import { Input } from "@/presentation/components/ui/input";
-import { SectionTitle } from "@/presentation/app/(public)/@components/section-title";
 
 export const SignIn: React.FC = () => {
 	return (

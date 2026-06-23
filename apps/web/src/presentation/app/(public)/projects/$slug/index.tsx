@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router";
 import { Button } from "@/presentation/components/ui/button";
 import { Separator } from "@/presentation/components/ui/separator";
 import { SectionTitle } from "../../@components/section-title";
-import { MarkdownContent } from "./components/markdown-content"
+import { MarkdownContent } from "./components/markdown-content";
 
 const STATUS_STYLES: Record<string, string> = {
 	active: "text-emerald-500",

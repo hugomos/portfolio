@@ -31,15 +31,15 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
 				<ArrowUpRight className="size-3 text-muted-foreground transition-colors group-hover:text-foreground" />
 			</Link>
 
-			<p className="text-sm text-muted-foreground">{summary}</p>
-			<p className="text-xs text-muted-foreground/60">{impact}</p>
+			<p className="text-muted-foreground text-sm">{summary}</p>
+			<p className="text-muted-foreground/60 text-xs">{impact}</p>
 
 			{tech && tech.length > 0 && (
 				<div className="flex flex-wrap gap-1.5">
 					{tech.map((t) => (
 						<span
 							key={t}
-							className="rounded border border-border px-2 py-0.5 text-xs text-muted-foreground"
+							className="rounded border border-border px-2 py-0.5 text-muted-foreground text-xs"
 						>
 							{t}
 						</span>

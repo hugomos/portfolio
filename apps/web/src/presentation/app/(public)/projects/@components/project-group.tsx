@@ -1,5 +1,5 @@
-import { Separator } from "@/presentation/components/ui/separator";
 import type React from "react";
+import { Separator } from "@/presentation/components/ui/separator";
 import { type Project, ProjectItem } from "./project-item";
 
 interface ProjectGroupProps {
@@ -13,7 +13,7 @@ export const ProjectGroup: React.FC<ProjectGroupProps> = ({
 }) => {
 	return (
 		<div className="space-y-4">
-			<h3 className="text-xs text-muted-foreground">{label}</h3>
+			<h3 className="text-muted-foreground text-xs">{label}</h3>
 			<div className="space-y-6">
 				{projects.map((project, index) => (
 					<div key={project.id} className="space-y-6">
