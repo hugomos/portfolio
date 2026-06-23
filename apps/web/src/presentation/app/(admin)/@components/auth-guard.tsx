@@ -7,14 +7,15 @@ export const AuthGuard: React.FC = () => {
 	const navigate = useNavigate();
 
 	// const { user, userIsLoading } = useMe()
-	const user = { name: "john doe", email: "yTtI2@example.com" };
+	// const user = { name: "john doe", email: "yTtI2@example.com" };
+	const user = null;
 	const userIsLoading = false;
 
 	useEffect(() => {
 		if (!userIsLoading && !user) {
 			navigate("/auth/sign-in", { replace: true, state: { from: location } });
 		}
-	}, [user, navigate, location]);
+	}, [navigate, location]);
 
 	if (userIsLoading) {
 		return (
