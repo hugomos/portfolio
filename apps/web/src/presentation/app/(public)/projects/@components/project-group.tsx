@@ -13,9 +13,7 @@ export const ProjectGroup: React.FC<ProjectGroupProps> = ({
 }) => {
 	return (
 		<div className="space-y-4">
-			<h2 className="text-xs uppercase tracking-wider text-muted-foreground">
-				{label}
-			</h2>
+			<h3 className="text-xs text-muted-foreground">{label}</h3>
 			<div className="space-y-6">
 				{projects.map((project, index) => (
 					<div key={project.id} className="space-y-6">

@@ -63,7 +63,7 @@ export const Projects: React.FC = () => {
 
 	return (
 		<div className="space-y-8">
-			<SectionTitle as="h1">Projects</SectionTitle>
+			<SectionTitle as="h2">Projects</SectionTitle>
 			<div className="space-y-10">
 				{grouped.map((group) => (
 					<ProjectGroup

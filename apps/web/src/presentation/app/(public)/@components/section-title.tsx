@@ -9,7 +9,10 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({
 	as: Tag = "h2",
 }) => {
 	return (
-		<Tag className="text-muted-foreground text-sm uppercase tracking-widest">
+		<Tag className="text-base font-medium">
+			<span aria-hidden="true" className="mr-1.5 select-none text-muted-foreground">
+				//
+			</span>
 			{children}
 		</Tag>
 	);
