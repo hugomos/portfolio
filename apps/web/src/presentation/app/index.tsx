@@ -7,6 +7,7 @@ import { Experiences } from "./(admin)/experiences";
 import { EditExperience } from "./(admin)/experiences/$id";
 import { NewExperience } from "./(admin)/experiences/new";
 import { Projects } from "./(admin)/projects";
+import { EditProject } from "./(admin)/projects/$id";
 import { NewProject } from "./(admin)/projects/new";
 import { Index } from "./(public)";
 import { PublicRootLayout } from "./(public)/_layout";
@@ -35,6 +36,7 @@ export const App: React.FC = () => {
 								<Route path="projects">
 									<Route index element={<Projects />} />
 									<Route path="new" element={<NewProject />} />
+									<Route path=":id" element={<EditProject />} />
 								</Route>
 								<Route path="experiences">
 									<Route index element={<Experiences />} />
