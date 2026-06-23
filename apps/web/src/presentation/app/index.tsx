@@ -1,8 +1,8 @@
 import type React from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { ThemeProvider } from "../components/theme-provider";
+import { Index } from "./(public)";
 import { PublicRootLayout } from "./(public)/_layout";
-import { Home } from "./(public)/home";
 
 export const App: React.FC = () => {
 	return (
@@ -10,7 +10,7 @@ export const App: React.FC = () => {
 			<BrowserRouter>
 				<Routes>
 					<Route element={<PublicRootLayout />}>
-						<Route path="/" element={<Home />} />
+						<Route path="/" element={<Index />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
