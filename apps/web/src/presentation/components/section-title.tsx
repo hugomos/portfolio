@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/suspicious/noCommentText: <explanation> */
+/** biome-ignore-all lint/suspicious/noCommentText: it's on purpose */
 import type React from "react";
 
 interface SectionTitleProps extends React.PropsWithChildren {
