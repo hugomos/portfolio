@@ -9,6 +9,10 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@blocknote/core": "^0.51.4",
+		"@blocknote/react": "^0.51.4",
+		"@blocknote/shadcn": "^0.51.4",
+		"@defensestation/blocknote-mermaid": "^1.0.1",
 		"@fontsource-variable/jetbrains-mono": "^5.2.8",
 		"@phosphor-icons/react": "^2.1.10",
 		"@tailwindcss/vite": "^4.3.1",
