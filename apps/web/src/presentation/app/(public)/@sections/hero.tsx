@@ -8,21 +8,21 @@ export const Hero: React.FC = () => {
 	return (
 		<section className="space-y-6">
 			<header className="space-y-1">
-				<h1 className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
+				<h1 className="font-bold text-2xl leading-tight tracking-tight sm:text-3xl">
 					Vitor Hugo Oliveira
 				</h1>
-				<p className="text-sm uppercase tracking-widest text-muted-foreground">
+				<p className="text-muted-foreground text-sm uppercase tracking-widest">
 					Software Engineer
 				</p>
 			</header>
 
-			<p className="text-sm leading-relaxed text-muted-foreground">
+			<p className="text-muted-foreground text-sm leading-relaxed">
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
 				veniam, quis nostrud exercitation ullamco laboris.
 			</p>
 
-			<ul className="flex list-inside list-disc flex-wrap gap-x-4 text-sm text-muted-foreground">
+			<ul className="flex list-inside list-disc flex-wrap gap-x-4 text-muted-foreground text-sm">
 				<li className="list-none">Python</li>
 				<li>QGIS</li>
 				<li>Typescript</li>

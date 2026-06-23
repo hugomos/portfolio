@@ -1,7 +1,7 @@
-import { Badge } from "@/presentation/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
+import { Badge } from "@/presentation/components/ui/badge";
 import { formatDate } from "../utils/date";
 
 interface Experience {
@@ -27,7 +27,6 @@ const workModeLabel: Record<Experience["workMode"], string> = {
 	onsite: "Presencial",
 };
 
-
 interface ExperienceItemProps {
 	experience: Experience;
 }
@@ -49,15 +48,15 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 						to={company.website}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="group inline-flex items-center gap-1 text-sm font-medium hover:underline"
+						className="group inline-flex items-center gap-1 font-medium text-sm hover:underline"
 					>
 						{company.name}
 						<ArrowUpRight className="size-3 text-muted-foreground transition-colors group-hover:text-foreground" />
 					</Link>
 				) : (
-					<span className="text-sm font-medium">{company.name}</span>
+					<span className="font-medium text-sm">{company.name}</span>
 				)}
-				<p className="text-xs text-muted-foreground">
+				<p className="text-muted-foreground text-xs">
 					{start} – {end}
 				</p>
 				<Badge variant="outline" className="w-fit text-xs">
@@ -66,13 +65,10 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 			</div>
 
 			<div className="space-y-2">
-				<p className="text-sm font-medium">{role}</p>
+				<p className="font-medium text-sm">{role}</p>
 				<ul className="space-y-1">
 					{highlights.map((h) => (
-						<li
-							key={h.id}
-							className="flex gap-2 text-sm text-muted-foreground"
-						>
+						<li key={h.id} className="flex gap-2 text-muted-foreground text-sm">
 							<span
 								aria-hidden="true"
 								className="mt-2 size-1 shrink-0 rounded-full bg-muted-foreground/40"

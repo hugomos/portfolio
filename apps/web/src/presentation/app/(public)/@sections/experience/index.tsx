@@ -1,5 +1,5 @@
-import { Separator } from "@/presentation/components/ui/separator";
 import type React from "react";
+import { Separator } from "@/presentation/components/ui/separator";
 import { SectionTitle } from "../../@components/section-title";
 import { ExperienceItem } from "./components/experience-item";
 
