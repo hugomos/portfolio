@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
+import { Link } from "react-router";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { Button } from "@/presentation/components/ui/button";
 import { Separator } from "@/presentation/components/ui/separator";
@@ -76,9 +77,11 @@ export const Experiences: React.FC = () => {
 		<main className="space-y-6">
 			<div className="flex items-center justify-between">
 				<SectionTitle as="h1">Experiences</SectionTitle>
-				<Button variant="outline" size="sm">
-					<Plus data-icon="inline-start" />
-					Add experience
+				<Button variant="outline" size="sm" asChild>
+					<Link to="/~/admin/experiences/new">
+						<Plus data-icon="inline-start" />
+						Add experience
+					</Link>
 				</Button>
 			</div>
 
