@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/jetbrains-mono";
+@source "../../node_modules/@blocknote/shadcn";
 
 @custom-variant dark (&:is(.dark *));
 
