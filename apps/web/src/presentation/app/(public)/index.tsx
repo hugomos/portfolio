@@ -1,9 +1,10 @@
 import type React from "react";
+import { Hero } from "./@components/hero";
 
 export const Index: React.FC = () => {
 	return (
 		<main>
-			<h1>Index</h1>
+			<Hero />
 		</main>
 	);
 };
