@@ -19,6 +19,12 @@ export const categoryKeys = Object.keys(categoryLabels).map((key) => key);
 
 export type ProjectStatus = "active" | "wip" | "archived";
 
+export const statusLabels: Record<ProjectStatus, string> = {
+	active: "Active",
+	wip: "Work in Progress",
+	archived: "Archived",
+};
+
 export const statusColors: Record<ProjectStatus, string> = {
 	active: "text-emerald-500",
 	wip: "text-amber-500",
