@@ -1,9 +1,15 @@
+interface UseUpdateExperienceProps {
+	navigate: (path: string) => void;
+}
+
 interface UseUpdateExperience {
-	handleUpdateExperience: () => Promise<{ id: string }>;
+	handleUpdateExperience: (data: any) => Promise<{ id: string }>;
 	updateExperienceIsPending: boolean;
 }
 
-export function useUpdateExperience(): UseUpdateExperience {
+export function useUpdateExperience(
+	_: UseUpdateExperienceProps,
+): UseUpdateExperience {
 	return {
 		handleUpdateExperience: () => new Promise((resolve) => resolve({ id: "" })),
 		updateExperienceIsPending: false,
