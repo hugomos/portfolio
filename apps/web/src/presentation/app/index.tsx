@@ -10,10 +10,10 @@ import { Projects } from "./(admin)/projects";
 import { EditProject } from "./(admin)/projects/$id";
 import { NewProject } from "./(admin)/projects/new";
 import { Index } from "./(public)";
+import { ProjectDetail } from "./(public)/@sections/projects/$slug";
 import { PublicRootLayout } from "./(public)/_layout";
 import { RedirectIfAuthenticated } from "./(public)/auth/@components/redirect-if-authenticated";
 import { SignIn } from "./(public)/auth/sign-in";
-import { ProjectDetail } from "./(public)/projects/$slug";
 
 export const App: React.FC = () => {
 	return (
