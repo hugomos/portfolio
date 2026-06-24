@@ -21,7 +21,8 @@ const EditProjectContent: React.FC<{ project: ProjectDTO }> = ({ project }) => {
 
 export const EditProject: React.FC = () => {
 	const { id } = useParams<{ id: string }>();
-	const { projects } = useProjects();
+
+	const { projects } = useProjects({});
 	const project = projects?.find((p) => p.id === id);
 
 	if (!project) {

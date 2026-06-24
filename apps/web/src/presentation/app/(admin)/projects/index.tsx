@@ -8,7 +8,7 @@ import { Separator } from "@/presentation/components/ui/separator";
 import { ProjectItem } from "./@components/project-item";
 
 export const Projects: React.FC = () => {
-	const { projects } = useProjects();
+	const { projects } = useProjects({});
 
 	return (
 		<main className="space-y-6">

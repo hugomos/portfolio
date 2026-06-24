@@ -8,7 +8,7 @@ import { Separator } from "@/presentation/components/ui/separator";
 import { ExperienceItem } from "./@components/experience-item";
 
 export const Experiences: React.FC = () => {
-	const { experiences } = useExperiences();
+	const { experiences } = useExperiences({});
 
 	return (
 		<main className="space-y-6">

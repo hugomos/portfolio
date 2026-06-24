@@ -16,6 +16,11 @@ export const Header: React.FC = () => {
 			<NavigationMenu viewport={false}>
 				<NavigationMenuList>
 					<NavigationMenuItem>
+						<NavigationMenuLink asChild>
+							<Link to="/">Portfolio</Link>
+						</NavigationMenuLink>
+					</NavigationMenuItem>
+					<NavigationMenuItem>
 						<NavigationMenuLink
 							asChild
 							data-active={location.pathname.startsWith("/~/admin/projects")}

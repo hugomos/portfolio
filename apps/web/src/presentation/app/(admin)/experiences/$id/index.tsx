@@ -23,7 +23,8 @@ const EditExperienceContent: React.FC<{ experience: ExperienceDTO }> = ({
 
 export const EditExperience: React.FC = () => {
 	const { id } = useParams<{ id: string }>();
-	const { experiences } = useExperiences();
+
+	const { experiences } = useExperiences({});
 	const experience = experiences?.find((exp) => exp.id === id);
 
 	if (!experience) {
