@@ -1,4 +1,5 @@
 import type { ExperienceDTO } from "../dto";
+import { mock } from "../mock";
 
 interface UseExperiences {
 	experiences: ExperienceDTO[] | undefined;
@@ -7,7 +8,7 @@ interface UseExperiences {
 
 export function useExperiences(): UseExperiences {
 	return {
-		experiences: [],
+		experiences: mock,
 		experiencesIsLoading: false,
 	};
 }

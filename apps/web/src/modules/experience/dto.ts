@@ -10,12 +10,12 @@ export type ExperienceDTO = {
 	id: string;
 	company: {
 		name: string;
-		website?: string | null;
+		website?: string;
 	};
 	role: string;
 	workMode: WorkMode;
 	startDate: string;
-	endDate?: string | null;
+	endDate?: string;
 	highlights: Highlight[];
 	visible: boolean;
 	createdAt: string;
