@@ -17,6 +17,14 @@ export const categoryLabels: Record<ProjectCategory, string> = {
 
 export const categoryKeys = Object.keys(categoryLabels).map((key) => key);
 
+export const categoryOrder: ProjectCategory[] = [
+	"fullstack",
+	"frontend",
+	"backend",
+	"cli",
+	"mobile",
+];
+
 export type ProjectStatus = "active" | "wip" | "archived";
 
 export const statusLabels: Record<ProjectStatus, string> = {

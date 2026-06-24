@@ -1,19 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
-
-export interface Project {
-	id: string;
-	slug: string;
-	title: string;
-	category: "fullstack" | "frontend" | "backend";
-	summary: string;
-	impact: string;
-	tech?: string[];
-}
+import type { ProjectDTO } from "@/modules/project/dto";
 
 interface ProjectItemProps {
-	project: Project;
+	project: ProjectDTO;
 }
 
 export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {

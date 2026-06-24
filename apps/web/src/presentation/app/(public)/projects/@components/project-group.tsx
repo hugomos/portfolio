@@ -1,10 +1,11 @@
 import type React from "react";
+import type { ProjectDTO } from "@/modules/project/dto";
 import { Separator } from "@/presentation/components/ui/separator";
-import { type Project, ProjectItem } from "./project-item";
+import { ProjectItem } from "./project-item";
 
 interface ProjectGroupProps {
 	label: string;
-	projects: Project[];
+	projects: ProjectDTO[];
 }
 
 export const ProjectGroup: React.FC<ProjectGroupProps> = ({
