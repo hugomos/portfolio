@@ -3,7 +3,7 @@ interface useCreateExperienceProps {
 }
 
 interface UseCreateExperience {
-	handleCreateExperience: () => Promise<{ id: string }>;
+	handleCreateExperience: (data: any) => Promise<{ id: string }>;
 	createExperienceIsPending: boolean;
 }
 

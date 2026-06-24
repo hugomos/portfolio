@@ -16,7 +16,7 @@ export function useCreateExperienceForm() {
 			startDate: new Date(),
 			endDate: undefined,
 			highlights: [],
-			visible: true,
+			visible: false,
 		},
 	});
 }
