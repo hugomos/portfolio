@@ -16,7 +16,7 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 		experience;
 
 	const start = formatDate(startDate);
-	const end = endDate ? formatDate(endDate) : "presente";
+	const end = endDate ? formatDate(endDate) : "Present";
 
 	return (
 		<article className="grid gap-4 sm:grid-cols-[160px_1fr]">
