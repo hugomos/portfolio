@@ -1,40 +1,22 @@
 import { Pencil, Trash2 } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
+import { categoryLabels, type ProjectDTO } from "@/modules/project/dto";
+import { useDeleteProject } from "@/modules/project/hooks/use-delete-project";
+import { useToggleProjectVisibility } from "@/modules/project/hooks/use-toggle-project-visibility";
 import { Button } from "@/presentation/components/ui/button";
+
 import { Switch } from "@/presentation/components/ui/switch";
 
-export interface Project {
-	id: string;
-	slug: string;
-	title: string;
-	category: "fullstack" | "frontend" | "backend";
-	summary: string;
-	impact: string;
-	tech: string[];
-	visible: boolean;
-	createdAt: string;
-	updatedAt: string;
-}
-
 interface ProjectItemProps {
-	project: Project;
-	onDelete: (id: string) => void;
-	onToggleVisible: (id: string, visible: boolean) => void;
+	project: ProjectDTO;
 }
 
-const categoryLabel: Record<Project["category"], string> = {
-	fullstack: "Full Stack",
-	frontend: "Frontend",
-	backend: "Backend",
-};
-
-export const ProjectItem: React.FC<ProjectItemProps> = ({
-	project,
-	onDelete,
-	onToggleVisible,
-}) => {
+export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
 	const { id, title, slug, category, tech, visible } = project;
+
+	const { handleDeleteProject, deleteProjectIsPending } = useDeleteProject();
+	const { handleToggleProjectVisibility } = useToggleProjectVisibility();
 
 	return (
 		<article className="flex items-start justify-between gap-4">
@@ -45,15 +27,17 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
 					<span className="text-muted-foreground text-sm">/{slug}</span>
 				</div>
 				<p className="text-muted-foreground text-xs">
-					{categoryLabel[category]}
-					{tech.length > 0 && ` · ${tech.join(", ")}`}
+					{categoryLabels[category]}
+					{` · ${tech?.join(", ")}`}
 				</p>
 			</div>
 
 			<div className="flex shrink-0 items-center gap-3">
 				<Switch
 					checked={visible}
-					onCheckedChange={(checked) => onToggleVisible(id, checked)}
+					onCheckedChange={(checked) =>
+						handleToggleProjectVisibility({ id, visible: !checked })
+					}
 					aria-label="Toggle visibility"
 				/>
 				<div className="flex items-center gap-1">
@@ -72,7 +56,8 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
 						variant="ghost"
 						size="icon"
 						className="text-muted-foreground hover:text-destructive"
-						onClick={() => onDelete(id)}
+						onClick={() => handleDeleteProject({ id })}
+						disabled={deleteProjectIsPending}
 					>
 						<Trash2 />
 						<span className="sr-only">Delete</span>
