@@ -6,6 +6,7 @@ import { AdminRootLayout } from "./(admin)/_layout";
 import { Experiences } from "./(admin)/experiences";
 import { EditExperience } from "./(admin)/experiences/$id";
 import { NewExperience } from "./(admin)/experiences/new";
+import { EditHero } from "./(admin)/hero";
 import { Projects } from "./(admin)/projects";
 import { EditProject } from "./(admin)/projects/$id";
 import { NewProject } from "./(admin)/projects/new";
@@ -43,6 +44,7 @@ export const App: React.FC = () => {
 									<Route path="new" element={<NewExperience />} />
 									<Route path=":id" element={<EditExperience />} />
 								</Route>
+								<Route path="hero" element={<EditHero />} />
 							</Route>
 						</Route>
 					</Route>

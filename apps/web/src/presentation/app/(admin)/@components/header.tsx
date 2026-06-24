@@ -36,6 +36,14 @@ export const Header: React.FC = () => {
 							<Link to="/~/admin/experiences">Experiences</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
+					<NavigationMenuItem>
+						<NavigationMenuLink
+							asChild
+							data-active={location.pathname === "/~/admin/hero"}
+						>
+							<Link to="/~/admin/hero">Hero</Link>
+						</NavigationMenuLink>
+					</NavigationMenuItem>
 				</NavigationMenuList>
 			</NavigationMenu>
 
