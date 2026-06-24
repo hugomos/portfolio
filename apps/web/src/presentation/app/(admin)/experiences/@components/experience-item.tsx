@@ -1,41 +1,16 @@
-import { Pencil, Trash2 } from "lucide-react";
 import { format, parseISO } from "date-fns";
+import { Pencil, Trash2 } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
+import { type ExperienceDTO, workModeLabel } from "@/modules/experience/dto";
+import { useDeleteExperience } from "@/modules/experience/hooks/use-delete-experience";
+import { useToggleExperienceVisibility } from "@/modules/experience/hooks/use-toggle-experience-visibility";
 import { Button } from "@/presentation/components/ui/button";
 import { Switch } from "@/presentation/components/ui/switch";
 
-export interface Experience {
-	id: string;
-	company: {
-		name: string;
-		website?: string | null;
-	};
-	role: string;
-	workMode: "remote" | "hybrid" | "onsite";
-	startDate: string;
-	endDate?: string | null;
-	highlights: {
-		id: string;
-		content: string;
-		sortOrder: number;
-	}[];
-	visible: boolean;
-	createdAt: string;
-	updatedAt: string;
-}
-
 interface ExperienceItemProps {
-	experience: Experience;
-	onDelete: (id: string) => void;
-	onToggleVisible: (id: string, visible: boolean) => void;
+	experience: ExperienceDTO;
 }
-
-const workModeLabel: Record<Experience["workMode"], string> = {
-	remote: "Remote",
-	hybrid: "Hybrid",
-	onsite: "On-site",
-};
 
 function formatDate(dateStr: string): string {
 	return format(parseISO(dateStr), "MMM yyyy");
@@ -43,11 +18,20 @@ function formatDate(dateStr: string): string {
 
 export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 	experience,
-	onDelete,
-	onToggleVisible,
 }) => {
-	const { id, company, role, workMode, startDate, endDate, highlights, visible } =
-		experience;
+	const {
+		id,
+		company,
+		role,
+		workMode,
+		startDate,
+		endDate,
+		highlights,
+		visible,
+	} = experience;
+
+	const { handleDeleteExperience } = useDeleteExperience();
+	const { handleToggleExperienceVisibility } = useToggleExperienceVisibility();
 
 	const start = formatDate(startDate);
 	const end = endDate ? formatDate(endDate) : "present";
@@ -71,11 +55,18 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 			<div className="flex shrink-0 items-center gap-3">
 				<Switch
 					checked={visible}
-					onCheckedChange={(checked) => onToggleVisible(id, checked)}
+					onCheckedChange={(checked) =>
+						handleToggleExperienceVisibility({ id, visible: checked })
+					}
 					aria-label="Toggle visibility"
 				/>
 				<div className="flex items-center gap-1">
-					<Button variant="ghost" size="icon" className="text-muted-foreground" asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className="text-muted-foreground"
+						asChild
+					>
 						<Link to={`/~/admin/experiences/${id}`}>
 							<Pencil />
 							<span className="sr-only">Edit</span>
@@ -85,7 +76,7 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 						variant="ghost"
 						size="icon"
 						className="text-muted-foreground hover:text-destructive"
-						onClick={() => onDelete(id)}
+						onClick={() => handleDeleteExperience({ id })}
 					>
 						<Trash2 />
 						<span className="sr-only">Delete</span>
