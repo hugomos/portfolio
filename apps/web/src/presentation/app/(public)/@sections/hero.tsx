@@ -2,14 +2,14 @@ import { GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
 import { File } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
-import { useHero } from "@/modules/hero/hooks/use-hero";
+import type { HeroDTO } from "@/modules/hero/dto";
 import { Button } from "@/presentation/components/ui/button";
 
-export const Hero: React.FC = () => {
-	const { hero } = useHero();
+interface HeroProps {
+	hero: HeroDTO;
+}
 
-	if (!hero) return null;
-
+export const Hero: React.FC<HeroProps> = ({ hero }) => {
 	return (
 		<section className="space-y-6">
 			<header className="space-y-1">
@@ -21,14 +21,19 @@ export const Hero: React.FC = () => {
 				</p>
 			</header>
 
-			<p className="text-muted-foreground text-sm leading-relaxed">{hero.bio}</p>
+			<p className="text-muted-foreground text-sm leading-relaxed">
+				{hero.bio}
+			</p>
 
 			<ul className="flex list-inside list-disc flex-wrap gap-x-4 text-muted-foreground text-sm">
 				{hero.skills
 					.slice()
 					.sort((a, b) => a.sortOrder - b.sortOrder)
 					.map((skill, index) => (
-						<li key={skill.id} className={index === 0 ? "list-none" : undefined}>
+						<li
+							key={skill.id}
+							className={index === 0 ? "list-none" : undefined}
+						>
 							{skill.name}
 						</li>
 					))}
@@ -37,7 +42,11 @@ export const Hero: React.FC = () => {
 			<div className="flex flex-wrap gap-3">
 				{hero.links.resumeUrl && (
 					<Button variant="outline" size="sm" className="group" asChild>
-						<Link to={hero.links.resumeUrl} target="_blank" rel="noopener noreferrer">
+						<Link
+							to={hero.links.resumeUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							<File className="mr-2 size-4 text-zinc-400 transition-colors group-hover:text-foreground" />
 							Resume
 						</Link>
@@ -45,7 +54,11 @@ export const Hero: React.FC = () => {
 				)}
 				{hero.links.githubUrl && (
 					<Button variant="outline" size="sm" className="group" asChild>
-						<Link to={hero.links.githubUrl} target="_blank" rel="noopener noreferrer">
+						<Link
+							to={hero.links.githubUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							<GithubLogoIcon className="mr-2 size-4 text-zinc-400 transition-colors group-hover:text-foreground" />
 							Github
 						</Link>
