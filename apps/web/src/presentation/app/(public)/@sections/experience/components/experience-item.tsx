@@ -1,34 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
+import { type ExperienceDTO, workModeLabel } from "@/modules/experience/dto";
 import { Badge } from "@/presentation/components/ui/badge";
 import { formatDate } from "../utils/date";
 
-interface Experience {
-	id: string;
-	company: {
-		name: string;
-		website?: string | null;
-	};
-	role: string;
-	workMode: "remote" | "hybrid" | "onsite";
-	startDate: string;
-	endDate?: string | null;
-	highlights: {
-		id: string;
-		content: string;
-		sortOrder: number;
-	}[];
-}
-
-const workModeLabel: Record<Experience["workMode"], string> = {
-	remote: "Remoto",
-	hybrid: "Híbrido",
-	onsite: "Presencial",
-};
-
 interface ExperienceItemProps {
-	experience: Experience;
+	experience: ExperienceDTO;
 }
 
 export const ExperienceItem: React.FC<ExperienceItemProps> = ({
