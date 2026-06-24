@@ -9,7 +9,7 @@ const LINES = [
 ] as const;
 
 const DELAY_MS = 380;
-const COMPLETE_DELAY_MS = 600;
+const COMPLETE_DELAY_MS = 700;
 
 interface HeroPageSkeletonProps {
 	onComplete?: () => void;
