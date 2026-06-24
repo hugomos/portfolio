@@ -1,9 +1,15 @@
+interface useCreateExperienceProps {
+	navigate: (path: string) => void;
+}
+
 interface UseCreateExperience {
 	handleCreateExperience: () => Promise<{ id: string }>;
 	createExperienceIsPending: boolean;
 }
 
-export function useCreateExperience(): UseCreateExperience {
+export function useCreateExperience(
+	_: useCreateExperienceProps,
+): UseCreateExperience {
 	return {
 		handleCreateExperience: () => new Promise((resolve) => resolve({ id: "" })),
 		createExperienceIsPending: false,
