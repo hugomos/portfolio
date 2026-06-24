@@ -1,15 +1,17 @@
 import dotenv from "dotenv";
 import { defineConfig } from "drizzle-kit";
 
-dotenv.config({
-	path: "../../apps/server/.env",
-});
+const envFile =
+	process.env.NODE_ENV === "production"
+		? ".env.production"
+		: ".env.development";
+dotenv.config({ path: envFile });
 
 export default defineConfig({
-	schema: "./src/schema",
+	schema: "./src/schema.ts",
 	out: "./src/migrations",
-	dialect: "postgresql",
+	dialect: "turso",
 	dbCredentials: {
-		url: process.env.DATABASE_URL || "",
+		url: process.env.DATABASE_URL || "file:./portfolio.db",
 	},
 });

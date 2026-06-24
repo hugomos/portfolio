@@ -10,26 +10,23 @@
 		}
 	},
 	"scripts": {
+		"generate-schema-idx": "tsx scripts/generate-schema-idx.ts",
 		"db:push": "drizzle-kit push",
-		"db:generate": "drizzle-kit generate",
+		"db:generate": "drizzle-kit generate && pnpm generate-schema-idx",
 		"db:studio": "drizzle-kit studio",
-		"db:migrate": "drizzle-kit migrate",
-		"db:start": "docker compose up -d",
-		"db:watch": "docker compose up",
-		"db:stop": "docker compose stop",
-		"db:down": "docker compose down"
+		"db:migrate": "tsx src/migrate.ts"
 	},
 	"dependencies": {
 		"@portfolio/env": "workspace:*",
+		"@libsql/client": "^0.15.4",
 		"dotenv": "catalog:",
 		"drizzle-orm": "^0.45.1",
-		"pg": "^8.17.1",
 		"zod": "catalog:"
 	},
 	"devDependencies": {
 		"@portfolio/config": "workspace:*",
-		"@types/pg": "^8.16.0",
 		"drizzle-kit": "^0.31.8",
+		"tsx": "^4.22.4",
 		"typescript": "catalog:"
 	}
 }
