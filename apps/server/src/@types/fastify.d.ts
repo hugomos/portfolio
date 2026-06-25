@@ -1,12 +1,12 @@
-export {} // module augmentation - dont remove
+export {}; // module augmentation - dont remove
 
 declare module "fastify" {
 	interface FastifyRequest {
-		input: any
-		getCurrentUser(): { id: string; role: string }
+		input: any;
+		getCurrentUser(): { id: string };
 	}
 
 	interface FastifyContextConfig {
-		public?: boolean
+		public?: boolean;
 	}
 }

@@ -15,6 +15,7 @@ import {
 } from "fastify-type-provider-zod";
 import { requestInputMiddleware } from "@/infra/http/middleware/request-input";
 import { logger } from "@/infra/logger";
+import { tokenMiddleware } from "@/modules/identity/features/authentication/application/middlewares/token";
 
 export async function bootstrap() {
 	const app = fastify({
@@ -61,6 +62,7 @@ export async function bootstrap() {
 	});
 
 	await app.register(requestInputMiddleware);
+	await app.register(tokenMiddleware);
 
 	app.get("/health", async (_request, reply) => {
 		return reply.status(200).send({ status: "ok" });
