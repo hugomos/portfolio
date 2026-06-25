@@ -1,8 +1,8 @@
-import type React from "react";
+﻿import type React from "react";
 import { FormProvider } from "react-hook-form";
 import { useParams } from "react-router";
-import type { ExperienceDTO } from "@/modules/experience/dto";
-import { useExperiences } from "@/modules/experience/hooks/use-experiences";
+import type { ExperienceDTO } from "@/modules/portfolio/experience/dto";
+import { useExperiences } from "@/modules/portfolio/experience/hooks/use-experiences";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { EditExperienceForm } from "./components/edit-experience-form";
 import { useEditExperienceForm } from "./components/edit-experience-form/use-edit-experience-form";

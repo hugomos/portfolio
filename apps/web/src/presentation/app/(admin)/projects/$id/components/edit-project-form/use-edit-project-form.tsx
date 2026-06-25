@@ -1,6 +1,6 @@
-import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+﻿import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useForm } from "react-hook-form";
-import type { ProjectDTO } from "@/modules/project/dto";
+import type { ProjectDTO } from "@/modules/portfolio/project/dto";
 import { type EditProjectFormSchema, editProjectFormSchema } from "./schema";
 
 export function useEditProjectForm(project: ProjectDTO) {

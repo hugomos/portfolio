@@ -1,7 +1,7 @@
-import { ArrowUpRight } from "lucide-react";
+﻿import { ArrowUpRight } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
-import { type ExperienceDTO, workModeLabel } from "@/modules/experience/dto";
+import { type ExperienceDTO, workModeLabel } from "@/modules/portfolio/experience/dto";
 import { Badge } from "@/presentation/components/ui/badge";
 import { formatDate } from "../utils/date";
 

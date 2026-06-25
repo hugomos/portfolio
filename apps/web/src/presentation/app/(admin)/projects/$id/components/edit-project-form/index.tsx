@@ -1,4 +1,4 @@
-import "@blocknote/core/fonts/inter.css";
+﻿import "@blocknote/core/fonts/inter.css";
 import "@blocknote/shadcn/style.css";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/shadcn";
@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";
 import { Link, useNavigate } from "react-router";
-import { categoryLabels, statusLabels } from "@/modules/project/dto";
-import { useUpdateProject } from "@/modules/project/hooks/use-update-project";
+import { categoryLabels, statusLabels } from "@/modules/portfolio/project/dto";
+import { useUpdateProject } from "@/modules/portfolio/project/hooks/use-update-project";
 import { Button } from "@/presentation/components/ui/button";
 import {
 	Field,

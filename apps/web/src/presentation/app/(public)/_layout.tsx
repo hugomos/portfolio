@@ -1,7 +1,7 @@
-import type React from "react";
+﻿import type React from "react";
 import { useCallback, useState } from "react";
 import { Outlet, useLocation } from "react-router";
-import { useHero } from "@/modules/hero/hooks/use-hero";
+import { useHero } from "@/modules/portfolio/hero/hooks/use-hero";
 import { Separator } from "@/presentation/components/ui/separator";
 import { HeroPageSkeleton } from "./@components/skeleton";
 

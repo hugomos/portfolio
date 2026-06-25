@@ -1,5 +1,5 @@
-import type React from "react";
-import { useExperiences } from "@/modules/experience/hooks/use-experiences";
+﻿import type React from "react";
+import { useExperiences } from "@/modules/portfolio/experience/hooks/use-experiences";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { Separator } from "@/presentation/components/ui/separator";
 import { ExperienceItem } from "./components/experience-item";

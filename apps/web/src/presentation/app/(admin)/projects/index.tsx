@@ -1,7 +1,7 @@
-import { Plus } from "lucide-react";
+﻿import { Plus } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
-import { useProjects } from "@/modules/project/hooks/use-projects";
+import { useProjects } from "@/modules/portfolio/project/hooks/use-projects";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { Button } from "@/presentation/components/ui/button";
 import { Separator } from "@/presentation/components/ui/separator";

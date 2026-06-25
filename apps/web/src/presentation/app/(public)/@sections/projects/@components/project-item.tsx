@@ -1,7 +1,7 @@
-import { ArrowUpRight } from "lucide-react";
+﻿import { ArrowUpRight } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
-import type { ProjectDTO } from "@/modules/project/dto";
+import type { ProjectDTO } from "@/modules/portfolio/project/dto";
 
 interface ProjectItemProps {
 	project: ProjectDTO;

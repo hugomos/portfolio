@@ -1,9 +1,9 @@
-import { Pencil, Trash2 } from "lucide-react";
+﻿import { Pencil, Trash2 } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
-import { categoryLabels, type ProjectDTO } from "@/modules/project/dto";
-import { useDeleteProject } from "@/modules/project/hooks/use-delete-project";
-import { useToggleProjectVisibility } from "@/modules/project/hooks/use-toggle-project-visibility";
+import { categoryLabels, type ProjectDTO } from "@/modules/portfolio/project/dto";
+import { useDeleteProject } from "@/modules/portfolio/project/hooks/use-delete-project";
+import { useToggleProjectVisibility } from "@/modules/portfolio/project/hooks/use-toggle-project-visibility";
 import { Button } from "@/presentation/components/ui/button";
 
 import { Switch } from "@/presentation/components/ui/switch";

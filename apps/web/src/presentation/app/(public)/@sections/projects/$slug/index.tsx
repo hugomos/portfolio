@@ -1,9 +1,9 @@
-import { GithubLogoIcon } from "@phosphor-icons/react";
+﻿import { GithubLogoIcon } from "@phosphor-icons/react";
 import { ArrowLeft, Globe } from "lucide-react";
 import type React from "react";
 import { Link, useNavigate, useParams } from "react-router";
-import { categoryLabels, statusColors } from "@/modules/project/dto";
-import { useProjects } from "@/modules/project/hooks/use-projects";
+import { categoryLabels, statusColors } from "@/modules/portfolio/project/dto";
+import { useProjects } from "@/modules/portfolio/project/hooks/use-projects";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { Button } from "@/presentation/components/ui/button";
 import { Separator } from "@/presentation/components/ui/separator";

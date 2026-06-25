@@ -1,6 +1,6 @@
-import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+﻿import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useForm } from "react-hook-form";
-import type { ExperienceDTO } from "@/modules/experience/dto";
+import type { ExperienceDTO } from "@/modules/portfolio/experience/dto";
 import {
 	type EditExperienceFormSchema,
 	editExperienceFormSchema,

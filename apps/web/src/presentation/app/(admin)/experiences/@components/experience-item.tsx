@@ -1,10 +1,10 @@
-import { format, parseISO } from "date-fns";
+﻿import { format, parseISO } from "date-fns";
 import { Pencil, Trash2 } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
-import { type ExperienceDTO, workModeLabel } from "@/modules/experience/dto";
-import { useDeleteExperience } from "@/modules/experience/hooks/use-delete-experience";
-import { useToggleExperienceVisibility } from "@/modules/experience/hooks/use-toggle-experience-visibility";
+import { type ExperienceDTO, workModeLabel } from "@/modules/portfolio/experience/dto";
+import { useDeleteExperience } from "@/modules/portfolio/experience/hooks/use-delete-experience";
+import { useToggleExperienceVisibility } from "@/modules/portfolio/experience/hooks/use-toggle-experience-visibility";
 import { Button } from "@/presentation/components/ui/button";
 import { Switch } from "@/presentation/components/ui/switch";
 

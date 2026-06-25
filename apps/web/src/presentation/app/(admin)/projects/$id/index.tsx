@@ -1,8 +1,8 @@
-import type React from "react";
+﻿import type React from "react";
 import { FormProvider } from "react-hook-form";
 import { useParams } from "react-router";
-import type { ProjectDTO } from "@/modules/project/dto";
-import { useProjects } from "@/modules/project/hooks/use-projects";
+import type { ProjectDTO } from "@/modules/portfolio/project/dto";
+import { useProjects } from "@/modules/portfolio/project/hooks/use-projects";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { EditProjectForm } from "./components/edit-project-form";
 import { useEditProjectForm } from "./components/edit-project-form/use-edit-project-form";

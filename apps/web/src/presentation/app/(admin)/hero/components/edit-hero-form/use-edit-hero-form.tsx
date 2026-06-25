@@ -1,6 +1,6 @@
-import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+﻿import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useForm } from "react-hook-form";
-import type { HeroDTO } from "@/modules/hero/dto";
+import type { HeroDTO } from "@/modules/portfolio/hero/dto";
 import { type EditHeroFormSchema, editHeroFormSchema } from "./schema";
 
 export function useEditHeroForm(hero: HeroDTO) {

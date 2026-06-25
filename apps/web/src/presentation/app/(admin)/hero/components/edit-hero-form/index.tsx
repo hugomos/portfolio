@@ -1,8 +1,8 @@
-import { GripVertical, Plus, X } from "lucide-react";
+﻿import { GripVertical, Plus, X } from "lucide-react";
 import type React from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";
-import { useUpdateHero } from "@/modules/hero/hooks/use-update-hero";
+import { useUpdateHero } from "@/modules/portfolio/hero/hooks/use-update-hero";
 import { Button } from "@/presentation/components/ui/button";
 import {
 	Field,

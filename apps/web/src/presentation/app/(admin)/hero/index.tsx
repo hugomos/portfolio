@@ -1,6 +1,6 @@
-import type React from "react";
+﻿import type React from "react";
 import { FormProvider } from "react-hook-form";
-import { useHero } from "@/modules/hero/hooks/use-hero";
+import { useHero } from "@/modules/portfolio/hero/hooks/use-hero";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { EditHeroForm } from "./components/edit-hero-form";
 import { useEditHeroForm } from "./components/edit-hero-form/use-edit-hero-form";

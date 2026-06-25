@@ -1,4 +1,4 @@
-import "@blocknote/core/fonts/inter.css";
+﻿import "@blocknote/core/fonts/inter.css";
 import "@blocknote/shadcn/style.css";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/shadcn";
@@ -9,8 +9,8 @@ import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";
 import { Link, useNavigate } from "react-router";
 import slugify from "slugify";
-import { categoryLabels, statusLabels } from "@/modules/project/dto";
-import { useCreateProject } from "@/modules/project/hooks/use-create-project";
+import { categoryLabels, statusLabels } from "@/modules/portfolio/project/dto";
+import { useCreateProject } from "@/modules/portfolio/project/hooks/use-create-project";
 import { Button } from "@/presentation/components/ui/button";
 import {
 	Field,

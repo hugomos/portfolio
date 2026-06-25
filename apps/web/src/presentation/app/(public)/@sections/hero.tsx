@@ -1,8 +1,8 @@
-import { GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
+﻿import { GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
 import { File } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
-import type { HeroDTO } from "@/modules/hero/dto";
+import type { HeroDTO } from "@/modules/portfolio/hero/dto";
 import { Button } from "@/presentation/components/ui/button";
 
 interface HeroProps {

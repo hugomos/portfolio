@@ -1,5 +1,5 @@
-import type React from "react";
-import { useHero } from "@/modules/hero/hooks/use-hero";
+﻿import type React from "react";
+import { useHero } from "@/modules/portfolio/hero/hooks/use-hero";
 import { Experience } from "./@sections/experience";
 import { Hero } from "./@sections/hero";
 import { Projects } from "./@sections/projects";

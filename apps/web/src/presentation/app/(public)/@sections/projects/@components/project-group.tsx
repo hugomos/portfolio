@@ -1,5 +1,5 @@
-import type React from "react";
-import type { ProjectDTO } from "@/modules/project/dto";
+﻿import type React from "react";
+import type { ProjectDTO } from "@/modules/portfolio/project/dto";
 import { Separator } from "@/presentation/components/ui/separator";
 import { ProjectItem } from "./project-item";
 

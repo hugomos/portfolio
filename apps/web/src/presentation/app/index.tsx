@@ -3,6 +3,7 @@ import type React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { queryClient } from "@/infra/http/query-client";
 import { ThemeProvider } from "../components/theme-provider";
+import { Toaster } from "../components/ui/sonner";
 import { AuthGuard } from "./(admin)/@components/auth-guard";
 import { AdminRootLayout } from "./(admin)/_layout";
 import { Experiences } from "./(admin)/experiences";
@@ -21,6 +22,7 @@ import { SignIn } from "./(public)/auth/sign-in";
 export const App: React.FC = () => {
 	return (
 		<QueryClientProvider client={queryClient}>
+			<Toaster richColors />
 			<ThemeProvider defaultTheme="dark" storageKey="hugomos-ui-theme">
 				<BrowserRouter>
 					<Routes>

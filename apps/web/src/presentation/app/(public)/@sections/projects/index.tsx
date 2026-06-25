@@ -1,6 +1,6 @@
-import type React from "react";
-import { categoryLabels, categoryOrder } from "@/modules/project/dto";
-import { useProjects } from "@/modules/project/hooks/use-projects";
+﻿import type React from "react";
+import { categoryLabels, categoryOrder } from "@/modules/portfolio/project/dto";
+import { useProjects } from "@/modules/portfolio/project/hooks/use-projects";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { ProjectGroup } from "./@components/project-group";
 import { ProjectsSkeleton } from "./@components/projects-skeleton";
