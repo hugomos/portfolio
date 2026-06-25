@@ -1,14 +1,8 @@
 import { z } from "zod";
 
-const optionalUrl = z.preprocess(
-	(val) => (val === "" ? undefined : val),
-	z.url().optional(),
-);
-
 export const createExperienceFormSchema = z
 	.object({
-		companyName: z.string(),
-		companyWebsite: optionalUrl,
+		companyId: z.string().min(1, "Select a company"),
 		role: z.string(),
 		workMode: z.enum(["remote", "hybrid", "onsite"]),
 		startDate: z.date(),

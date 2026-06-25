@@ -9,8 +9,7 @@ export function useCreateExperienceForm() {
 	return useForm<CreateExperienceFormSchema>({
 		resolver: standardSchemaResolver(createExperienceFormSchema),
 		defaultValues: {
-			companyName: "",
-			companyWebsite: undefined,
+			companyId: "",
 			role: "",
 			workMode: "remote",
 			startDate: new Date(),

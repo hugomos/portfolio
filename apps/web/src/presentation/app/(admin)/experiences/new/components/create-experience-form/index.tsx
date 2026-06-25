@@ -5,6 +5,7 @@ import { arrayMove, List } from "react-movable";
 import { Link, useNavigate } from "react-router";
 import { workModeLabel } from "@/modules/portfolio/experience/dto";
 import { useCreateExperience } from "@/modules/portfolio/experience/hooks/use-create-experience";
+import { CompanySelect } from "@/presentation/app/(admin)/experiences/@components/company-select";
 import { Button } from "@/presentation/components/ui/button";
 import { DatePicker } from "@/presentation/components/ui/date-picker";
 import {
@@ -60,36 +61,20 @@ export const CreateExperienceForm: React.FC = () => {
 				<p className="font-semibold text-muted-foreground text-xs uppercase tracking-widest">
 					Company
 				</p>
-				<FieldGroup className="gap-4">
-					<Field>
-						<FieldLabel htmlFor="companyName">Name</FieldLabel>
-						<Input
-							{...register("companyName")}
-							placeholder="Acme Corp"
-							className="px-2"
-						/>
-						{errors.companyName && (
-							<FieldError>{errors.companyName.message}</FieldError>
+				<Field>
+					<FieldLabel>Company</FieldLabel>
+					<Controller
+						control={control}
+						name="companyId"
+						render={({ field }) => (
+							<CompanySelect
+								value={field.value}
+								onChange={field.onChange}
+								error={errors.companyId?.message}
+							/>
 						)}
-					</Field>
-					<Field>
-						<FieldLabel htmlFor="companyWebsite">
-							Website{" "}
-							<span className="font-normal text-muted-foreground">
-								(optional)
-							</span>
-						</FieldLabel>
-						<Input
-							{...register("companyWebsite")}
-							type="url"
-							placeholder="https://acme.com"
-							className="px-2"
-						/>
-						{errors.companyWebsite && (
-							<FieldError>{errors.companyWebsite.message}</FieldError>
-						)}
-					</Field>
-				</FieldGroup>
+					/>
+				</Field>
 			</section>
 
 			{/* Role & Work mode */}

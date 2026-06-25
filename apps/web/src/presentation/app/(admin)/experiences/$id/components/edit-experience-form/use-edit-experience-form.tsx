@@ -10,8 +10,7 @@ export function useEditExperienceForm(experience: ExperienceDTO) {
 	return useForm<EditExperienceFormSchema>({
 		resolver: standardSchemaResolver(editExperienceFormSchema),
 		defaultValues: {
-			companyName: experience.company.name,
-			companyWebsite: experience.company.website,
+			companyId: experience.company.id,
 			role: experience.role,
 			workMode: experience.workMode,
 			startDate: new Date(experience.startDate),
