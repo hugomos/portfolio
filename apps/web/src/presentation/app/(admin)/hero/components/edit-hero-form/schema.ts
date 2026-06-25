@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+const optionalUrl = z.preprocess(
+	(val) => (val === "" ? undefined : val),
+	z.url().optional(),
+);
+
 export const editHeroFormSchema = z.object({
 	name: z.string(),
 	title: z.string(),
@@ -11,9 +16,9 @@ export const editHeroFormSchema = z.object({
 		}),
 	),
 	links: z.object({
-		resumeUrl: z.url().optional(),
-		githubUrl: z.url().optional(),
-		linkedinUrl: z.url().optional(),
+		resumeUrl: optionalUrl,
+		githubUrl: optionalUrl,
+		linkedinUrl: optionalUrl,
 	}),
 });
 

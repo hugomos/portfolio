@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+const optionalUrl = z.preprocess(
+	(val) => (val === "" ? undefined : val),
+	z.url().optional(),
+);
+
 export const createProjectFormSchema = z.object({
 	title: z.string().min(1, "Title is required"),
 	category: z.enum(["fullstack", "frontend", "backend", "cli", "mobile"]),
@@ -7,8 +12,8 @@ export const createProjectFormSchema = z.object({
 	summary: z.string().min(1, "Summary is required"),
 	impact: z.string().optional(),
 	tech: z.array(z.string()),
-	repositoryUrl: z.url().optional(),
-	liveUrl: z.url().optional(),
+	repositoryUrl: optionalUrl,
+	liveUrl: optionalUrl,
 	highlights: z.array(
 		z.object({
 			content: z.string(),
