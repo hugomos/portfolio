@@ -69,6 +69,9 @@ importers:
       '@portfolio/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@portfolio/either':
+        specifier: workspace:*
+        version: link:../../packages/either
       '@portfolio/env':
         specifier: workspace:*
         version: link:../../packages/env
@@ -248,6 +251,8 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
+
+  packages/either: {}
 
   packages/env:
     dependencies:
