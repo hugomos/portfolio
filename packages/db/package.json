@@ -14,11 +14,13 @@
 		"db:push": "drizzle-kit push",
 		"db:generate": "drizzle-kit generate && pnpm generate-schema-idx",
 		"db:studio": "drizzle-kit studio",
-		"db:migrate": "tsx src/migrate.ts"
+		"db:migrate": "tsx src/migrate.ts",
+		"db:seed": "tsx src/seed.ts"
 	},
 	"dependencies": {
-		"@portfolio/env": "workspace:*",
 		"@libsql/client": "^0.15.4",
+		"@portfolio/env": "workspace:*",
+		"argon2": "^0.44.0",
 		"dotenv": "catalog:",
 		"drizzle-orm": "^0.45.1",
 		"zod": "catalog:"

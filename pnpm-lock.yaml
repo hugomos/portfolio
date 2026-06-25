@@ -232,6 +232,9 @@ importers:
       '@portfolio/env':
         specifier: workspace:*
         version: link:../env
+      argon2:
+        specifier: ^0.44.0
+        version: 0.44.0
       dotenv:
         specifier: 'catalog:'
         version: 17.4.2
