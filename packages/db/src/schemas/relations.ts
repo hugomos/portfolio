@@ -6,7 +6,9 @@ import { hero } from "./hero";
 import { project } from "./project";
 import { projectHighlight } from "./project-highlight";
 import { projectTech } from "./project-tech";
+import { refreshToken } from "./refresh-token";
 import { skill } from "./skill";
+import { user } from "./user";
 
 export const heroRelations = relations(hero, ({ many }) => ({
 	skills: many(skill),
@@ -59,3 +61,14 @@ export const projectHighlightRelations = relations(
 		}),
 	}),
 );
+
+export const userRelations = relations(user, ({ many }) => ({
+	refreshTokens: many(refreshToken),
+}));
+
+export const refreshTokenRelations = relations(refreshToken, ({ one }) => ({
+	user: one(user, {
+		fields: [refreshToken.userId],
+		references: [user.id],
+	}),
+}));

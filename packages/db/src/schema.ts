@@ -8,6 +8,7 @@ export * from './schemas/hero';
 export * from './schemas/project-highlight';
 export * from './schemas/project-tech';
 export * from './schemas/project';
+export * from './schemas/refresh-token';
 export * from './schemas/relations';
 export * from './schemas/skill';
 export * from './schemas/user';
