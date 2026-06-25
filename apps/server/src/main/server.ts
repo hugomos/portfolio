@@ -13,10 +13,11 @@ import {
 	validatorCompiler,
 	type ZodTypeProvider,
 } from "fastify-type-provider-zod";
+import { logger } from "@/infra/logger";
 
 export async function bootstrap() {
 	const app = fastify({
-		logger: false,
+		loggerInstance: logger,
 		bodyLimit: 1_048_576,
 	}).withTypeProvider<ZodTypeProvider>();
 
@@ -66,10 +67,10 @@ export async function bootstrap() {
 	await app
 		.listen({ port: env.PORT, host: "0.0.0.0" })
 		.then(() => {
-			console.log(`SERVER STARTED ON PORT ${env.PORT}`);
+			logger.info(`SERVER STARTED ON PORT ${env.PORT}`);
 		})
 		.catch((err) => {
-			console.error(err);
+			logger.error(err);
 			process.exit(1);
 		});
 }
