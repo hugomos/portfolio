@@ -67,8 +67,4 @@ export class AuthToken {
 	get usedAt() {
 		return this._usedAt;
 	}
-
-	markAsUsed(): void {
-		this._usedAt = new Date();
-	}
 }
