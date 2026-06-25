@@ -11,11 +11,11 @@ export class HeroUseCaseFactory {
 		this.repo = db.heroRepo;
 	}
 
-	get get() {
+	get getHero() {
 		return new GetHeroUseCase(this.repo);
 	}
 
-	get update() {
+	get updateHero() {
 		return new UpdateHeroUseCase(this.repo);
 	}
 
