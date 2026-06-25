@@ -13,6 +13,7 @@ import {
 	validatorCompiler,
 	type ZodTypeProvider,
 } from "fastify-type-provider-zod";
+import { requestInputMiddleware } from "@/infra/http/middleware/request-input";
 import { logger } from "@/infra/logger";
 
 export async function bootstrap() {
@@ -58,6 +59,8 @@ export async function bootstrap() {
 			signed: false,
 		},
 	});
+
+	await app.register(requestInputMiddleware);
 
 	app.get("/health", async (_request, reply) => {
 		return reply.status(200).send({ status: "ok" });
