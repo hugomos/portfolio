@@ -1,5 +1,6 @@
 import type React from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import { useSignOut } from "@/modules/identity/authentication/hooks/use-sign-out";
 import { Button } from "@/presentation/components/ui/button";
 import {
 	NavigationMenu,
@@ -10,6 +11,8 @@ import {
 
 export const Header: React.FC = () => {
 	const location = useLocation();
+	const navigate = useNavigate();
+	const { handleSignOut, signOutIsPending } = useSignOut({ navigate });
 
 	return (
 		<header className="flex items-center justify-between border-b px-4 py-2">
@@ -47,7 +50,13 @@ export const Header: React.FC = () => {
 				</NavigationMenuList>
 			</NavigationMenu>
 
-			<Button variant="ghost" size="sm" className="hover:text-destructive">
+			<Button
+				variant="ghost"
+				size="sm"
+				className="hover:text-destructive"
+				onClick={handleSignOut}
+				disabled={signOutIsPending}
+			>
 				Sign out
 			</Button>
 		</header>
