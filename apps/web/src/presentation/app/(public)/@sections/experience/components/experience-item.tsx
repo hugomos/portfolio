@@ -46,7 +46,7 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 				<p className="font-medium text-sm">{role}</p>
 				<ul className="space-y-1">
 					{highlights.map((h) => (
-						<li key={h.id} className="flex gap-2 text-muted-foreground text-sm">
+						<li key={h.sortOrder} className="flex gap-2 text-muted-foreground text-sm">
 							<span
 								aria-hidden="true"
 								className="mt-2 size-1 shrink-0 rounded-full bg-muted-foreground/40"

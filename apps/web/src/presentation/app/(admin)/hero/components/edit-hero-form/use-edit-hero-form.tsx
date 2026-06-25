@@ -15,9 +15,9 @@ export function useEditHeroForm(hero: HeroDTO) {
 				sortOrder: s.sortOrder,
 			})),
 			links: {
-				resumeUrl: hero.links.resumeUrl,
-				githubUrl: hero.links.githubUrl,
-				linkedinUrl: hero.links.linkedinUrl,
+				resumeUrl: hero.resumeUrl ?? undefined,
+				githubUrl: hero.githubUrl ?? undefined,
+				linkedinUrl: hero.linkedinUrl ?? undefined,
 			},
 		},
 	});

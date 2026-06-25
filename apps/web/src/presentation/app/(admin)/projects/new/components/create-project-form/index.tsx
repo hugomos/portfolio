@@ -64,9 +64,8 @@ export const CreateProjectForm: React.FC = () => {
 		navigate,
 	});
 
-	const onSubmit = handleSubmit(async (data: CreateProjectFormSchema) => {
-		await handleCreateProject({ ...data, slug });
-		console.log({ ...data, slug });
+	const onSubmit = handleSubmit(async ({ tech: _tech, highlights: _highlights, ...rest }: CreateProjectFormSchema) => {
+		await handleCreateProject(rest);
 	});
 
 	function addTech() {

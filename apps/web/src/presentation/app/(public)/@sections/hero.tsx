@@ -31,7 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ hero }) => {
 					.sort((a, b) => a.sortOrder - b.sortOrder)
 					.map((skill, index) => (
 						<li
-							key={skill.id}
+							key={skill.name}
 							className={index === 0 ? "list-none" : undefined}
 						>
 							{skill.name}
@@ -40,10 +40,10 @@ export const Hero: React.FC<HeroProps> = ({ hero }) => {
 			</ul>
 
 			<div className="flex flex-wrap gap-3">
-				{hero.links.resumeUrl && (
+				{hero.resumeUrl && (
 					<Button variant="outline" size="sm" className="group" asChild>
 						<Link
-							to={hero.links.resumeUrl}
+							to={hero.resumeUrl}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -52,10 +52,10 @@ export const Hero: React.FC<HeroProps> = ({ hero }) => {
 						</Link>
 					</Button>
 				)}
-				{hero.links.githubUrl && (
+				{hero.githubUrl && (
 					<Button variant="outline" size="sm" className="group" asChild>
 						<Link
-							to={hero.links.githubUrl}
+							to={hero.githubUrl}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -64,10 +64,10 @@ export const Hero: React.FC<HeroProps> = ({ hero }) => {
 						</Link>
 					</Button>
 				)}
-				{hero.links.linkedinUrl && (
+				{hero.linkedinUrl && (
 					<Button variant="outline" size="sm" className="group" asChild>
 						<Link
-							to={hero.links.linkedinUrl}
+							to={hero.linkedinUrl}
 							target="_blank"
 							rel="noopener noreferrer"
 						>

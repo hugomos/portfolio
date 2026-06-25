@@ -38,7 +38,7 @@ export const ProjectDetail: React.FC = () => {
 		status,
 		summary,
 		impact,
-		tech,
+		techs,
 		repositoryUrl,
 		liveUrl,
 		highlights,
@@ -92,14 +92,14 @@ export const ProjectDetail: React.FC = () => {
 				</div>
 			)}
 
-			{tech && tech.length > 0 && (
+			{techs && techs.length > 0 && (
 				<div className="flex flex-wrap gap-1.5">
-					{tech.map((t) => (
+					{techs.map((t) => (
 						<span
-							key={t}
+							key={t.name}
 							className="rounded border border-border px-2 py-0.5 text-muted-foreground text-xs"
 						>
-							{t}
+							{t.name}
 						</span>
 					))}
 				</div>
@@ -114,7 +114,7 @@ export const ProjectDetail: React.FC = () => {
 						<ul className="space-y-2">
 							{highlights.map((h) => (
 								<li
-									key={h.id}
+									key={h.sortOrder}
 									className="flex gap-2 text-muted-foreground text-sm"
 								>
 									<span

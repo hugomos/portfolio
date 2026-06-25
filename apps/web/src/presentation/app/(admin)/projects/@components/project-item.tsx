@@ -13,7 +13,7 @@ interface ProjectItemProps {
 }
 
 export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
-	const { id, title, slug, category, tech, visible } = project;
+	const { id, title, slug, category, techs, visible } = project;
 
 	const { handleDeleteProject, deleteProjectIsPending } = useDeleteProject();
 	const { handleToggleProjectVisibility } = useToggleProjectVisibility();
@@ -28,16 +28,14 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
 				</div>
 				<p className="text-muted-foreground text-xs">
 					{categoryLabels[category]}
-					{` · ${tech?.join(", ")}`}
+					{` · ${techs?.map((t) => t.name).join(", ")}`}
 				</p>
 			</div>
 
 			<div className="flex shrink-0 items-center gap-3">
 				<Switch
 					checked={visible}
-					onCheckedChange={(checked) =>
-						handleToggleProjectVisibility({ id, visible: !checked })
-					}
+					onCheckedChange={() => handleToggleProjectVisibility(id)}
 					aria-label="Toggle visibility"
 				/>
 				<div className="flex items-center gap-1">
@@ -56,7 +54,7 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
 						variant="ghost"
 						size="icon"
 						className="text-muted-foreground hover:text-destructive"
-						onClick={() => handleDeleteProject({ id })}
+						onClick={() => handleDeleteProject(id)}
 						disabled={deleteProjectIsPending}
 					>
 						<Trash2 />

@@ -51,7 +51,6 @@ export const EditExperienceForm: React.FC = () => {
 
 	const onSubmit = handleSubmit(async (data: EditExperienceFormSchema) => {
 		await handleUpdateExperience(data);
-		console.log(data);
 	});
 
 	return (

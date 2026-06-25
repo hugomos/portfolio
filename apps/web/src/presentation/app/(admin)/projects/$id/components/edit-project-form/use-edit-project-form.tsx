@@ -12,7 +12,7 @@ export function useEditProjectForm(project: ProjectDTO) {
 			status: project.status,
 			summary: project.summary,
 			impact: project.impact ?? "",
-			tech: project.tech ?? [],
+			tech: project.techs?.map((t) => t.name) ?? [],
 			repositoryUrl: project.repositoryUrl,
 			liveUrl: project.liveUrl,
 			highlights:

@@ -8,11 +8,11 @@ interface ProjectItemProps {
 }
 
 export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
-	const { slug, title, summary, impact, tech } = project;
+	const { slug, title, summary, impact, techs } = project;
 
 	return (
 		<article className="space-y-2">
-			<span className="sr-only">{tech?.join(", ")}</span>
+			<span className="sr-only">{techs?.map((t) => t.name).join(", ")}</span>
 
 			<Link
 				to={`/projects/${slug}`}
@@ -25,14 +25,14 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
 			<p className="text-muted-foreground text-sm">{summary}</p>
 			<p className="text-muted-foreground/60 text-xs">{impact}</p>
 
-			{tech && tech.length > 0 && (
+			{techs && techs.length > 0 && (
 				<div className="flex flex-wrap gap-1.5">
-					{tech.map((t) => (
+					{techs.map((t) => (
 						<span
-							key={t}
+							key={t.name}
 							className="rounded border border-border px-2 py-0.5 text-muted-foreground text-xs"
 						>
-							{t}
+							{t.name}
 						</span>
 					))}
 				</div>

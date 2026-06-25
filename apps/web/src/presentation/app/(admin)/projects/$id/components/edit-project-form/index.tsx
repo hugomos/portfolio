@@ -9,6 +9,8 @@ import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";
 import { Link, useNavigate } from "react-router";
 import { categoryLabels, statusLabels } from "@/modules/portfolio/project/dto";
+import { useReplaceProjectHighlights } from "@/modules/portfolio/project/hooks/use-replace-project-highlights";
+import { useReplaceProjectTechs } from "@/modules/portfolio/project/hooks/use-replace-project-techs";
 import { useUpdateProject } from "@/modules/portfolio/project/hooks/use-update-project";
 import { Button } from "@/presentation/components/ui/button";
 import {
@@ -32,11 +34,13 @@ import { Textarea } from "@/presentation/components/ui/textarea";
 import type { EditProjectFormSchema } from "./schema";
 
 interface EditProjectFormProps {
+	id: string;
 	slug: string;
 	initialContent?: string;
 }
 
 export const EditProjectForm: React.FC<EditProjectFormProps> = ({
+	id,
 	slug,
 	initialContent,
 }) => {
@@ -71,13 +75,18 @@ export const EditProjectForm: React.FC<EditProjectFormProps> = ({
 	const techValues = watch("tech");
 
 	const navigate = useNavigate();
-	const { handleUpdateProject, updateProjectIsPending } = useUpdateProject({
-		navigate,
-	});
+	const { handleUpdateProject, updateProjectIsPending } = useUpdateProject({ navigate });
+	const { handleReplaceProjectHighlights, replaceProjectHighlightsIsPending } = useReplaceProjectHighlights();
+	const { handleReplaceProjectTechs, replaceProjectTechsIsPending } = useReplaceProjectTechs();
 
-	const onSubmit = handleSubmit(async (data: EditProjectFormSchema) => {
-		await handleUpdateProject({ ...data, slug });
-		console.log({ ...data, slug });
+	const isPending = updateProjectIsPending || replaceProjectHighlightsIsPending || replaceProjectTechsIsPending;
+
+	const onSubmit = handleSubmit(async ({ tech, highlights, visible: _visible, ...rest }: EditProjectFormSchema) => {
+		await Promise.all([
+			handleUpdateProject({ id, ...rest }),
+			handleReplaceProjectHighlights({ projectId: id, highlights }),
+			handleReplaceProjectTechs({ projectId: id, techs: tech.map((name, i) => ({ name, sortOrder: i + 1 })) }),
+		]);
 	});
 
 	function addTech() {
@@ -418,12 +427,12 @@ export const EditProjectForm: React.FC<EditProjectFormProps> = ({
 					type="button"
 					variant="outline"
 					asChild
-					disabled={updateProjectIsPending}
+					disabled={isPending}
 				>
 					<Link to="/~/admin/projects">Cancel</Link>
 				</Button>
-				<Button type="submit" disabled={updateProjectIsPending}>
-					{updateProjectIsPending ? <Spinner /> : "Save changes"}
+				<Button type="submit" disabled={isPending}>
+					{isPending ? <Spinner /> : "Save changes"}
 				</Button>
 			</div>
 		</form>

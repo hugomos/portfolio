@@ -2,6 +2,7 @@
 import type React from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";
+import { useReplaceSkills } from "@/modules/portfolio/hero/hooks/use-replace-skills";
 import { useUpdateHero } from "@/modules/portfolio/hero/hooks/use-update-hero";
 import { Button } from "@/presentation/components/ui/button";
 import {
@@ -35,10 +36,13 @@ export const EditHeroForm: React.FC = () => {
 	});
 
 	const { handleUpdateHero, updateHeroIsPending } = useUpdateHero();
+	const { handleReplaceSkills, replaceSkillsIsPending } = useReplaceSkills();
 
-	const onSubmit = handleSubmit(async (data: EditHeroFormSchema) => {
-		await handleUpdateHero(data);
-		console.log(data);
+	const onSubmit = handleSubmit(async ({ name, title, bio, skills, links }: EditHeroFormSchema) => {
+		await Promise.all([
+			handleUpdateHero({ name, title, bio, ...links }),
+			handleReplaceSkills({ skills }),
+		]);
 	});
 
 	return (
@@ -224,7 +228,7 @@ export const EditHeroForm: React.FC = () => {
 
 			{/* Actions */}
 			<div className="flex justify-end pt-2">
-				<Button type="submit" disabled={updateHeroIsPending}>
+				<Button type="submit" disabled={updateHeroIsPending || replaceSkillsIsPending}>
 					{updateHeroIsPending ? <Spinner /> : "Save changes"}
 				</Button>
 			</div>

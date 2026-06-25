@@ -55,9 +55,7 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 			<div className="flex shrink-0 items-center gap-3">
 				<Switch
 					checked={visible}
-					onCheckedChange={(checked) =>
-						handleToggleExperienceVisibility({ id, visible: checked })
-					}
+					onCheckedChange={() => handleToggleExperienceVisibility(id)}
 					aria-label="Toggle visibility"
 				/>
 				<div className="flex items-center gap-1">
@@ -76,7 +74,7 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 						variant="ghost"
 						size="icon"
 						className="text-muted-foreground hover:text-destructive"
-						onClick={() => handleDeleteExperience({ id })}
+						onClick={() => handleDeleteExperience(id)}
 					>
 						<Trash2 />
 						<span className="sr-only">Delete</span>
