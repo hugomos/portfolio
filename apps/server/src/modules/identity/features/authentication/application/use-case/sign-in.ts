@@ -13,12 +13,12 @@ type Output = {
 };
 
 export class SignInUseCase extends UseCase<Input, Output> {
-	constructor(private readonly authenticationDAO: AuthenticationDAO) {
+	constructor(private readonly dao: AuthenticationDAO) {
 		super();
 	}
 
 	async execute({ email, password }: Input): Promise<Output> {
-		const user = await this.authenticationDAO.findUserByEmailForAuth(email);
+		const user = await this.dao.findUserByEmailForAuth(email);
 
 		if (!user) throw new DomainError("Invalid credentials");
 

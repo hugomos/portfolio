@@ -4,8 +4,5 @@ export interface AuthenticationRepo {
 	create(token: AuthToken): Promise<void>;
 	findByTokenHash(hash: string): Promise<AuthToken | null>;
 	delete(tokenHash: string): Promise<void>;
-}
-
-export interface RefreshTokenRepo extends AuthenticationRepo {
 	findAndMarkAsUsed(hash: string): Promise<AuthToken | null>;
 }

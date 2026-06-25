@@ -8,18 +8,18 @@ type Input = {
 };
 
 export class SignOutUseCase extends UseCase<Input, void> {
-	constructor(private readonly refreshTokenRepo: AuthenticationRepo) {
+	constructor(private readonly repo: AuthenticationRepo) {
 		super();
 	}
 
 	async execute({ token }: Input): Promise<void> {
 		const tokenHash = Token.restore(token).hash();
-		const authToken = await this.refreshTokenRepo.findByTokenHash(tokenHash);
+		const authToken = await this.repo.findByTokenHash(tokenHash);
 
 		if (!authToken) throw new DomainError("Invalid token");
 		if (authToken.isExpired()) throw new DomainError("Token expired");
 		if (authToken.isUsed()) throw new DomainError("Invalid token");
 
-		await this.refreshTokenRepo.delete(tokenHash);
+		await this.repo.delete(tokenHash);
 	}
 }
