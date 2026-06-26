@@ -15,7 +15,7 @@ const EditExperienceContent: React.FC<{ experience: ExperienceDTO }> = ({
 		<main className="space-y-8">
 			<SectionTitle as="h1">Edit experience</SectionTitle>
 			<FormProvider {...form}>
-				<EditExperienceForm />
+				<EditExperienceForm id={experience.id} />
 			</FormProvider>
 		</main>
 	);

@@ -28,7 +28,7 @@ import { Switch } from "@/presentation/components/ui/switch";
 import { Textarea } from "@/presentation/components/ui/textarea";
 import type { EditExperienceFormSchema } from "./schema";
 
-export const EditExperienceForm: React.FC = () => {
+export const EditExperienceForm: React.FC<{ id: string }> = ({ id }) => {
 	const {
 		register,
 		control,
@@ -51,7 +51,12 @@ export const EditExperienceForm: React.FC = () => {
 		useUpdateExperience({ navigate });
 
 	const onSubmit = handleSubmit(async (data: EditExperienceFormSchema) => {
-		await handleUpdateExperience(data);
+		await handleUpdateExperience({
+			...data,
+			id,
+			startDate: data.startDate.toISOString(),
+			endDate: data.endDate?.toISOString(),
+		});
 	});
 
 	return (
