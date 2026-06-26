@@ -75,19 +75,36 @@ export const EditProjectForm: React.FC<EditProjectFormProps> = ({
 	const techValues = watch("tech");
 
 	const navigate = useNavigate();
-	const { handleUpdateProject, updateProjectIsPending } = useUpdateProject({ navigate });
-	const { handleReplaceProjectHighlights, replaceProjectHighlightsIsPending } = useReplaceProjectHighlights();
-	const { handleReplaceProjectTechs, replaceProjectTechsIsPending } = useReplaceProjectTechs();
-
-	const isPending = updateProjectIsPending || replaceProjectHighlightsIsPending || replaceProjectTechsIsPending;
-
-	const onSubmit = handleSubmit(async ({ tech, highlights, visible: _visible, ...rest }: EditProjectFormSchema) => {
-		await Promise.all([
-			handleUpdateProject({ id, ...rest }),
-			handleReplaceProjectHighlights({ projectId: id, highlights }),
-			handleReplaceProjectTechs({ projectId: id, techs: tech.map((name, i) => ({ name, sortOrder: i + 1 })) }),
-		]);
+	const { handleUpdateProject, updateProjectIsPending } = useUpdateProject({
+		navigate,
 	});
+	const { handleReplaceProjectHighlights, replaceProjectHighlightsIsPending } =
+		useReplaceProjectHighlights();
+	const { handleReplaceProjectTechs, replaceProjectTechsIsPending } =
+		useReplaceProjectTechs();
+
+	const isPending =
+		updateProjectIsPending ||
+		replaceProjectHighlightsIsPending ||
+		replaceProjectTechsIsPending;
+
+	const onSubmit = handleSubmit(
+		async ({
+			tech,
+			highlights,
+			visible: _visible,
+			...rest
+		}: EditProjectFormSchema) => {
+			await Promise.all([
+				handleUpdateProject({ id, ...rest }),
+				handleReplaceProjectHighlights({ projectId: id, highlights }),
+				handleReplaceProjectTechs({
+					projectId: id,
+					techs: tech.map((name, i) => ({ name, sortOrder: i + 1 })),
+				}),
+			]);
+		},
+	);
 
 	function addTech() {
 		const value = techInput.trim();
@@ -423,12 +440,7 @@ export const EditProjectForm: React.FC<EditProjectFormProps> = ({
 
 			{/* Actions */}
 			<div className="flex justify-end gap-3 pt-2">
-				<Button
-					type="button"
-					variant="outline"
-					asChild
-					disabled={isPending}
-				>
+				<Button type="button" variant="outline" asChild disabled={isPending}>
 					<Link to="/~/admin/projects">Cancel</Link>
 				</Button>
 				<Button type="submit" disabled={isPending}>

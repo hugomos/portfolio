@@ -20,7 +20,7 @@ export function useEditProjectForm(project: ProjectDTO) {
 					content: h.content,
 					sortOrder: h.sortOrder,
 				})) ?? [],
-			content: project.content,
+			content: project.content ?? undefined,
 			visible: project.visible,
 		},
 	});

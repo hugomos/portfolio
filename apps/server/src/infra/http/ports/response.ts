@@ -9,4 +9,4 @@ export enum HttpStatusCode {
 	INTERNAL_SERVER_ERROR = 500,
 }
 
-export type ErrorResponse = { message: string }
+export type ErrorResponse = { message: string };

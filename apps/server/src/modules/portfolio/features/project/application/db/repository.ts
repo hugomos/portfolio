@@ -9,6 +9,9 @@ export interface ProjectRepo {
 	create(project: Project): Promise<void>;
 	update(project: Project): Promise<void>;
 	delete(id: string): Promise<void>;
-	replaceHighlights(projectId: string, highlights: ProjectHighlight[]): Promise<void>;
+	replaceHighlights(
+		projectId: string,
+		highlights: ProjectHighlight[],
+	): Promise<void>;
 	replaceTechs(projectId: string, techs: ProjectTech[]): Promise<void>;
 }

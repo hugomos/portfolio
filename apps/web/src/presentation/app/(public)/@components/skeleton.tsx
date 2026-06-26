@@ -1,6 +1,10 @@
 import type React from "react";
 import { useCallback, useEffect, useState } from "react";
-import { TerminalCard, TerminalCursor, TerminalLine } from "@/presentation/components/terminal-card";
+import {
+	TerminalCard,
+	TerminalCursor,
+	TerminalLine,
+} from "@/presentation/components/terminal-card";
 
 const LINES = [
 	{ prefix: "$", command: "portfolio --start" },

@@ -13,7 +13,11 @@ const EditProjectContent: React.FC<{ project: ProjectDTO }> = ({ project }) => {
 		<main className="space-y-8">
 			<SectionTitle as="h1">Edit project</SectionTitle>
 			<FormProvider {...form}>
-				<EditProjectForm id={project.id} slug={project.slug} initialContent={project.content ?? undefined} />
+				<EditProjectForm
+					id={project.id}
+					slug={project.slug}
+					initialContent={project.content ?? undefined}
+				/>
 			</FormProvider>
 		</main>
 	);

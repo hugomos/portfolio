@@ -33,11 +33,25 @@ export class ProjectHighlight {
 		this.sortOrder = sortOrder;
 	}
 
-	static create({ projectId, content, sortOrder }: CreateProps): ProjectHighlight {
-		return new ProjectHighlight({ id: Id.create().value, projectId, content, sortOrder });
+	static create({
+		projectId,
+		content,
+		sortOrder,
+	}: CreateProps): ProjectHighlight {
+		return new ProjectHighlight({
+			id: Id.create().value,
+			projectId,
+			content,
+			sortOrder,
+		});
 	}
 
-	static restore({ id, projectId, content, sortOrder }: RestoreProps): ProjectHighlight {
+	static restore({
+		id,
+		projectId,
+		content,
+		sortOrder,
+	}: RestoreProps): ProjectHighlight {
 		return new ProjectHighlight({ id, projectId, content, sortOrder });
 	}
 }

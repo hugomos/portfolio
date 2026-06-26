@@ -36,6 +36,8 @@
 	},
 	"packageManager": "pnpm@10.33.2",
 	"pnpm": {
-		"onlyBuiltDependencies": ["argon2"]
+		"onlyBuiltDependencies": [
+			"argon2"
+		]
 	}
 }

@@ -10,17 +10,19 @@ interface UseDeleteProject {
 export function useDeleteProject(): UseDeleteProject {
 	const queryClient = useQueryClient();
 
-	const { mutateAsync: handleDeleteProject, isPending: deleteProjectIsPending } =
-		useMutation({
-			mutationFn: deleteProject,
-			onSuccess: () => {
-				queryClient.invalidateQueries({ queryKey: ["projects"] });
-				toast.success("Projeto removido com sucesso");
-			},
-			onError: () => {
-				toast.error("Erro ao remover projeto");
-			},
-		});
+	const {
+		mutateAsync: handleDeleteProject,
+		isPending: deleteProjectIsPending,
+	} = useMutation({
+		mutationFn: deleteProject,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["projects"] });
+			toast.success("Projeto removido com sucesso");
+		},
+		onError: () => {
+			toast.error("Erro ao remover projeto");
+		},
+	});
 
 	return { handleDeleteProject, deleteProjectIsPending };
 }

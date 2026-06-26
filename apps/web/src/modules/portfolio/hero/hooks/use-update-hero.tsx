@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { updateHero, type UpdateHeroInput } from "../api/update";
+import { type UpdateHeroInput, updateHero } from "../api/update";
 
 interface UseUpdateHero {
 	handleUpdateHero: (data: UpdateHeroInput) => Promise<void>;

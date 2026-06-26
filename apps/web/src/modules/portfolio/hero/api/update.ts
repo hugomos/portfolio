@@ -1,5 +1,5 @@
 import { apiHttpClient } from "@/infra/http/api-http-client";
-import { isApiError, type ApiResponse } from "@/infra/http/dto/api-response";
+import { type ApiResponse, isApiError } from "@/infra/http/dto/api-response";
 
 export type UpdateHeroInput = {
 	name: string;
@@ -11,6 +11,9 @@ export type UpdateHeroInput = {
 };
 
 export async function updateHero(input: UpdateHeroInput): Promise<void> {
-	const { data } = await apiHttpClient.put<ApiResponse<void>>("/api/portfolio/hero", input);
+	const { data } = await apiHttpClient.put<ApiResponse<void>>(
+		"/api/portfolio/hero",
+		input,
+	);
 	if (isApiError(data)) throw new Error(data.message);
 }

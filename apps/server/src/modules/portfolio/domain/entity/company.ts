@@ -29,7 +29,11 @@ export class Company {
 	}
 
 	static create({ name, website }: CreateProps): Company {
-		return new Company({ id: Id.create().value, name, website: website ?? null });
+		return new Company({
+			id: Id.create().value,
+			name,
+			website: website ?? null,
+		});
 	}
 
 	static restore({ id, name, website }: RestoreProps): Company {

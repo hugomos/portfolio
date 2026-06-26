@@ -34,10 +34,20 @@ export class ProjectTech {
 	}
 
 	static create({ projectId, name, sortOrder }: CreateProps): ProjectTech {
-		return new ProjectTech({ id: Id.create().value, projectId, name, sortOrder });
+		return new ProjectTech({
+			id: Id.create().value,
+			projectId,
+			name,
+			sortOrder,
+		});
 	}
 
-	static restore({ id, projectId, name, sortOrder }: RestoreProps): ProjectTech {
+	static restore({
+		id,
+		projectId,
+		name,
+		sortOrder,
+	}: RestoreProps): ProjectTech {
 		return new ProjectTech({ id, projectId, name, sortOrder });
 	}
 }

@@ -6,7 +6,8 @@ export const SectionLoadingSkeleton: React.FC = () => {
 		<div className="flex min-h-screen items-center justify-center">
 			<TerminalCard>
 				<TerminalLine>
-					loading<TerminalCursor />
+					loading
+					<TerminalCursor />
 				</TerminalLine>
 			</TerminalCard>
 		</div>

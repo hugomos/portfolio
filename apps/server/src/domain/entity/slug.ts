@@ -1,4 +1,4 @@
-import slugify from "slugify"
+import slugify from "slugify";
 
 export class Slug {
 	private constructor(public readonly value: string) {}
@@ -9,11 +9,11 @@ export class Slug {
 			lower: true,
 			strict: true,
 			trim: true,
-		})
-		return new Slug(slug)
+		});
+		return new Slug(slug);
 	}
 
 	static restore(value: string): Slug {
-		return new Slug(value)
+		return new Slug(value);
 	}
 }

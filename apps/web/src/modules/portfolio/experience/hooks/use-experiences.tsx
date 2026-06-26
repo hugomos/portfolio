@@ -11,7 +11,9 @@ interface UseExperiences {
 	experiencesIsLoading: boolean;
 }
 
-export function useExperiences({ visible }: UseExperiencesProps): UseExperiences {
+export function useExperiences({
+	visible,
+}: UseExperiencesProps): UseExperiences {
 	const { data, isLoading: experiencesIsLoading } = useQuery({
 		queryKey: ["experiences"],
 		queryFn: listExperiences,

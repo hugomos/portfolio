@@ -1,7 +1,10 @@
 ﻿import { ArrowUpRight } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
-import { type ExperienceDTO, workModeLabel } from "@/modules/portfolio/experience/dto";
+import {
+	type ExperienceDTO,
+	workModeLabel,
+} from "@/modules/portfolio/experience/dto";
 import { Badge } from "@/presentation/components/ui/badge";
 import { formatDate } from "../utils/date";
 
@@ -46,7 +49,10 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 				<p className="font-medium text-sm">{role}</p>
 				<ul className="space-y-1">
 					{highlights.map((h) => (
-						<li key={h.sortOrder} className="flex gap-2 text-muted-foreground text-sm">
+						<li
+							key={h.sortOrder}
+							className="flex gap-2 text-muted-foreground text-sm"
+						>
 							<span
 								aria-hidden="true"
 								className="mt-2 size-1 shrink-0 rounded-full bg-muted-foreground/40"

@@ -7,6 +7,9 @@ export type SignInInput = {
 };
 
 export async function signIn(input: SignInInput): Promise<void> {
-	const { data } = await apiHttpClient.post("/api/identity/auth/sign-in", input);
+	const { data } = await apiHttpClient.post(
+		"/api/identity/auth/sign-in",
+		input,
+	);
 	if (isApiError(data)) throw new Error(data.message);
 }

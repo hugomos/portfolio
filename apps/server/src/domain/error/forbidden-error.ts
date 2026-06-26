@@ -1,8 +1,8 @@
-import { DomainError } from "./domain-error"
+import { DomainError } from "./domain-error";
 
 export class ForbiddenError extends DomainError {
 	constructor() {
-		super("Access forbidden")
-		this.name = "ForbiddenError"
+		super("Access forbidden");
+		this.name = "ForbiddenError";
 	}
 }

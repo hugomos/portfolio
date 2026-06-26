@@ -16,5 +16,5 @@ export const refreshToken = sqliteTable(
 	(t) => [
 		index("refresh_token_user_id_idx").on(t.userId),
 		index("refresh_token_token_hash_idx").on(t.tokenHash),
-	]
+	],
 );

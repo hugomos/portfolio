@@ -2,7 +2,10 @@
 import { Pencil, Trash2 } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
-import { type ExperienceDTO, workModeLabel } from "@/modules/portfolio/experience/dto";
+import {
+	type ExperienceDTO,
+	workModeLabel,
+} from "@/modules/portfolio/experience/dto";
 import { useDeleteExperience } from "@/modules/portfolio/experience/hooks/use-delete-experience";
 import { useToggleExperienceVisibility } from "@/modules/portfolio/experience/hooks/use-toggle-experience-visibility";
 import { Button } from "@/presentation/components/ui/button";

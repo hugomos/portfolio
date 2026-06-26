@@ -1,6 +1,10 @@
 import type React from "react";
 import { Link } from "react-router";
-import { TerminalCard, TerminalCursor, TerminalLine } from "@/presentation/components/terminal-card";
+import {
+	TerminalCard,
+	TerminalCursor,
+	TerminalLine,
+} from "@/presentation/components/terminal-card";
 
 export const NotFound: React.FC = () => {
 	return (

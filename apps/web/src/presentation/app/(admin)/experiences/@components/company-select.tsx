@@ -1,9 +1,9 @@
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { Plus } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useCompanies } from "@/modules/portfolio/experience/hooks/use-companies";
 import { useCreateCompany } from "@/modules/portfolio/experience/hooks/use-create-company";
 import { Button } from "@/presentation/components/ui/button";
@@ -14,7 +14,11 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@/presentation/components/ui/dialog";
-import { Field, FieldError, FieldLabel } from "@/presentation/components/ui/field";
+import {
+	Field,
+	FieldError,
+	FieldLabel,
+} from "@/presentation/components/ui/field";
 import { Input } from "@/presentation/components/ui/input";
 import {
 	Select,
@@ -41,7 +45,11 @@ interface CompanySelectProps {
 	error?: string;
 }
 
-export const CompanySelect: React.FC<CompanySelectProps> = ({ value, onChange, error }) => {
+export const CompanySelect: React.FC<CompanySelectProps> = ({
+	value,
+	onChange,
+	error,
+}) => {
 	const { companies, companiesIsLoading } = useCompanies();
 	const { handleCreateCompany, createCompanyIsPending } = useCreateCompany();
 	const [open, setOpen] = useState(false);
@@ -60,9 +68,15 @@ export const CompanySelect: React.FC<CompanySelectProps> = ({ value, onChange, e
 
 	return (
 		<div className="flex gap-2">
-			<Select value={value} onValueChange={onChange} disabled={companiesIsLoading}>
+			<Select
+				value={value}
+				onValueChange={onChange}
+				disabled={companiesIsLoading}
+			>
 				<SelectTrigger className="flex-1">
-					<SelectValue placeholder={companiesIsLoading ? "Loading..." : "Select a company"} />
+					<SelectValue
+						placeholder={companiesIsLoading ? "Loading..." : "Select a company"}
+					/>
 				</SelectTrigger>
 				<SelectContent>
 					{companies?.map((c) => (
@@ -73,7 +87,12 @@ export const CompanySelect: React.FC<CompanySelectProps> = ({ value, onChange, e
 				</SelectContent>
 			</Select>
 
-			<Button type="button" variant="outline" size="icon" onClick={() => setOpen(true)}>
+			<Button
+				type="button"
+				variant="outline"
+				size="icon"
+				onClick={() => setOpen(true)}
+			>
 				<Plus className="size-4" />
 				<span className="sr-only">New company</span>
 			</Button>
@@ -101,7 +120,9 @@ export const CompanySelect: React.FC<CompanySelectProps> = ({ value, onChange, e
 						<Field>
 							<FieldLabel htmlFor="website">
 								Website{" "}
-								<span className="font-normal text-muted-foreground">(optional)</span>
+								<span className="font-normal text-muted-foreground">
+									(optional)
+								</span>
 							</FieldLabel>
 							<Input
 								{...form.register("website")}

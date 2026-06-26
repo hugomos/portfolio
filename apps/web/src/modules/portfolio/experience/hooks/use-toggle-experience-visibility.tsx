@@ -23,5 +23,8 @@ export function useToggleExperienceVisibility(): UseToggleExperienceVisibility {
 		},
 	});
 
-	return { handleToggleExperienceVisibility, toggleExperienceVisibilityIsPending };
+	return {
+		handleToggleExperienceVisibility,
+		toggleExperienceVisibilityIsPending,
+	};
 }

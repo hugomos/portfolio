@@ -10,17 +10,19 @@ interface UseDeleteExperience {
 export function useDeleteExperience(): UseDeleteExperience {
 	const queryClient = useQueryClient();
 
-	const { mutateAsync: handleDeleteExperience, isPending: deleteExperienceIsPending } =
-		useMutation({
-			mutationFn: deleteExperience,
-			onSuccess: () => {
-				queryClient.invalidateQueries({ queryKey: ["experiences"] });
-				toast.success("Experiência removida com sucesso");
-			},
-			onError: () => {
-				toast.error("Erro ao remover experiência");
-			},
-		});
+	const {
+		mutateAsync: handleDeleteExperience,
+		isPending: deleteExperienceIsPending,
+	} = useMutation({
+		mutationFn: deleteExperience,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["experiences"] });
+			toast.success("Experiência removida com sucesso");
+		},
+		onError: () => {
+			toast.error("Erro ao remover experiência");
+		},
+	});
 
 	return { handleDeleteExperience, deleteExperienceIsPending };
 }

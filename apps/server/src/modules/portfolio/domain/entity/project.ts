@@ -3,7 +3,12 @@ import { Slug } from "@/domain/entity/slug";
 import type { ProjectHighlight } from "./project-highlight";
 import type { ProjectTech } from "./project-tech";
 
-export type ProjectCategory = "fullstack" | "frontend" | "backend" | "cli" | "mobile";
+export type ProjectCategory =
+	| "fullstack"
+	| "frontend"
+	| "backend"
+	| "cli"
+	| "mobile";
 export type ProjectStatus = "active" | "wip" | "archived";
 
 interface ConstructorProps {

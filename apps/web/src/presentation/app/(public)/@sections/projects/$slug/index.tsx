@@ -62,12 +62,16 @@ export const ProjectDetail: React.FC = () => {
 				</h1>
 
 				<div className="flex flex-wrap items-center gap-2 text-xs">
-					<span className="text-muted-foreground">{categoryLabels[category]}</span>
+					<span className="text-muted-foreground">
+						{categoryLabels[category]}
+					</span>
 					<span className="text-muted-foreground">·</span>
 					<span className={statusColors[status]}>{status}</span>
 				</div>
 
-				<p className="text-muted-foreground text-sm leading-relaxed">{summary}</p>
+				<p className="text-muted-foreground text-sm leading-relaxed">
+					{summary}
+				</p>
 				<p className="text-muted-foreground/60 text-xs">{impact}</p>
 			</header>
 
@@ -75,7 +79,11 @@ export const ProjectDetail: React.FC = () => {
 				<div className="flex flex-wrap gap-3">
 					{repositoryUrl && (
 						<Button variant="outline" size="sm" className="group" asChild>
-							<Link to={repositoryUrl} target="_blank" rel="noopener noreferrer">
+							<Link
+								to={repositoryUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								<GithubLogoIcon className="mr-2 size-4 text-zinc-400 transition-colors group-hover:text-foreground" />
 								GitHub
 							</Link>

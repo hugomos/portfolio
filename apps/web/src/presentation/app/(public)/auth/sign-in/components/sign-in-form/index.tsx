@@ -24,7 +24,10 @@ export const SignInForm: React.FC = () => {
 	const { handleSignIn, signInIsPending } = useSignIn({ navigate });
 
 	return (
-		<form onSubmit={handleSubmit(handleSignIn)} className="flex flex-col gap-10">
+		<form
+			onSubmit={handleSubmit(handleSignIn)}
+			className="flex flex-col gap-10"
+		>
 			<FieldGroup className="gap-4">
 				<Field>
 					<FieldLabel htmlFor="email">Email</FieldLabel>
@@ -49,7 +52,9 @@ export const SignInForm: React.FC = () => {
 						autoComplete="current-password"
 						className="px-2"
 					/>
-					{errors.password && <FieldError>{errors.password.message}</FieldError>}
+					{errors.password && (
+						<FieldError>{errors.password.message}</FieldError>
+					)}
 				</Field>
 			</FieldGroup>
 

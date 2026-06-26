@@ -64,9 +64,15 @@ export const CreateProjectForm: React.FC = () => {
 		navigate,
 	});
 
-	const onSubmit = handleSubmit(async ({ tech: _tech, highlights: _highlights, ...rest }: CreateProjectFormSchema) => {
-		await handleCreateProject(rest);
-	});
+	const onSubmit = handleSubmit(
+		async ({
+			tech: _tech,
+			highlights: _highlights,
+			...rest
+		}: CreateProjectFormSchema) => {
+			await handleCreateProject(rest);
+		},
+	);
 
 	function addTech() {
 		const value = techInput.trim();

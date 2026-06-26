@@ -1,5 +1,5 @@
 import { apiHttpClient } from "@/infra/http/api-http-client";
-import { isApiError, type ApiResponse } from "@/infra/http/dto/api-response";
+import { type ApiResponse, isApiError } from "@/infra/http/dto/api-response";
 import type { WorkMode } from "../dto";
 
 export type CreateExperienceInput = {
@@ -11,7 +11,9 @@ export type CreateExperienceInput = {
 	visible?: boolean;
 };
 
-export async function createExperience(input: CreateExperienceInput): Promise<void> {
+export async function createExperience(
+	input: CreateExperienceInput,
+): Promise<void> {
 	const { data } = await apiHttpClient.post<ApiResponse<void>>(
 		"/api/portfolio/experiences",
 		input,

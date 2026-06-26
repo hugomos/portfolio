@@ -38,12 +38,14 @@ export const EditHeroForm: React.FC = () => {
 	const { handleUpdateHero, updateHeroIsPending } = useUpdateHero();
 	const { handleReplaceSkills, replaceSkillsIsPending } = useReplaceSkills();
 
-	const onSubmit = handleSubmit(async ({ name, title, bio, skills, links }: EditHeroFormSchema) => {
-		await Promise.all([
-			handleUpdateHero({ name, title, bio, ...links }),
-			handleReplaceSkills({ skills }),
-		]);
-	});
+	const onSubmit = handleSubmit(
+		async ({ name, title, bio, skills, links }: EditHeroFormSchema) => {
+			await Promise.all([
+				handleUpdateHero({ name, title, bio, ...links }),
+				handleReplaceSkills({ skills }),
+			]);
+		},
+	);
 
 	return (
 		<form onSubmit={onSubmit} className="space-y-8">
@@ -228,7 +230,10 @@ export const EditHeroForm: React.FC = () => {
 
 			{/* Actions */}
 			<div className="flex justify-end pt-2">
-				<Button type="submit" disabled={updateHeroIsPending || replaceSkillsIsPending}>
+				<Button
+					type="submit"
+					disabled={updateHeroIsPending || replaceSkillsIsPending}
+				>
 					{updateHeroIsPending ? <Spinner /> : "Save changes"}
 				</Button>
 			</div>

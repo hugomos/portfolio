@@ -42,11 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ hero }) => {
 			<div className="flex flex-wrap gap-3">
 				{hero.resumeUrl && (
 					<Button variant="outline" size="sm" className="group" asChild>
-						<Link
-							to={hero.resumeUrl}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
+						<Link to={hero.resumeUrl} target="_blank" rel="noopener noreferrer">
 							<File className="mr-2 size-4 text-zinc-400 transition-colors group-hover:text-foreground" />
 							Resume
 						</Link>
@@ -54,11 +50,7 @@ export const Hero: React.FC<HeroProps> = ({ hero }) => {
 				)}
 				{hero.githubUrl && (
 					<Button variant="outline" size="sm" className="group" asChild>
-						<Link
-							to={hero.githubUrl}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
+						<Link to={hero.githubUrl} target="_blank" rel="noopener noreferrer">
 							<GithubLogoIcon className="mr-2 size-4 text-zinc-400 transition-colors group-hover:text-foreground" />
 							Github
 						</Link>

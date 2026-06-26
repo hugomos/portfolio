@@ -1,5 +1,5 @@
 import { apiHttpClient } from "@/infra/http/api-http-client";
-import { isApiError, type ApiResponse } from "@/infra/http/dto/api-response";
+import { type ApiResponse, isApiError } from "@/infra/http/dto/api-response";
 import type { ProjectCategory, ProjectStatus } from "../dto";
 
 export type UpdateProjectInput = {
@@ -14,7 +14,10 @@ export type UpdateProjectInput = {
 	liveUrl?: string | null;
 };
 
-export async function updateProject({ id, ...body }: UpdateProjectInput): Promise<void> {
+export async function updateProject({
+	id,
+	...body
+}: UpdateProjectInput): Promise<void> {
 	const { data } = await apiHttpClient.put<ApiResponse<void>>(
 		`/api/portfolio/projects/${id}`,
 		body,
