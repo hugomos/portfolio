@@ -69,6 +69,9 @@ importers:
       '@fastify/swagger':
         specifier: ^9.7.0
         version: 9.7.0
+      '@libsql/client':
+        specifier: ^0.15.4
+        version: 0.15.15
       '@portfolio/db':
         specifier: workspace:*
         version: link:../../packages/db
