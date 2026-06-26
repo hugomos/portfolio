@@ -1,5 +1,5 @@
 // biome-ignore-all lint: seed file
-import { randomBytes } from "node:crypto";
+import { randomUUID } from "node:crypto";
 import { createClient } from "@libsql/client";
 import { hash } from "argon2";
 import dotenv from "dotenv";
@@ -32,7 +32,7 @@ async function seed(email: string, password: string) {
 
 	await db.transaction(async (tx) => {
 		await tx.insert(user).values({
-			id: randomBytes(16).toString("hex"),
+			id: randomUUID(),
 			email,
 			passwordHash,
 			createdAt: now,
@@ -40,7 +40,7 @@ async function seed(email: string, password: string) {
 		});
 
 		await tx.insert(hero).values({
-			id: randomBytes(16).toString("hex"),
+			id: randomUUID(),
 			name: "Vitor Hugo Oliveira",
 			title: "Software Engineer",
 			bio: "Full-stack developer focused on building software that solves real-world problems. Experienced in designing APIs, internal platforms, geospatial tools, and business applications that streamline workflows and improve operational efficiency.",
