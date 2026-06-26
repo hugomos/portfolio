@@ -1,4 +1,5 @@
-﻿import { GripVertical, Plus, X } from "lucide-react";
+﻿import { parse } from "date-fns";
+import { GripVertical, Plus, X } from "lucide-react";
 import type React from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";
@@ -51,10 +52,13 @@ export const CreateExperienceForm: React.FC = () => {
 		useCreateExperience({ navigate });
 
 	const onSubmit = handleSubmit(async (data: CreateExperienceFormSchema) => {
+		const fmt = "dd/MM/yyyy";
 		await handleCreateExperience({
 			...data,
-			startDate: data.startDate.toISOString(),
-			endDate: data.endDate?.toISOString(),
+			startDate: parse(data.startDate, fmt, new Date()).toISOString(),
+			endDate: data.endDate
+				? parse(data.endDate, fmt, new Date()).toISOString()
+				: undefined,
 		});
 	});
 

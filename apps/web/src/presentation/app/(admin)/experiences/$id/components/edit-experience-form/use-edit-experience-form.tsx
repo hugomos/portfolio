@@ -1,10 +1,13 @@
-﻿import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import type { ExperienceDTO } from "@/modules/portfolio/experience/dto";
 import {
 	type EditExperienceFormSchema,
 	editExperienceFormSchema,
 } from "./schema";
+
+const DATE_FORMAT = "dd/MM/yyyy";
 
 export function useEditExperienceForm(experience: ExperienceDTO) {
 	return useForm<EditExperienceFormSchema>({
@@ -13,8 +16,10 @@ export function useEditExperienceForm(experience: ExperienceDTO) {
 			companyId: experience.company.id,
 			role: experience.role,
 			workMode: experience.workMode,
-			startDate: new Date(experience.startDate),
-			endDate: experience.endDate ? new Date(experience.endDate) : undefined,
+			startDate: format(new Date(experience.startDate), DATE_FORMAT),
+			endDate: experience.endDate
+				? format(new Date(experience.endDate), DATE_FORMAT)
+				: "",
 			highlights: experience.highlights.map((h) => ({
 				content: h.content,
 				sortOrder: h.sortOrder,
