@@ -10,6 +10,8 @@ export const Projects: React.FC = () => {
 
 	if (projectsIsLoading) return <ProjectsSkeleton />;
 
+	if (!projects?.length) return null;
+
 	const grouped = categoryOrder
 		.map((cat) => ({
 			category: cat,

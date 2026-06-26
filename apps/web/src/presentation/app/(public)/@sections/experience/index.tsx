@@ -12,6 +12,8 @@ export const Experience: React.FC = () => {
 
 	if (experiencesIsLoading) return <ExperienceSkeleton />;
 
+	if (!experiences?.length) return null;
+
 	return (
 		<section className="space-y-6">
 			<SectionTitle>Experience</SectionTitle>
