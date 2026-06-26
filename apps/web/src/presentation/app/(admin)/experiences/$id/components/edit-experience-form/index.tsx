@@ -16,7 +16,6 @@ import {
 	FieldLabel,
 } from "@/presentation/components/ui/field";
 import { Input } from "@/presentation/components/ui/input";
-import { ScrollArea } from "@/presentation/components/ui/scroll-area";
 import {
 	Select,
 	SelectContent,
@@ -175,7 +174,7 @@ export const EditExperienceForm: React.FC<{ id: string }> = ({ id }) => {
 				</p>
 
 				{highlights.length > 0 && (
-					<ScrollArea className="max-h-80">
+					<div className="max-h-80 overflow-y-auto">
 						<List
 							values={highlights}
 							onChange={({ oldIndex, newIndex }) =>
@@ -237,7 +236,7 @@ export const EditExperienceForm: React.FC<{ id: string }> = ({ id }) => {
 								);
 							}}
 						/>
-					</ScrollArea>
+					</div>
 				)}
 
 				<Button
