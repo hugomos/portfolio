@@ -13,7 +13,7 @@ type Input = {
 	visible?: boolean;
 };
 
-export class CreateExperienceUseCase extends UseCase<Input, void> {
+export class CreateExperienceUseCase extends UseCase<Input, { id: string }> {
 	constructor(
 		private readonly repo: ExperienceRepo,
 		private readonly companyRepo: CompanyRepo,
@@ -28,7 +28,7 @@ export class CreateExperienceUseCase extends UseCase<Input, void> {
 		startDate,
 		endDate,
 		visible,
-	}: Input): Promise<void> {
+	}: Input): Promise<{ id: string }> {
 		const company = await this.companyRepo.findById(companyId);
 		if (!company) throw new DomainError("Company not found");
 
@@ -42,5 +42,7 @@ export class CreateExperienceUseCase extends UseCase<Input, void> {
 		});
 
 		await this.repo.create(experience);
+
+		return { id: experience.id };
 	}
 }

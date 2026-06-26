@@ -4,7 +4,7 @@ import { ProjectTech } from "@/modules/portfolio/domain/entity/project-tech";
 import type { ProjectRepo } from "../db/repository";
 
 type Input = {
-	projectId: string;
+	id: string;
 	techs: Array<{ name: string; sortOrder: number }>;
 };
 
@@ -13,14 +13,14 @@ export class ReplaceProjectTechsUseCase extends UseCase<Input, void> {
 		super();
 	}
 
-	async execute({ projectId, techs }: Input): Promise<void> {
-		const project = await this.repo.findById(projectId);
+	async execute({ id, techs }: Input): Promise<void> {
+		const project = await this.repo.findById(id);
 		if (!project) throw new DomainError("Project not found");
 
 		const newTechs = techs.map(({ name, sortOrder }) =>
-			ProjectTech.create({ projectId, name, sortOrder }),
+			ProjectTech.create({ projectId: id, name, sortOrder }),
 		);
 
-		await this.repo.replaceTechs(projectId, newTechs);
+		await this.repo.replaceTechs(id, newTechs);
 	}
 }

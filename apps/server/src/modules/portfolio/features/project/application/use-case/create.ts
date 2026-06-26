@@ -18,7 +18,7 @@ type Input = {
 	visible?: boolean;
 };
 
-export class CreateProjectUseCase extends UseCase<Input, void> {
+export class CreateProjectUseCase extends UseCase<Input, { id: string }> {
 	constructor(private readonly repo: ProjectRepo) {
 		super();
 	}
@@ -33,7 +33,7 @@ export class CreateProjectUseCase extends UseCase<Input, void> {
 		repositoryUrl,
 		liveUrl,
 		visible,
-	}: Input): Promise<void> {
+	}: Input): Promise<{ id: string }> {
 		const project = Project.create({
 			title,
 			summary,
@@ -47,5 +47,7 @@ export class CreateProjectUseCase extends UseCase<Input, void> {
 		});
 
 		await this.repo.create(project);
+
+		return { id: project.id };
 	}
 }

@@ -64,12 +64,12 @@ export const CreateProjectForm: React.FC = () => {
 	});
 
 	const onSubmit = handleSubmit(
-		async ({
-			tech: _tech,
-			highlights: _highlights,
-			...rest
-		}: CreateProjectFormSchema) => {
-			await handleCreateProject(rest);
+		async ({ tech, highlights, ...rest }: CreateProjectFormSchema) => {
+			await handleCreateProject({
+				...rest,
+				highlights,
+				techs: tech.map((name, i) => ({ name, sortOrder: i + 1 })),
+			});
 		},
 	);
 

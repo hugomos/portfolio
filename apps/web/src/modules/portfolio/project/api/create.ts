@@ -14,10 +14,13 @@ export type CreateProjectInput = {
 	visible?: boolean;
 };
 
-export async function createProject(input: CreateProjectInput): Promise<void> {
-	const { data } = await apiHttpClient.post<ApiResponse<void>>(
+export async function createProject(
+	input: CreateProjectInput,
+): Promise<{ id: string }> {
+	const { data } = await apiHttpClient.post<ApiResponse<{ id: string }>>(
 		"/api/portfolio/projects",
 		input,
 	);
 	if (isApiError(data)) throw new Error(data.message);
+	return data as { id: string };
 }

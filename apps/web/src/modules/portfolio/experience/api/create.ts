@@ -13,10 +13,11 @@ export type CreateExperienceInput = {
 
 export async function createExperience(
 	input: CreateExperienceInput,
-): Promise<void> {
-	const { data } = await apiHttpClient.post<ApiResponse<void>>(
+): Promise<{ id: string }> {
+	const { data } = await apiHttpClient.post<ApiResponse<{ id: string }>>(
 		"/api/portfolio/experiences",
 		input,
 	);
 	if (isApiError(data)) throw new Error(data.message);
+	return data as { id: string };
 }

@@ -4,7 +4,7 @@ import { ExperienceHighlight } from "@/modules/portfolio/domain/entity/experienc
 import type { ExperienceRepo } from "../db/repository";
 
 type Input = {
-	experienceId: string;
+	id: string;
 	highlights: Array<{ content: string; sortOrder: number }>;
 };
 
@@ -13,14 +13,14 @@ export class ReplaceExperienceHighlightsUseCase extends UseCase<Input, void> {
 		super();
 	}
 
-	async execute({ experienceId, highlights }: Input): Promise<void> {
-		const experience = await this.repo.findById(experienceId);
+	async execute({ id, highlights }: Input): Promise<void> {
+		const experience = await this.repo.findById(id);
 		if (!experience) throw new DomainError("Experience not found");
 
 		const newHighlights = highlights.map(({ content, sortOrder }) =>
-			ExperienceHighlight.create({ experienceId, content, sortOrder }),
+			ExperienceHighlight.create({ experienceId: id, content, sortOrder }),
 		);
 
-		await this.repo.replaceHighlights(experienceId, newHighlights);
+		await this.repo.replaceHighlights(id, newHighlights);
 	}
 }

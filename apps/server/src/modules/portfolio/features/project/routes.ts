@@ -82,7 +82,7 @@ export async function register(app: FastifyInstance) {
 				description: "Create project",
 				tags: ["Project"],
 				body: projectBodySchema,
-				response: { 204: z.never() },
+				response: { 200: z.object({ id: z.string() }) },
 			},
 		},
 		async (request, reply) => {

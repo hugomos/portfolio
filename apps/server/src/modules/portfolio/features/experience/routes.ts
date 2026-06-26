@@ -66,7 +66,7 @@ export async function register(app: FastifyInstance) {
 					endDate: z.string().nullable().optional(),
 					visible: z.boolean().optional(),
 				}),
-				response: { 204: z.never() },
+				response: { 200: z.object({ id: z.string() }) },
 			},
 		},
 		async (request, reply) => {

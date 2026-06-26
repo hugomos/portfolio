@@ -59,6 +59,7 @@ export const EditExperienceForm: React.FC<{ id: string }> = ({ id }) => {
 			endDate: data.endDate
 				? parse(data.endDate, fmt, new Date()).toISOString()
 				: undefined,
+			highlights: data.highlights,
 		});
 	});
 
