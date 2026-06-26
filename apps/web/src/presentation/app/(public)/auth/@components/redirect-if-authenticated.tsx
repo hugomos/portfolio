@@ -1,27 +1,24 @@
 import type React from "react";
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
+import { useMe } from "@/modules/identity/user/hooks/useMe";
+import { SectionLoadingSkeleton } from "@/presentation/components/section-loading-skeleton";
 
 export const RedirectIfAuthenticated: React.FC = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	// const { user, userIsLoading } = useMe()
-	const user = { name: "john doe", email: "yTtI2@example.com" };
-	const userIsLoading = false;
+	const { user, userIsLoading } = useMe();
 
 	useEffect(() => {
 		if (!userIsLoading && user) {
 			navigate("/~/admin", { replace: true, state: { from: location } });
 			return;
 		}
-	}, [navigate, location, user]);
+	}, [navigate, location, user, userIsLoading]);
 
 	if (userIsLoading) {
-		return (
-			// criar skeleton
-			<div>Loading...</div>
-		);
+		return <SectionLoadingSkeleton />;
 	}
 
 	if (user) {

@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { signOut } from "../api/sign-out";
 
 interface UseSignOutProps {
@@ -11,12 +11,16 @@ interface UseSignOut {
 }
 
 export function useSignOut({ navigate }: UseSignOutProps): UseSignOut {
-	const { mutateAsync: handleSignOut, isPending: signOutIsPending } = useMutation({
-		mutationFn: signOut,
-		onSuccess: () => {
-			navigate("/");
-		},
-	});
+	const queryClient = useQueryClient();
+
+	const { mutateAsync: handleSignOut, isPending: signOutIsPending } =
+		useMutation({
+			mutationFn: signOut,
+			onSuccess: () => {
+				queryClient.clear();
+				navigate("/");
+			},
+		});
 
 	return { handleSignOut, signOutIsPending };
 }
