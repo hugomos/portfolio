@@ -1,4 +1,4 @@
-import * as React from "react"
+import type * as React from "react"
 import { format } from "date-fns"
 import { ChevronDownIcon } from "lucide-react"
 
