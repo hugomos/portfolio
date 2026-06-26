@@ -13,8 +13,8 @@ export function useEditProjectForm(project: ProjectDTO) {
 			summary: project.summary,
 			impact: project.impact ?? "",
 			tech: project.techs?.map((t) => t.name) ?? [],
-			repositoryUrl: project.repositoryUrl,
-			liveUrl: project.liveUrl,
+			repositoryUrl: project.repositoryUrl ?? undefined,
+			liveUrl: project.liveUrl ?? undefined,
 			highlights:
 				project.highlights?.map((h) => ({
 					content: h.content,
