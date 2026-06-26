@@ -6,4 +6,5 @@ export default defineConfig({
 	outDir: "./dist",
 	clean: true,
 	noExternal: [/@portfolio\/.*/],
+	external: [/^@libsql\//, "libsql"],
 });
