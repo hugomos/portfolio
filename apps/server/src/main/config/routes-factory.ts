@@ -1,38 +1,17 @@
-import * as fs from "node:fs";
-import * as path from "node:path";
 import type { FastifyInstance } from "fastify";
+import { register as registerAuthentication } from "@/modules/identity/features/authentication/routes";
+import { register as registerUser } from "@/modules/identity/features/user/routes";
+import { register as registerExperience } from "@/modules/portfolio/features/experience/routes";
+import { register as registerHero } from "@/modules/portfolio/features/hero/routes";
+import { register as registerProject } from "@/modules/portfolio/features/project/routes";
 
-type RouteModule = Record<string, unknown>;
-
-function findRouteFiles(dir: string, fileList: string[] = []): string[] {
-	const files = fs.readdirSync(dir);
-
-	for (const file of files) {
-		const filePath = path.join(dir, file);
-		const stat = fs.statSync(filePath);
-
-		if (stat.isDirectory()) {
-			findRouteFiles(filePath, fileList);
-		} else if (file === "routes.ts" || file === "routes.js") {
-			fileList.push(filePath);
-		}
-	}
-
-	return fileList;
-}
-
-function toFileUrl(filePath: string): string {
-	if (process.platform === "win32") {
-		return `file://${filePath.replace(/\\/g, "/")}`;
-	}
-	return filePath;
-}
-
-function getRegistration(mod: RouteModule) {
-	return Object.values(mod).find((exp) => typeof exp === "function") as
-		| ((app: FastifyInstance) => Promise<void>)
-		| undefined;
-}
+const routeModules = [
+	registerAuthentication,
+	registerUser,
+	registerExperience,
+	registerHero,
+	registerProject,
+];
 
 function logRegisteredRoutes(collected: { method: string; url: string }[]) {
 	const groups = new Map<string, { method: string; url: string }[]>();
@@ -74,21 +53,10 @@ export async function registerRoutes(app: FastifyInstance) {
 		}
 	});
 
-	let modulesPath = path.join(process.cwd(), "src", "modules");
-	if (!fs.existsSync(modulesPath)) {
-		modulesPath = path.join(process.cwd(), "..", "modules");
-	}
-
-	const routeFiles = findRouteFiles(modulesPath);
-
-	for (const file of routeFiles) {
-		const mod: RouteModule = await import(toFileUrl(file));
-		const registration = getRegistration(mod);
-		if (!registration) continue;
-
+	for (const route of routeModules) {
 		await app.register(
 			async (moduleApp) => {
-				await registration(moduleApp);
+				await route(moduleApp);
 			},
 			{ prefix: "/api" },
 		);
