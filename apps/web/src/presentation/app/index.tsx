@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { queryClient } from "@/infra/http/query-client";
 import { ThemeProvider } from "../components/theme-provider";
 import { Toaster } from "../components/ui/sonner";
+import { NotFound } from "./+not-found";
 import { AuthGuard } from "./(admin)/@components/auth-guard";
 import { AdminRootLayout } from "./(admin)/_layout";
 import { Experiences } from "./(admin)/experiences";
@@ -50,9 +51,12 @@ export const App: React.FC = () => {
 										<Route path=":id" element={<EditExperience />} />
 									</Route>
 									<Route path="hero" element={<EditHero />} />
+									<Route path="*" element={<NotFound />} />
 								</Route>
 							</Route>
 						</Route>
+
+						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</BrowserRouter>
 			</ThemeProvider>
