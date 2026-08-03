@@ -7,14 +7,47 @@ import { useProjects } from "@/modules/portfolio/project/hooks/use-projects";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { Button } from "@/presentation/components/ui/button";
 import { Separator } from "@/presentation/components/ui/separator";
+import { Skeleton } from "@/presentation/components/ui/skeleton";
 import { MarkdownContent } from "./components/markdown-content";
 
 export const ProjectDetail: React.FC = () => {
 	const { slug } = useParams<{ slug: string }>();
-	const { projects } = useProjects({ visible: true });
+	const { projects, projectsIsLoading } = useProjects({ visible: true });
 	const project = projects?.find((p) => p.slug === slug);
 
 	const navigate = useNavigate();
+
+	if (projectsIsLoading) {
+		return (
+			<div className="space-y-8">
+				<Skeleton className="h-3 w-8" />
+				<div className="space-y-3">
+					<Skeleton className="h-6 w-48" />
+					<Skeleton className="h-3 w-32" />
+					<Skeleton className="h-3 w-full" />
+					<Skeleton className="h-3 w-4/5" />
+				</div>
+				<div className="flex gap-2">
+					<Skeleton className="h-8 w-20 rounded" />
+					<Skeleton className="h-8 w-16 rounded" />
+				</div>
+				<div className="flex gap-1.5">
+					<Skeleton className="h-5 w-16 rounded" />
+					<Skeleton className="h-5 w-20 rounded" />
+					<Skeleton className="h-5 w-14 rounded" />
+				</div>
+				<Separator />
+				<div className="space-y-4">
+					<Skeleton className="h-3 w-20" />
+					<div className="space-y-2">
+						<Skeleton className="h-3 w-full" />
+						<Skeleton className="h-3 w-5/6" />
+						<Skeleton className="h-3 w-4/5" />
+					</div>
+				</div>
+			</div>
+		);
+	}
 
 	if (!project) {
 		return (
