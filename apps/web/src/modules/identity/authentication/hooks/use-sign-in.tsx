@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { type SignInInput, signIn } from "../api/sign-in";
 
@@ -12,10 +12,13 @@ interface UseSignIn {
 }
 
 export function useSignIn({ navigate }: UseSignInProps): UseSignIn {
+	const queryClient = useQueryClient();
+
 	const { mutateAsync: handleSignIn, isPending: signInIsPending } = useMutation(
 		{
 			mutationFn: signIn,
 			onSuccess: () => {
+				queryClient.resetQueries({ queryKey: ["me"] });
 				navigate("/~/admin");
 			},
 			onError: () => {
