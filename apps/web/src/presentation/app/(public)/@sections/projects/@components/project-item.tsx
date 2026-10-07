@@ -1,6 +1,6 @@
 ﻿import { ArrowUpRight } from "lucide-react";
 import type React from "react";
-import { Link } from "react-router";
+import Link from "next/link";
 import type { ProjectDTO } from "@/modules/portfolio/project/dto";
 
 interface ProjectItemProps {
@@ -15,7 +15,7 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
 			<span className="sr-only">{techs?.map((t) => t.name).join(", ")}</span>
 
 			<Link
-				to={`/projects/${slug}`}
+				href={`/projects/${slug}`}
 				className="group inline-flex items-center gap-1 font-medium text-sm hover:underline"
 			>
 				{title}

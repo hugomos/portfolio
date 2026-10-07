@@ -1,6 +1,8 @@
-﻿import { Pencil, Trash2 } from "lucide-react";
+"use client";
+
+import { Pencil, Trash2 } from "lucide-react";
+import Link from "next/link";
 import type React from "react";
-import { Link } from "react-router";
 import {
 	categoryLabels,
 	type ProjectDTO,
@@ -8,7 +10,6 @@ import {
 import { useDeleteProject } from "@/modules/portfolio/project/hooks/use-delete-project";
 import { useToggleProjectVisibility } from "@/modules/portfolio/project/hooks/use-toggle-project-visibility";
 import { Button } from "@/presentation/components/ui/button";
-
 import { Switch } from "@/presentation/components/ui/switch";
 
 interface ProjectItemProps {
@@ -48,7 +49,7 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
 						className="text-muted-foreground"
 						asChild
 					>
-						<Link to={`/~/admin/projects/${id}`}>
+						<Link href={`/~/admin/projects/${id}`}>
 							<Pencil />
 							<span className="sr-only">Edit</span>
 						</Link>

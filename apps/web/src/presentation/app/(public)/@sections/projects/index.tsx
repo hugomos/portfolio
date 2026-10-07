@@ -1,22 +1,21 @@
-﻿import type React from "react";
+import type React from "react";
+import type { ProjectDTO } from "@/modules/portfolio/project/dto";
 import { categoryLabels, categoryOrder } from "@/modules/portfolio/project/dto";
-import { useProjects } from "@/modules/portfolio/project/hooks/use-projects";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { ProjectGroup } from "./@components/project-group";
-import { ProjectsSkeleton } from "./@components/projects-skeleton";
 
-export const Projects: React.FC = () => {
-	const { projects, projectsIsLoading } = useProjects({ visible: true });
+interface ProjectsProps {
+	projects: ProjectDTO[];
+}
 
-	if (projectsIsLoading) return <ProjectsSkeleton />;
-
-	if (!projects?.length) return null;
+export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
+	if (!projects.length) return null;
 
 	const grouped = categoryOrder
 		.map((cat) => ({
 			category: cat,
 			label: categoryLabels[cat],
-			projects: (projects ?? []).filter((p) => p.category === cat),
+			projects: projects.filter((p) => p.category === cat),
 		}))
 		.filter((g) => g.projects.length > 0);
 

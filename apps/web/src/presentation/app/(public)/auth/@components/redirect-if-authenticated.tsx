@@ -1,29 +1,29 @@
+"use client";
+
 import type React from "react";
 import { useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router";
+import { useRouter } from "next/navigation";
 import { useMe } from "@/modules/identity/user/hooks/useMe";
 import { SectionLoadingSkeleton } from "@/presentation/components/section-loading-skeleton";
 
-export const RedirectIfAuthenticated: React.FC = () => {
-	const navigate = useNavigate();
-	const location = useLocation();
+interface RedirectIfAuthenticatedProps {
+	children: React.ReactNode;
+}
 
+export const RedirectIfAuthenticated: React.FC<
+	RedirectIfAuthenticatedProps
+> = ({ children }) => {
+	const router = useRouter();
 	const { user, userIsLoading } = useMe();
 
 	useEffect(() => {
 		if (!userIsLoading && user) {
-			navigate("/~/admin", { replace: true, state: { from: location } });
-			return;
+			router.replace("/~/admin");
 		}
-	}, [navigate, location, user, userIsLoading]);
+	}, [router, user, userIsLoading]);
 
-	if (userIsLoading) {
-		return <SectionLoadingSkeleton />;
-	}
+	if (userIsLoading) return <SectionLoadingSkeleton />;
+	if (user) return null;
 
-	if (user) {
-		return null;
-	}
-
-	return <Outlet />;
+	return <>{children}</>;
 };

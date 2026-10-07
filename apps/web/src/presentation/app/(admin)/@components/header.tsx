@@ -1,5 +1,7 @@
-import type React from "react";
-import { Link, useLocation, useNavigate } from "react-router";
+"use client";
+
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useSignOut } from "@/modules/identity/authentication/hooks/use-sign-out";
 import { Button } from "@/presentation/components/ui/button";
 import {
@@ -10,9 +12,11 @@ import {
 } from "@/presentation/components/ui/navigation-menu";
 
 export const Header: React.FC = () => {
-	const location = useLocation();
-	const navigate = useNavigate();
-	const { handleSignOut, signOutIsPending } = useSignOut({ navigate });
+	const pathname = usePathname();
+	const router = useRouter();
+	const { handleSignOut, signOutIsPending } = useSignOut({
+		navigate: (path) => router.push(path),
+	});
 
 	return (
 		<header className="flex items-center justify-between border-b px-4 py-2">
@@ -20,31 +24,31 @@ export const Header: React.FC = () => {
 				<NavigationMenuList>
 					<NavigationMenuItem>
 						<NavigationMenuLink asChild>
-							<Link to="/">Portfolio</Link>
+							<Link href="/">Portfolio</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
 						<NavigationMenuLink
 							asChild
-							data-active={location.pathname.startsWith("/~/admin/projects")}
+							data-active={pathname.startsWith("/~/admin/projects")}
 						>
-							<Link to="/~/admin/projects">Projects</Link>
+							<Link href="/~/admin/projects">Projects</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
 						<NavigationMenuLink
 							asChild
-							data-active={location.pathname.startsWith("/~/admin/experiences")}
+							data-active={pathname.startsWith("/~/admin/experiences")}
 						>
-							<Link to="/~/admin/experiences">Experiences</Link>
+							<Link href="/~/admin/experiences">Experiences</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
 						<NavigationMenuLink
 							asChild
-							data-active={location.pathname === "/~/admin/hero"}
+							data-active={pathname === "/~/admin/hero"}
 						>
-							<Link to="/~/admin/hero">Hero</Link>
+							<Link href="/~/admin/hero">Hero</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 				</NavigationMenuList>

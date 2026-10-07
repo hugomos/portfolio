@@ -1,6 +1,8 @@
+"use client";
+
 import type React from "react";
 import { useFormContext } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { useRouter } from "next/navigation";
 import { useSignIn } from "@/modules/identity/authentication/hooks/use-sign-in";
 import { Button } from "@/presentation/components/ui/button";
 import {
@@ -20,8 +22,10 @@ export const SignInForm: React.FC = () => {
 		formState: { errors },
 	} = useFormContext<SignInFormSchema>();
 
-	const navigate = useNavigate();
-	const { handleSignIn, signInIsPending } = useSignIn({ navigate });
+	const router = useRouter();
+	const { handleSignIn, signInIsPending } = useSignIn({
+		navigate: (path) => router.push(path),
+	});
 
 	return (
 		<form

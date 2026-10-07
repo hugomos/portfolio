@@ -7,7 +7,8 @@ import type React from "react";
 import { useState } from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";
-import { Link, useNavigate } from "react-router";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import slugify from "slugify";
 import { categoryLabels, statusLabels } from "@/modules/portfolio/project/dto";
 import { useCreateProject } from "@/modules/portfolio/project/hooks/use-create-project";
@@ -58,9 +59,9 @@ export const CreateProjectForm: React.FC = () => {
 	const [techInput, setTechInput] = useState("");
 	const techValues = watch("tech");
 
-	const navigate = useNavigate();
+	const router = useRouter();
 	const { handleCreateProject, createProjectIsPending } = useCreateProject({
-		navigate,
+		navigate: (path) => router.push(path),
 	});
 
 	const onSubmit = handleSubmit(
@@ -413,7 +414,7 @@ export const CreateProjectForm: React.FC = () => {
 					asChild
 					disabled={createProjectIsPending}
 				>
-					<Link to="/~/admin/projects">Cancel</Link>
+					<Link href="/~/admin/projects">Cancel</Link>
 				</Button>
 				<Button type="submit" disabled={createProjectIsPending}>
 					{createProjectIsPending ? <Spinner /> : "Create project"}

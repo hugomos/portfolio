@@ -1,6 +1,8 @@
-﻿import { Plus } from "lucide-react";
+"use client";
+
+import { Plus } from "lucide-react";
+import Link from "next/link";
 import type React from "react";
-import { Link } from "react-router";
 import { useProjects } from "@/modules/portfolio/project/hooks/use-projects";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { Button } from "@/presentation/components/ui/button";
@@ -15,7 +17,7 @@ export const Projects: React.FC = () => {
 			<div className="flex items-center justify-between">
 				<SectionTitle as="h1">Projects</SectionTitle>
 				<Button variant="outline" size="sm" asChild>
-					<Link to="/~/admin/projects/new">
+					<Link href="/~/admin/projects/new">
 						<Plus data-icon="inline-start" />
 						Add project
 					</Link>

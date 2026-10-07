@@ -7,7 +7,8 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";
-import { Link, useNavigate } from "react-router";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { categoryLabels, statusLabels } from "@/modules/portfolio/project/dto";
 import { useReplaceProjectHighlights } from "@/modules/portfolio/project/hooks/use-replace-project-highlights";
 import { useReplaceProjectTechs } from "@/modules/portfolio/project/hooks/use-replace-project-techs";
@@ -73,9 +74,9 @@ export const EditProjectForm: React.FC<EditProjectFormProps> = ({
 	const [techInput, setTechInput] = useState("");
 	const techValues = watch("tech");
 
-	const navigate = useNavigate();
+	const router = useRouter();
 	const { handleUpdateProject, updateProjectIsPending } = useUpdateProject({
-		navigate,
+		navigate: (path) => router.push(path),
 	});
 	const { handleReplaceProjectHighlights, replaceProjectHighlightsIsPending } =
 		useReplaceProjectHighlights();
@@ -440,7 +441,7 @@ export const EditProjectForm: React.FC<EditProjectFormProps> = ({
 			{/* Actions */}
 			<div className="flex justify-end gap-3 pt-2">
 				<Button type="button" variant="outline" asChild disabled={isPending}>
-					<Link to="/~/admin/projects">Cancel</Link>
+					<Link href="/~/admin/projects">Cancel</Link>
 				</Button>
 				<Button type="submit" disabled={isPending}>
 					{isPending ? <Spinner /> : "Save changes"}

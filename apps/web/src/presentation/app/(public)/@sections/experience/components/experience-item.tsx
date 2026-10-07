@@ -1,6 +1,6 @@
 ﻿import { ArrowUpRight } from "lucide-react";
 import type React from "react";
-import { Link } from "react-router";
+import Link from "next/link";
 import {
 	type ExperienceDTO,
 	workModeLabel,
@@ -26,7 +26,7 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 			<div className="flex flex-col gap-1.5">
 				{company.website ? (
 					<Link
-						to={company.website}
+						href={company.website}
 						target="_blank"
 						rel="noopener noreferrer"
 						className="group inline-flex items-center gap-1 font-medium text-sm hover:underline"

@@ -1,6 +1,7 @@
-﻿import type React from "react";
+"use client";
+
+import type React from "react";
 import { FormProvider } from "react-hook-form";
-import { useParams } from "react-router";
 import type { ProjectDTO } from "@/modules/portfolio/project/dto";
 import { useProjects } from "@/modules/portfolio/project/hooks/use-projects";
 import { SectionTitle } from "@/presentation/components/section-title";
@@ -23,9 +24,11 @@ const EditProjectContent: React.FC<{ project: ProjectDTO }> = ({ project }) => {
 	);
 };
 
-export const EditProject: React.FC = () => {
-	const { id } = useParams<{ id: string }>();
+interface EditProjectProps {
+	id: string;
+}
 
+export const EditProject: React.FC<EditProjectProps> = ({ id }) => {
 	const { projects } = useProjects({});
 	const project = projects?.find((p) => p.id === id);
 
