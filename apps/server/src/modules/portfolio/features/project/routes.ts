@@ -2,6 +2,7 @@ import { db } from "@portfolio/db";
 import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
+import { triggerRevalidation } from "@/infra/http/revalidate";
 import { ProjectControllerFactory } from "./infra/factory/controller";
 import { ProjectDBFactory } from "./infra/factory/db";
 import { ProjectUseCaseFactory } from "./infra/factory/use-case";
@@ -86,7 +87,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.createProject.handle(reply, request.input);
+			const result = await controllerFactory.createProject.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 
@@ -102,7 +105,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.updateProject.handle(reply, request.input);
+			const result = await controllerFactory.updateProject.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 
@@ -117,7 +122,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.toggleActive.handle(reply, request.input);
+			const result = await controllerFactory.toggleActive.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 
@@ -140,7 +147,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.replaceHighlights.handle(reply, request.input);
+			const result = await controllerFactory.replaceHighlights.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 
@@ -163,7 +172,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.replaceTechs.handle(reply, request.input);
+			const result = await controllerFactory.replaceTechs.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 
@@ -178,7 +189,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.deleteProject.handle(reply, request.input);
+			const result = await controllerFactory.deleteProject.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 }

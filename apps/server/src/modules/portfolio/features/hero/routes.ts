@@ -2,6 +2,7 @@ import { db } from "@portfolio/db";
 import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
+import { triggerRevalidation } from "@/infra/http/revalidate";
 import { HeroControllerFactory } from "../hero/infra/factory/controller";
 import { HeroDBFactory } from "../hero/infra/factory/db";
 import { HeroUseCaseFactory } from "../hero/infra/factory/use-case";
@@ -64,7 +65,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.updateHero.handle(reply, request.input);
+			const result = await controllerFactory.updateHero.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 
@@ -86,7 +89,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.replaceSkills.handle(reply, request.input);
+			const result = await controllerFactory.replaceSkills.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 }

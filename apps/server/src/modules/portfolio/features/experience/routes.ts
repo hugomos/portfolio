@@ -2,6 +2,7 @@ import { db } from "@portfolio/db";
 import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
+import { triggerRevalidation } from "@/infra/http/revalidate";
 import { ExperienceControllerFactory } from "./infra/factory/controller";
 import { ExperienceDBFactory } from "./infra/factory/db";
 import { ExperienceUseCaseFactory } from "./infra/factory/use-case";
@@ -70,7 +71,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.createExperience.handle(reply, request.input);
+			const result = await controllerFactory.createExperience.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 
@@ -92,7 +95,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.updateExperience.handle(reply, request.input);
+			const result = await controllerFactory.updateExperience.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 
@@ -107,7 +112,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.toggleActive.handle(reply, request.input);
+			const result = await controllerFactory.toggleActive.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 
@@ -130,7 +137,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.replaceHighlights.handle(reply, request.input);
+			const result = await controllerFactory.replaceHighlights.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 
@@ -145,7 +154,9 @@ export async function register(app: FastifyInstance) {
 			},
 		},
 		async (request, reply) => {
-			return controllerFactory.deleteExperience.handle(reply, request.input);
+			const result = await controllerFactory.deleteExperience.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
 		},
 	);
 
