@@ -1,5 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@fontsource-variable/jetbrains-mono";
+
+@source "../../node_modules/@blocknote/shadcn";
+
 /* shadcn/tailwind.css — inlined (package exports "style" condition unsupported by webpack) */
 @theme inline {
   @keyframes accordion-down {
@@ -37,9 +41,6 @@
   scrollbar-width: none;
   &::-webkit-scrollbar { display: none; }
 }
-@import "@fontsource-variable/jetbrains-mono";
-@source "../../node_modules/@blocknote/shadcn";
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
