@@ -1,4 +1,6 @@
-﻿import { GripVertical, Plus, X } from "lucide-react";
+﻿"use client";
+
+import { GripVertical, Plus, X } from "lucide-react";
 import type React from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";

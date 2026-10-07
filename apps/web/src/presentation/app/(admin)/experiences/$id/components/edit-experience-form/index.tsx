@@ -1,9 +1,12 @@
-﻿import { parse } from "date-fns";
+﻿"use client";
+
+import { parse } from "date-fns";
 import { GripVertical, Plus, X } from "lucide-react";
 import type React from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";
-import { Link, useNavigate } from "react-router";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { workModeLabel } from "@/modules/portfolio/experience/dto";
 import { useUpdateExperience } from "@/modules/portfolio/experience/hooks/use-update-experience";
 import { CompanySelect } from "@/presentation/app/(admin)/experiences/@components/company-select";
@@ -46,9 +49,9 @@ export const EditExperienceForm: React.FC<{ id: string }> = ({ id }) => {
 		name: "highlights",
 	});
 
-	const navigate = useNavigate();
+	const router = useRouter();
 	const { handleUpdateExperience, updateExperienceIsPending } =
-		useUpdateExperience({ navigate });
+		useUpdateExperience({ navigate: (path) => router.push(path) });
 
 	const onSubmit = handleSubmit(async (data: EditExperienceFormSchema) => {
 		const fmt = "dd/MM/yyyy";
@@ -277,7 +280,7 @@ export const EditExperienceForm: React.FC<{ id: string }> = ({ id }) => {
 					asChild
 					disabled={updateExperienceIsPending}
 				>
-					<Link to="/~/admin/experiences">Cancel</Link>
+					<Link href="/~/admin/experiences">Cancel</Link>
 				</Button>
 				<Button type="submit" disabled={updateExperienceIsPending}>
 					{updateExperienceIsPending ? <Spinner /> : "Save changes"}

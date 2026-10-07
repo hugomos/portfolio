@@ -1,7 +1,9 @@
-﻿import { format, parseISO } from "date-fns";
+﻿"use client";
+
+import { format, parseISO } from "date-fns";
 import { Pencil, Trash2 } from "lucide-react";
+import Link from "next/link";
 import type React from "react";
-import { Link } from "react-router";
 import {
 	type ExperienceDTO,
 	workModeLabel,
@@ -68,7 +70,7 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
 						className="text-muted-foreground"
 						asChild
 					>
-						<Link to={`/~/admin/experiences/${id}`}>
+						<Link href={`/~/admin/experiences/${id}`}>
 							<Pencil />
 							<span className="sr-only">Edit</span>
 						</Link>

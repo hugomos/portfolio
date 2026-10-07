@@ -1,6 +1,8 @@
-﻿import { Plus } from "lucide-react";
+"use client";
+
+import { Plus } from "lucide-react";
+import Link from "next/link";
 import type React from "react";
-import { Link } from "react-router";
 import { useExperiences } from "@/modules/portfolio/experience/hooks/use-experiences";
 import { SectionTitle } from "@/presentation/components/section-title";
 import { Button } from "@/presentation/components/ui/button";
@@ -15,9 +17,9 @@ export const Experiences: React.FC = () => {
 			<div className="flex items-center justify-between">
 				<SectionTitle as="h1">Experiences</SectionTitle>
 				<Button variant="outline" size="sm" asChild>
-					<Link to="/~/admin/experiences/new">
+					<Link href="/~/admin/experiences/new">
 						<Plus data-icon="inline-start" />
-						Add eperience
+						Add experience
 					</Link>
 				</Button>
 			</div>

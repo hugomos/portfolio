@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/presentation/components/theme-provider";
+import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/presentation/components/ui/sonner";
 import { Providers } from "@/components/providers";
 
@@ -17,7 +17,7 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body>
 				<Providers>
-					<ThemeProvider defaultTheme="dark" storageKey="hugomos-ui-theme">
+					<ThemeProvider attribute="class" defaultTheme="dark" storageKey="hugomos-ui-theme">
 						<Toaster richColors />
 						{children}
 					</ThemeProvider>

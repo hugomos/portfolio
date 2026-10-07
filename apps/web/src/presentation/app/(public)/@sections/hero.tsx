@@ -1,7 +1,7 @@
-﻿import { GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
+﻿import { GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import { File } from "lucide-react";
 import type React from "react";
-import { Link } from "react-router";
+import Link from "next/link";
 import type { HeroDTO } from "@/modules/portfolio/hero/dto";
 import { Button } from "@/presentation/components/ui/button";
 
@@ -42,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ hero }) => {
 			<div className="flex flex-wrap gap-3">
 				{hero.resumeUrl && (
 					<Button variant="outline" size="sm" className="group" asChild>
-						<Link to={hero.resumeUrl} target="_blank" rel="noopener noreferrer">
+						<Link href={hero.resumeUrl} target="_blank" rel="noopener noreferrer">
 							<File className="mr-2 size-4 text-zinc-400 transition-colors group-hover:text-foreground" />
 							Resume
 						</Link>
@@ -50,7 +50,7 @@ export const Hero: React.FC<HeroProps> = ({ hero }) => {
 				)}
 				{hero.githubUrl && (
 					<Button variant="outline" size="sm" className="group" asChild>
-						<Link to={hero.githubUrl} target="_blank" rel="noopener noreferrer">
+						<Link href={hero.githubUrl} target="_blank" rel="noopener noreferrer">
 							<GithubLogoIcon className="mr-2 size-4 text-zinc-400 transition-colors group-hover:text-foreground" />
 							Github
 						</Link>
@@ -59,7 +59,7 @@ export const Hero: React.FC<HeroProps> = ({ hero }) => {
 				{hero.linkedinUrl && (
 					<Button variant="outline" size="sm" className="group" asChild>
 						<Link
-							to={hero.linkedinUrl}
+							href={hero.linkedinUrl}
 							target="_blank"
 							rel="noopener noreferrer"
 						>

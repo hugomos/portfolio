@@ -1,6 +1,7 @@
-﻿import type React from "react";
+﻿"use client";
+
+import type React from "react";
 import { FormProvider } from "react-hook-form";
-import { useParams } from "react-router";
 import type { ExperienceDTO } from "@/modules/portfolio/experience/dto";
 import { useExperiences } from "@/modules/portfolio/experience/hooks/use-experiences";
 import { SectionTitle } from "@/presentation/components/section-title";
@@ -21,9 +22,11 @@ const EditExperienceContent: React.FC<{ experience: ExperienceDTO }> = ({
 	);
 };
 
-export const EditExperience: React.FC = () => {
-	const { id } = useParams<{ id: string }>();
+interface EditExperienceProps {
+	id: string;
+}
 
+export const EditExperience: React.FC<EditExperienceProps> = ({ id }) => {
 	const { experiences } = useExperiences({});
 	const experience = experiences?.find((exp) => exp.id === id);
 

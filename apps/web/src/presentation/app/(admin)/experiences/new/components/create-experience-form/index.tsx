@@ -1,9 +1,12 @@
-﻿import { parse } from "date-fns";
+﻿"use client";
+
+import { parse } from "date-fns";
 import { GripVertical, Plus, X } from "lucide-react";
 import type React from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";
-import { Link, useNavigate } from "react-router";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { workModeLabel } from "@/modules/portfolio/experience/dto";
 import { useCreateExperience } from "@/modules/portfolio/experience/hooks/use-create-experience";
 import { CompanySelect } from "@/presentation/app/(admin)/experiences/@components/company-select";
@@ -46,9 +49,9 @@ export const CreateExperienceForm: React.FC = () => {
 		name: "highlights",
 	});
 
-	const navigate = useNavigate();
+	const router = useRouter();
 	const { handleCreateExperience, createExperienceIsPending } =
-		useCreateExperience({ navigate });
+		useCreateExperience({ navigate: (path) => router.push(path) });
 
 	const onSubmit = handleSubmit(async (data: CreateExperienceFormSchema) => {
 		const fmt = "dd/MM/yyyy";
@@ -276,7 +279,7 @@ export const CreateExperienceForm: React.FC = () => {
 					asChild
 					disabled={createExperienceIsPending}
 				>
-					<Link to="/~/admin/experiences">Cancel</Link>
+					<Link href="/~/admin/experiences">Cancel</Link>
 				</Button>
 				<Button type="submit" disabled={createExperienceIsPending}>
 					{createExperienceIsPending ? <Spinner /> : "Create experience"}

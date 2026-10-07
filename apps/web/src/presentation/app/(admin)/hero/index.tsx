@@ -1,4 +1,6 @@
-﻿import type React from "react";
+﻿"use client";
+
+import type React from "react";
 import { FormProvider } from "react-hook-form";
 import { useHero } from "@/modules/portfolio/hero/hooks/use-hero";
 import { SectionTitle } from "@/presentation/components/section-title";
