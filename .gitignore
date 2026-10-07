@@ -21,6 +21,7 @@ apps/web/src/routeTree.gen.ts
 *.swp
 *.swo
 *~
+!apps/web/src/app/~/
 .DS_Store
 
 # Logs

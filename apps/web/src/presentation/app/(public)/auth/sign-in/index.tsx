@@ -1,3 +1,5 @@
+"use client";
+
 import type React from "react";
 import { FormProvider } from "react-hook-form";
 import { SectionTitle } from "@/presentation/components/section-title";
