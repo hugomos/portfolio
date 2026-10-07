@@ -3,7 +3,7 @@ import { env } from "@portfolio/env/web";
 import axios, { type InternalAxiosRequestConfig } from "axios";
 
 export const apiHttpClient = axios.create({
-	baseURL: env.VITE_SERVER_URL,
+	baseURL: env.NEXT_PUBLIC_SERVER_URL,
 	withCredentials: true,
 });
 

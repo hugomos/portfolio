@@ -4,8 +4,10 @@ import { z } from "zod";
 
 export const env = createEnv({
 	server: {
-		CORS_ORIGIN: z.url(),
-		SERVER_URL: z.url(),
+		CORS_ORIGIN: z.string().url(),
+		SERVER_URL: z.string().url(),
+		WEB_URL: z.string().url(),
+		REVALIDATION_SECRET: z.string().min(1),
 		PORT: z.coerce.number().default(3000),
 		JWT_SECRET: z.string().min(32),
 		REFRESH_TOKEN_EXPIRY_IN_DAYS: z.coerce.number().default(30),

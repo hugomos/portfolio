@@ -2,10 +2,13 @@ import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
 export const env = createEnv({
-	clientPrefix: "VITE_",
+	clientPrefix: "NEXT_PUBLIC_",
 	client: {
-		VITE_SERVER_URL: z.url(),
+		NEXT_PUBLIC_SERVER_URL: z.string().url(),
 	},
-	runtimeEnv: (import.meta as any).env,
+	server: {
+		REVALIDATION_SECRET: z.string().min(1),
+	},
+	runtimeEnv: process.env,
 	emptyStringAsUndefined: true,
 });
