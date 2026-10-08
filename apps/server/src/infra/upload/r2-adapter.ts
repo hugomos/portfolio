@@ -17,6 +17,8 @@ export class UploadR2Adapter implements Upload {
 			accessKeyId: env.CLOUDFLARE_R2_ACCESS_KEY_ID,
 			secretAccessKey: env.CLOUDFLARE_R2_SECRET_ACCESS_KEY,
 		},
+		// R2 usa path-style: endpoint/bucket/key (não virtual-hosted subdomain)
+		forcePathStyle: true,
 		// R2 não suporta checksums automáticos adicionados pelo AWS SDK v3
 		requestChecksumCalculation: "WHEN_REQUIRED",
 		responseChecksumValidation: "WHEN_REQUIRED",
@@ -28,7 +30,7 @@ export class UploadR2Adapter implements Upload {
 	}: Upload.GetInput): Promise<Upload.GetOutput> {
 		const ext = extname(filename);
 		const keyname = `${randomUUID()}${ext}`;
-		const publicUrl = `${env.CLOUDFLARE_R2_ENDPOINT}/${keyname}`;
+		const publicUrl = `${env.CLOUDFLARE_R2_ENDPOINT}/${env.CLOUDFLARE_R2_BUCKET}/${keyname}`;
 
 		const uploadUrl = await getSignedUrl(
 			this.r2,
