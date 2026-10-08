@@ -12,6 +12,7 @@ export type UpdateProjectInput = {
 	status: ProjectStatus;
 	repositoryUrl?: string | null;
 	liveUrl?: string | null;
+	coverImageUrl?: string | null;
 };
 
 export async function updateProject({

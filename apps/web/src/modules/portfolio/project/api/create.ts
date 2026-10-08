@@ -11,6 +11,7 @@ export type CreateProjectInput = {
 	status: ProjectStatus;
 	repositoryUrl?: string | null;
 	liveUrl?: string | null;
+	coverImageUrl?: string | null;
 	visible?: boolean;
 };
 
