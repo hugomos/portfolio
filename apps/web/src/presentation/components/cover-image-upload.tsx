@@ -30,6 +30,8 @@ export const CoverImageUpload: React.FC<CoverImageUploadProps> = ({
 		try {
 			const result = await uploadCoverImage(file);
 			onUpload(result);
+		} catch {
+			// error already toasted in hook
 		} finally {
 			if (inputRef.current) inputRef.current.value = "";
 		}
