@@ -11,7 +11,6 @@ import { workModeLabel } from "@/modules/portfolio/experience/dto";
 import { useUpdateExperience } from "@/modules/portfolio/experience/hooks/use-update-experience";
 import { CompanySelect } from "@/presentation/app/(admin)/experiences/@components/company-select";
 import { Button } from "@/presentation/components/ui/button";
-import { DatePicker } from "@/presentation/components/ui/date-picker";
 import {
 	Field,
 	FieldError,
@@ -138,7 +137,7 @@ export const EditExperienceForm: React.FC<{ id: string }> = ({ id }) => {
 							control={control}
 							name="startDate"
 							render={({ field }) => (
-								<DatePicker value={field.value} onChange={field.onChange} />
+								<Input {...field} placeholder="dd/mm/aaaa" className="px-2" />
 							)}
 						/>
 						{errors.startDate && (
@@ -156,11 +155,7 @@ export const EditExperienceForm: React.FC<{ id: string }> = ({ id }) => {
 							control={control}
 							name="endDate"
 							render={({ field }) => (
-								<DatePicker
-									value={field.value}
-									onChange={field.onChange}
-									placeholder="Present"
-								/>
+								<Input {...field} placeholder="Present (dd/mm/aaaa)" className="px-2" />
 							)}
 						/>
 						{errors.endDate && (
