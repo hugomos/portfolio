@@ -3,7 +3,7 @@ import { logger } from "@/infra/logger";
 
 export async function triggerRevalidation(): Promise<void> {
 	try {
-		const res = await fetch(`${env.WEB_URL}/api/revalidate`, {
+		const res = await fetch(`${env.CORS_ORIGIN}/api/revalidate`, {
 			method: "POST",
 			headers: {
 				authorization: `Bearer ${env.REVALIDATION_SECRET}`,
