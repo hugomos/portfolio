@@ -42,7 +42,8 @@ export function useUploadCoverImage(): UseUploadCoverImage {
 				publicUrl,
 			});
 			return { url: publicUrl, fileId };
-		} catch {
+		} catch (err) {
+			console.error("[useUploadCoverImage] upload failed:", err);
 			toast.error("Erro ao fazer upload da imagem");
 			throw new Error("Upload failed");
 		} finally {
@@ -54,7 +55,8 @@ export function useUploadCoverImage(): UseUploadCoverImage {
 		setIsRemoving(true);
 		try {
 			await deleteFile(fileId);
-		} catch {
+		} catch (err) {
+			console.error("[useUploadCoverImage] remove failed:", err);
 			toast.error("Erro ao remover imagem");
 			throw new Error("Delete failed");
 		} finally {

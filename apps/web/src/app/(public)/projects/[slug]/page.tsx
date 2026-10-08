@@ -63,29 +63,38 @@ export default async function ProjectPage({
 		<div className="space-y-8">
 			<BackButton />
 
-			<header className="space-y-3">
-				{coverImageUrl && (
-					<div className="relative aspect-video w-full overflow-hidden rounded-md border border-border">
-						<Image
-							src={coverImageUrl}
-							alt={`Cover image of ${title}`}
-							fill
-							className="object-cover"
-							priority
-							sizes="(max-width: 768px) 100vw, 800px"
-						/>
-					</div>
-				)}
+			<header className="space-y-4">
 				<h1 className="font-bold text-xl tracking-tight sm:text-2xl">
 					{title}
 				</h1>
-				<div className="flex flex-wrap items-center gap-2 text-xs">
-					<span className="text-muted-foreground">
-						{categoryLabels[category]}
-					</span>
-					<span className="text-muted-foreground">·</span>
-					<span className={statusColors[status]}>{status}</span>
+
+				<div className="space-y-0.5 font-mono text-xs">
+					<div className="flex gap-3">
+						<span className="w-14 text-zinc-600">type</span>
+						<span className="text-zinc-400">{categoryLabels[category]}</span>
+					</div>
+					<div className="flex gap-3">
+						<span className="w-14 text-zinc-600">status</span>
+						<span className={statusColors[status]}>{status}</span>
+					</div>
 				</div>
+
+				{coverImageUrl && (
+					<div className="space-y-1.5">
+						<span className="font-mono text-xs text-zinc-600">preview</span>
+						<div className="relative aspect-video w-full overflow-hidden rounded-sm border border-zinc-800">
+							<Image
+								src={coverImageUrl}
+								alt={`Cover image of ${title}`}
+								fill
+								className="object-cover object-top"
+								priority
+								sizes="(max-width: 768px) 100vw, 800px"
+							/>
+						</div>
+					</div>
+				)}
+
 				<p className="text-muted-foreground text-sm leading-relaxed">
 					{summary}
 				</p>
