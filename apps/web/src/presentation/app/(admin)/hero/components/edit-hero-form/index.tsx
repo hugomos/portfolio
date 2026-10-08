@@ -110,12 +110,12 @@ export const EditHeroForm: React.FC = () => {
 									{children}
 								</div>
 							)}
-							renderItem={({ value, props, isDragged }) => {
+							renderItem={({ value, props: { key, ...itemProps }, isDragged }) => {
 								const index = skills.findIndex((f) => f.id === value.id);
 								return (
 									<div
-										{...props}
-										key={value.id}
+										key={key}
+										{...itemProps}
 										className={`flex items-center gap-2 ${isDragged ? "opacity-50" : ""}`}
 									>
 										<button

@@ -343,12 +343,12 @@ export const CreateProjectForm: React.FC = () => {
 									{children}
 								</div>
 							)}
-							renderItem={({ value, props, isDragged }) => {
+							renderItem={({ value, props: { key, ...itemProps }, isDragged }) => {
 								const index = highlights.findIndex((f) => f.id === value.id);
 								return (
 									<div
-										{...props}
-										key={value.id}
+										key={key}
+										{...itemProps}
 										className={`flex items-start gap-2 ${isDragged ? "opacity-50" : ""}`}
 									>
 										<button
