@@ -1,10 +1,11 @@
 import { Id } from "@/domain/entity/id";
+import { ImageContentType } from "../vo/image-content-type";
 
 interface ConstructorProps {
 	id: string;
 	name: string;
 	keyname: string;
-	contentType: string;
+	contentType: ImageContentType;
 	publicUrl: string;
 	createdAt: Date;
 }
@@ -29,7 +30,7 @@ export class Image {
 	readonly id: string;
 	readonly name: string;
 	readonly keyname: string;
-	readonly contentType: string;
+	readonly contentType: ImageContentType;
 	readonly publicUrl: string;
 	readonly createdAt: Date;
 
@@ -47,13 +48,20 @@ export class Image {
 			id: Id.create().value,
 			name,
 			keyname,
-			contentType,
+			contentType: ImageContentType.create(contentType),
 			publicUrl,
 			createdAt: new Date(),
 		});
 	}
 
 	static restore({ id, name, keyname, contentType, publicUrl, createdAt }: RestoreProps): Image {
-		return new Image({ id, name, keyname, contentType, publicUrl, createdAt });
+		return new Image({
+			id,
+			name,
+			keyname,
+			contentType: ImageContentType.restore(contentType),
+			publicUrl,
+			createdAt,
+		});
 	}
 }

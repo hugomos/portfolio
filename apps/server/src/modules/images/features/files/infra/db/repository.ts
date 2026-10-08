@@ -29,7 +29,7 @@ export class FileRepoDB implements FileRepo {
 			id: image.id,
 			name: image.name,
 			keyname: image.keyname,
-			contentType: image.contentType,
+			contentType: image.contentType.value,
 			publicUrl: image.publicUrl,
 			createdAt: image.createdAt.toISOString(),
 		});
