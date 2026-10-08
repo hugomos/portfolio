@@ -5,6 +5,15 @@ const optionalUrl = z.preprocess(
 	z.url().optional(),
 );
 
+const socialPlatforms = [
+	"instagram",
+	"x",
+	"linkedin",
+	"github",
+	"youtube",
+	"tiktok",
+] as const;
+
 export const editProjectFormSchema = z.object({
 	title: z.string().min(1, "Title is required"),
 	category: z.enum(["fullstack", "frontend", "backend", "cli", "mobile"]),
@@ -14,9 +23,17 @@ export const editProjectFormSchema = z.object({
 	tech: z.array(z.string()),
 	repositoryUrl: optionalUrl,
 	liveUrl: optionalUrl,
+	coverImageUrl: z.string().nullable().optional(),
 	highlights: z.array(
 		z.object({
 			content: z.string(),
+			sortOrder: z.number(),
+		}),
+	),
+	socialLinks: z.array(
+		z.object({
+			platform: z.enum(socialPlatforms),
+			username: z.string().min(1, "Username obrigatório"),
 			sortOrder: z.number(),
 		}),
 	),

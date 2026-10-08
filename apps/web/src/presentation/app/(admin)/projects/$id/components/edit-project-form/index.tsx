@@ -9,8 +9,11 @@ import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { arrayMove, List } from "react-movable";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { CoverImageUpload } from "@/presentation/components/cover-image-upload";
+import { SocialLinksField } from "@/presentation/components/social-links-field";
 import { categoryLabels, statusLabels } from "@/modules/portfolio/project/dto";
 import { useReplaceProjectHighlights } from "@/modules/portfolio/project/hooks/use-replace-project-highlights";
+import { useReplaceProjectSocialLinks } from "@/modules/portfolio/project/hooks/use-replace-project-social-links";
 import { useReplaceProjectTechs } from "@/modules/portfolio/project/hooks/use-replace-project-techs";
 import { useUpdateProject } from "@/modules/portfolio/project/hooks/use-update-project";
 import { Button } from "@/presentation/components/ui/button";
@@ -82,16 +85,20 @@ export const EditProjectForm: React.FC<EditProjectFormProps> = ({
 		useReplaceProjectHighlights();
 	const { handleReplaceProjectTechs, replaceProjectTechsIsPending } =
 		useReplaceProjectTechs();
+	const { handleReplaceProjectSocialLinks, replaceProjectSocialLinksIsPending } =
+		useReplaceProjectSocialLinks();
 
 	const isPending =
 		updateProjectIsPending ||
 		replaceProjectHighlightsIsPending ||
-		replaceProjectTechsIsPending;
+		replaceProjectTechsIsPending ||
+		replaceProjectSocialLinksIsPending;
 
 	const onSubmit = handleSubmit(
 		async ({
 			tech,
 			highlights,
+			socialLinks,
 			visible: _visible,
 			...rest
 		}: EditProjectFormSchema) => {
@@ -102,6 +109,7 @@ export const EditProjectForm: React.FC<EditProjectFormProps> = ({
 					projectId: id,
 					techs: tech.map((name, i) => ({ name, sortOrder: i + 1 })),
 				}),
+				handleReplaceProjectSocialLinks({ projectId: id, socialLinks }),
 			]);
 		},
 	);
@@ -274,6 +282,23 @@ export const EditProjectForm: React.FC<EditProjectFormProps> = ({
 				</FieldGroup>
 			</section>
 
+			{/* Cover Image */}
+			<section className="space-y-4">
+				<p className="font-semibold text-muted-foreground text-xs uppercase tracking-widest">
+					Cover Image
+				</p>
+				<Controller
+					control={control}
+					name="coverImageUrl"
+					render={({ field }) => (
+						<CoverImageUpload
+							value={field.value ?? null}
+							onChange={field.onChange}
+						/>
+					)}
+				/>
+			</section>
+
 			{/* Tech stack */}
 			<section className="space-y-4">
 				<p className="font-semibold text-muted-foreground text-xs uppercase tracking-widest">
@@ -401,6 +426,15 @@ export const EditProjectForm: React.FC<EditProjectFormProps> = ({
 					<Plus data-icon="inline-start" />
 					Add highlight
 				</Button>
+			</section>
+
+			{/* Social links */}
+			<section className="space-y-4">
+				<p className="font-semibold text-muted-foreground text-xs uppercase tracking-widest">
+					Social links
+				</p>
+				{/* biome-ignore lint/suspicious/noExplicitAny: cast necessário para componente reutilizável */}
+				<SocialLinksField control={control as any} name="socialLinks" />
 			</section>
 
 			{/* Content */}
