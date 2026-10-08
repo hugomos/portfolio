@@ -10,6 +10,8 @@ import { arrayMove, List } from "react-movable";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import slugify from "slugify";
+import { CoverImageUpload } from "@/presentation/components/cover-image-upload";
+import { SocialLinksField } from "@/presentation/components/social-links-field";
 import { categoryLabels, statusLabels } from "@/modules/portfolio/project/dto";
 import { useCreateProject } from "@/modules/portfolio/project/hooks/use-create-project";
 import { Button } from "@/presentation/components/ui/button";
@@ -65,11 +67,12 @@ export const CreateProjectForm: React.FC = () => {
 	});
 
 	const onSubmit = handleSubmit(
-		async ({ tech, highlights, ...rest }: CreateProjectFormSchema) => {
+		async ({ tech, highlights, socialLinks, ...rest }: CreateProjectFormSchema) => {
 			await handleCreateProject({
 				...rest,
 				highlights,
 				techs: tech.map((name, i) => ({ name, sortOrder: i + 1 })),
+				socialLinks,
 			});
 		},
 	);
@@ -242,6 +245,23 @@ export const CreateProjectForm: React.FC = () => {
 				</FieldGroup>
 			</section>
 
+			{/* Cover Image */}
+			<section className="space-y-4">
+				<p className="font-semibold text-muted-foreground text-xs uppercase tracking-widest">
+					Cover Image
+				</p>
+				<Controller
+					control={control}
+					name="coverImageUrl"
+					render={({ field }) => (
+						<CoverImageUpload
+							value={field.value ?? null}
+							onChange={field.onChange}
+						/>
+					)}
+				/>
+			</section>
+
 			{/* Tech stack */}
 			<section className="space-y-4">
 				<p className="font-semibold text-muted-foreground text-xs uppercase tracking-widest">
@@ -369,6 +389,15 @@ export const CreateProjectForm: React.FC = () => {
 					<Plus data-icon="inline-start" />
 					Add highlight
 				</Button>
+			</section>
+
+			{/* Social links */}
+			<section className="space-y-4">
+				<p className="font-semibold text-muted-foreground text-xs uppercase tracking-widest">
+					Social links
+				</p>
+				{/* biome-ignore lint/suspicious/noExplicitAny: cast necessário para componente reutilizável */}
+			<SocialLinksField control={control as any} name="socialLinks" />
 			</section>
 
 			{/* Content */}

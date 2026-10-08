@@ -3,6 +3,7 @@
 import { GripVertical, Plus, X } from "lucide-react";
 import type React from "react";
 import {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	type Control,
 	Controller,
 	useFieldArray,
@@ -31,7 +32,7 @@ type SocialLinkFormValue = {
 };
 
 interface SocialLinksFieldProps {
-	// biome-ignore lint/suspicious/noExplicitAny: Control é genérico mas o campo está tipado no form pai
+	// biome-ignore lint/suspicious/noExplicitAny: componente reutilizável aceita qualquer form — type-safety vem do schema do form pai
 	control: Control<any>;
 	name: string;
 }
