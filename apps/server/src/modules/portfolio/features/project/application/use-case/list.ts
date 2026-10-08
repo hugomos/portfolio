@@ -17,9 +17,12 @@ type ProjectItem = {
 	status: ProjectStatus;
 	repositoryUrl: string | null;
 	liveUrl: string | null;
+	coverImageUrl: string | null;
+	coverImageFileId: string | null;
 	visible: boolean;
 	highlights: Array<{ content: string; sortOrder: number }>;
 	techs: Array<{ name: string; sortOrder: number }>;
+	socialLinks: Array<{ platform: string; username: string; sortOrder: number }>;
 };
 
 type Output = ProjectItem[];
@@ -43,12 +46,19 @@ export class ListProjectsUseCase extends UseCase<void, Output> {
 			status: project.status,
 			repositoryUrl: project.repositoryUrl,
 			liveUrl: project.liveUrl,
+			coverImageUrl: project.coverImageUrl,
+			coverImageFileId: project.coverImageFileId,
 			visible: project.visible,
 			highlights: project.highlights.map(({ content, sortOrder }) => ({
 				content,
 				sortOrder,
 			})),
 			techs: project.techs.map(({ name, sortOrder }) => ({ name, sortOrder })),
+			socialLinks: project.socialLinks.map(({ platform, username, sortOrder }) => ({
+				platform,
+				username,
+				sortOrder,
+			})),
 		}));
 	}
 }
