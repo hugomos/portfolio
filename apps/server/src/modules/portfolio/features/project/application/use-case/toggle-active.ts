@@ -27,11 +27,14 @@ export class ToggleProjectActiveUseCase extends UseCase<Input, void> {
 			status: project.status,
 			repositoryUrl: project.repositoryUrl,
 			liveUrl: project.liveUrl,
+			coverImageUrl: project.coverImageUrl,
+			coverImageFileId: project.coverImageFileId,
 			visible: !project.visible,
 			createdAt: project.createdAt,
 			updatedAt: new Date(),
 			highlights: project.highlights,
 			techs: project.techs,
+			socialLinks: project.socialLinks,
 		});
 
 		await this.repo.update(updated);

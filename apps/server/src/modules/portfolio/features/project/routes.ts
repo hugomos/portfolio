@@ -2,6 +2,7 @@ import { db } from "@portfolio/db";
 import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
+import { adapterFactory } from "@/infra/adapter-factory";
 import { triggerRevalidation } from "@/infra/http/revalidate";
 import { ProjectControllerFactory } from "./infra/factory/controller";
 import { ProjectDBFactory } from "./infra/factory/db";
@@ -15,6 +16,14 @@ const categorySchema = z.enum([
 	"mobile",
 ]);
 const statusSchema = z.enum(["active", "wip", "archived"]);
+const socialPlatformSchema = z.enum([
+	"instagram",
+	"x",
+	"linkedin",
+	"github",
+	"youtube",
+	"tiktok",
+]);
 
 const projectSchema = z.object({
 	id: z.string(),
@@ -27,6 +36,8 @@ const projectSchema = z.object({
 	status: statusSchema,
 	repositoryUrl: z.string().nullable(),
 	liveUrl: z.string().nullable(),
+	coverImageUrl: z.string().nullable(),
+	coverImageFileId: z.string().nullable(),
 	visible: z.boolean(),
 	highlights: z.array(
 		z.object({
@@ -37,6 +48,13 @@ const projectSchema = z.object({
 	techs: z.array(
 		z.object({
 			name: z.string(),
+			sortOrder: z.number(),
+		}),
+	),
+	socialLinks: z.array(
+		z.object({
+			platform: socialPlatformSchema,
+			username: z.string(),
 			sortOrder: z.number(),
 		}),
 	),
@@ -51,6 +69,8 @@ const projectBodySchema = z.object({
 	status: statusSchema,
 	repositoryUrl: z.string().url().nullable().optional(),
 	liveUrl: z.string().url().nullable().optional(),
+	coverImageUrl: z.string().nullable().optional(),
+	coverImageFileId: z.string().nullable().optional(),
 	visible: z.boolean().optional(),
 });
 
@@ -73,6 +93,32 @@ export async function register(app: FastifyInstance) {
 		},
 		async (_, reply) => {
 			return controllerFactory.listProjects.handle(reply);
+		},
+	);
+
+	typedApp.get(
+		"/portfolio/projects/upload-url",
+		{
+			schema: {
+				description: "Get presigned upload URL for cover image",
+				tags: ["Project"],
+				querystring: z.object({
+					filename: z.string().min(1),
+					contentType: z.string().min(1),
+				}),
+				response: {
+					200: z.object({
+						uploadUrl: z.string(),
+						publicUrl: z.string(),
+						keyname: z.string(),
+					}),
+				},
+			},
+		},
+		async (request, reply) => {
+			const { filename, contentType } = request.query;
+			const result = await adapterFactory.upload().getUploadUrl({ filename, contentType });
+			return reply.send(result);
 		},
 	);
 
@@ -173,6 +219,32 @@ export async function register(app: FastifyInstance) {
 		},
 		async (request, reply) => {
 			const result = await controllerFactory.replaceTechs.handle(reply, request.input);
+			void triggerRevalidation();
+			return result;
+		},
+	);
+
+	typedApp.put(
+		"/portfolio/projects/:id/social-links",
+		{
+			schema: {
+				description: "Replace project social links",
+				tags: ["Project"],
+				params: z.object({ id: z.string() }),
+				body: z.object({
+					socialLinks: z.array(
+						z.object({
+							platform: socialPlatformSchema,
+							username: z.string().min(1),
+							sortOrder: z.number().int().min(0),
+						}),
+					),
+				}),
+				response: { 204: z.never() },
+			},
+		},
+		async (request, reply) => {
+			const result = await controllerFactory.replaceSocialLinks.handle(reply, request.input);
 			void triggerRevalidation();
 			return result;
 		},

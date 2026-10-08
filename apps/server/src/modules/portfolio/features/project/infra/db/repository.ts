@@ -3,10 +3,12 @@ import { eq } from "@portfolio/db/orm/drizzle-orm";
 import {
 	projectHighlight as projectHighlightTable,
 	project as projectTable,
+	projectSocialLink as projectSocialLinkTable,
 	projectTech as projectTechTable,
 } from "@portfolio/db/schema";
 import { Project } from "@/modules/portfolio/domain/entity/project";
 import { ProjectHighlight } from "@/modules/portfolio/domain/entity/project-highlight";
+import { ProjectSocialLink } from "@/modules/portfolio/domain/entity/project-social-link";
 import { ProjectTech } from "@/modules/portfolio/domain/entity/project-tech";
 import type { ProjectRepo } from "../../application/db/repository";
 
@@ -16,7 +18,7 @@ export class ProjectRepoDB implements ProjectRepo {
 	async findById(id: string): Promise<Project | null> {
 		const record = await this.connection.query.project.findFirst({
 			where: eq(projectTable.id, id),
-			with: { highlights: true, tech: true },
+			with: { highlights: true, tech: true, socialLinks: true },
 		});
 
 		if (!record) return null;
@@ -27,7 +29,7 @@ export class ProjectRepoDB implements ProjectRepo {
 	async findBySlug(slug: string): Promise<Project | null> {
 		const record = await this.connection.query.project.findFirst({
 			where: eq(projectTable.slug, slug),
-			with: { highlights: true, tech: true },
+			with: { highlights: true, tech: true, socialLinks: true },
 		});
 
 		if (!record) return null;
@@ -37,7 +39,7 @@ export class ProjectRepoDB implements ProjectRepo {
 
 	async list(): Promise<Project[]> {
 		const records = await this.connection.query.project.findMany({
-			with: { highlights: true, tech: true },
+			with: { highlights: true, tech: true, socialLinks: true },
 		});
 
 		return records.map((record) => this.toEntity(record));
@@ -55,6 +57,8 @@ export class ProjectRepoDB implements ProjectRepo {
 			status: project.status,
 			repositoryUrl: project.repositoryUrl,
 			liveUrl: project.liveUrl,
+			coverImageUrl: project.coverImageUrl,
+			coverImageFileId: project.coverImageFileId,
 			visible: project.visible,
 			createdAt: project.createdAt.toISOString(),
 			updatedAt: project.updatedAt.toISOString(),
@@ -74,6 +78,8 @@ export class ProjectRepoDB implements ProjectRepo {
 				status: project.status,
 				repositoryUrl: project.repositoryUrl,
 				liveUrl: project.liveUrl,
+				coverImageUrl: project.coverImageUrl,
+				coverImageFileId: project.coverImageFileId,
 				visible: project.visible,
 				updatedAt: project.updatedAt.toISOString(),
 			})
@@ -125,10 +131,34 @@ export class ProjectRepoDB implements ProjectRepo {
 		});
 	}
 
+	async replaceSocialLinks(
+		projectId: string,
+		socialLinks: ProjectSocialLink[],
+	): Promise<void> {
+		await this.connection.transaction(async (tx) => {
+			await tx
+				.delete(projectSocialLinkTable)
+				.where(eq(projectSocialLinkTable.projectId, projectId));
+
+			if (socialLinks.length > 0) {
+				await tx.insert(projectSocialLinkTable).values(
+					socialLinks.map((s) => ({
+						id: s.id,
+						projectId: s.projectId,
+						platform: s.platform,
+						username: s.username,
+						sortOrder: s.sortOrder,
+					})),
+				);
+			}
+		});
+	}
+
 	private toEntity(
 		record: typeof projectTable.$inferSelect & {
 			highlights: (typeof projectHighlightTable.$inferSelect)[];
 			tech: (typeof projectTechTable.$inferSelect)[];
+			socialLinks: (typeof projectSocialLinkTable.$inferSelect)[];
 		},
 	): Project {
 		return Project.restore({
@@ -142,6 +172,8 @@ export class ProjectRepoDB implements ProjectRepo {
 			status: record.status,
 			repositoryUrl: record.repositoryUrl,
 			liveUrl: record.liveUrl,
+			coverImageUrl: record.coverImageUrl ?? null,
+			coverImageFileId: record.coverImageFileId ?? null,
 			visible: record.visible,
 			createdAt: new Date(record.createdAt),
 			updatedAt: new Date(record.updatedAt),
@@ -151,6 +183,17 @@ export class ProjectRepoDB implements ProjectRepo {
 			techs: record.tech
 				.sort((a, b) => a.sortOrder - b.sortOrder)
 				.map((t) => ProjectTech.restore(t)),
+			socialLinks: record.socialLinks
+				.sort((a, b) => a.sortOrder - b.sortOrder)
+				.map((s) =>
+					ProjectSocialLink.restore({
+						id: s.id,
+						projectId: s.projectId,
+						platform: s.platform as ProjectSocialLink["platform"],
+						username: s.username,
+						sortOrder: s.sortOrder,
+					}),
+				),
 		});
 	}
 }

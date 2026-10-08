@@ -28,6 +28,10 @@ export class ProjectControllerFactory {
 		return new HttpController(this.useCaseFactory.replaceTechs);
 	}
 
+	get replaceSocialLinks() {
+		return new HttpController(this.useCaseFactory.replaceSocialLinks);
+	}
+
 	get deleteProject() {
 		return new HttpController(this.useCaseFactory.deleteProject);
 	}

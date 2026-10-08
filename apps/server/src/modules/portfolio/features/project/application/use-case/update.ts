@@ -17,6 +17,8 @@ type Input = {
 	status: ProjectStatus;
 	repositoryUrl?: string | null;
 	liveUrl?: string | null;
+	coverImageUrl?: string | null;
+	coverImageFileId?: string | null;
 };
 
 export class UpdateProjectUseCase extends UseCase<Input, void> {
@@ -34,6 +36,8 @@ export class UpdateProjectUseCase extends UseCase<Input, void> {
 		status,
 		repositoryUrl,
 		liveUrl,
+		coverImageUrl,
+		coverImageFileId,
 	}: Input): Promise<void> {
 		const project = await this.repo.findById(id);
 		if (!project) throw new DomainError("Project not found");
@@ -49,11 +53,14 @@ export class UpdateProjectUseCase extends UseCase<Input, void> {
 			status,
 			repositoryUrl: repositoryUrl ?? null,
 			liveUrl: liveUrl ?? null,
+			coverImageUrl: coverImageUrl ?? null,
+			coverImageFileId: coverImageFileId ?? null,
 			visible: project.visible,
 			createdAt: project.createdAt,
 			updatedAt: new Date(),
 			highlights: project.highlights,
 			techs: project.techs,
+			socialLinks: project.socialLinks,
 		});
 
 		await this.repo.update(updated);

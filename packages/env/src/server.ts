@@ -14,6 +14,11 @@ export const env = createEnv({
 		NODE_ENV: z
 			.enum(["development", "production", "test"])
 			.default("development"),
+		CLOUDFLARE_R2_ENDPOINT: z.url(),
+		CLOUDFLARE_R2_PUBLIC_URL: z.url(),
+		CLOUDFLARE_R2_ACCESS_KEY_ID: z.string(),
+		CLOUDFLARE_R2_SECRET_ACCESS_KEY: z.string(),
+		CLOUDFLARE_R2_BUCKET: z.string(),
 	},
 	runtimeEnv: process.env,
 	skipValidation: !!process.env.SKIP_ENV_VALIDATION,

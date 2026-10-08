@@ -2,6 +2,7 @@ import { CreateProjectUseCase } from "../../application/use-case/create";
 import { DeleteProjectUseCase } from "../../application/use-case/delete";
 import { ListProjectsUseCase } from "../../application/use-case/list";
 import { ReplaceProjectHighlightsUseCase } from "../../application/use-case/replace-highlights";
+import { ReplaceProjectSocialLinksUseCase } from "../../application/use-case/replace-social-links";
 import { ReplaceProjectTechsUseCase } from "../../application/use-case/replace-techs";
 import { ToggleProjectActiveUseCase } from "../../application/use-case/toggle-active";
 import { UpdateProjectUseCase } from "../../application/use-case/update";
@@ -37,6 +38,10 @@ export class ProjectUseCaseFactory {
 
 	get replaceTechs() {
 		return new ReplaceProjectTechsUseCase(this.repo);
+	}
+
+	get replaceSocialLinks() {
+		return new ReplaceProjectSocialLinksUseCase(this.repo);
 	}
 
 	get deleteProject() {

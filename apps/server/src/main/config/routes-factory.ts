@@ -1,4 +1,5 @@
 import type { FastifyInstance } from "fastify";
+import { register as registerFiles } from "@/modules/images/features/files/routes";
 import { register as registerAuthentication } from "@/modules/identity/features/authentication/routes";
 import { register as registerUser } from "@/modules/identity/features/user/routes";
 import { register as registerExperience } from "@/modules/portfolio/features/experience/routes";
@@ -8,6 +9,7 @@ import { register as registerProject } from "@/modules/portfolio/features/projec
 const routeModules = [
 	registerAuthentication,
 	registerUser,
+	registerFiles,
 	registerExperience,
 	registerHero,
 	registerProject,

@@ -15,6 +15,8 @@ type Input = {
 	status: ProjectStatus;
 	repositoryUrl?: string | null;
 	liveUrl?: string | null;
+	coverImageUrl?: string | null;
+	coverImageFileId?: string | null;
 	visible?: boolean;
 };
 
@@ -32,6 +34,8 @@ export class CreateProjectUseCase extends UseCase<Input, { id: string }> {
 		status,
 		repositoryUrl,
 		liveUrl,
+		coverImageUrl,
+		coverImageFileId,
 		visible,
 	}: Input): Promise<{ id: string }> {
 		const project = Project.create({
@@ -43,6 +47,8 @@ export class CreateProjectUseCase extends UseCase<Input, { id: string }> {
 			status,
 			repositoryUrl,
 			liveUrl,
+			coverImageUrl,
+			coverImageFileId,
 			visible,
 		});
 

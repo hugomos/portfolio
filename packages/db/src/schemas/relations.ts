@@ -5,6 +5,7 @@ import { experienceHighlight } from "./experience-highlight";
 import { hero } from "./hero";
 import { project } from "./project";
 import { projectHighlight } from "./project-highlight";
+import { projectSocialLink } from "./project-social-link";
 import { projectTech } from "./project-tech";
 import { refreshToken } from "./refresh-token";
 import { skill } from "./skill";
@@ -43,6 +44,14 @@ export const experienceHighlightRelations = relations(
 export const projectRelations = relations(project, ({ many }) => ({
 	tech: many(projectTech),
 	highlights: many(projectHighlight),
+	socialLinks: many(projectSocialLink),
+}));
+
+export const projectSocialLinkRelations = relations(projectSocialLink, ({ one }) => ({
+	project: one(project, {
+		fields: [projectSocialLink.projectId],
+		references: [project.id],
+	}),
 }));
 
 export const projectTechRelations = relations(projectTech, ({ one }) => ({

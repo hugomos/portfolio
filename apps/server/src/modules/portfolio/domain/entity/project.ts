@@ -1,6 +1,7 @@
 import { Id } from "@/domain/entity/id";
 import { Slug } from "@/domain/entity/slug";
 import type { ProjectHighlight } from "./project-highlight";
+import type { ProjectSocialLink } from "./project-social-link";
 import type { ProjectTech } from "./project-tech";
 
 export type ProjectCategory =
@@ -22,11 +23,14 @@ interface ConstructorProps {
 	status: ProjectStatus;
 	repositoryUrl: string | null;
 	liveUrl: string | null;
+	coverImageUrl: string | null;
+	coverImageFileId: string | null;
 	visible: boolean;
 	createdAt: Date;
 	updatedAt: Date;
 	highlights: ProjectHighlight[];
 	techs: ProjectTech[];
+	socialLinks: ProjectSocialLink[];
 }
 
 interface CreateProps {
@@ -38,6 +42,8 @@ interface CreateProps {
 	status: ProjectStatus;
 	repositoryUrl?: string | null;
 	liveUrl?: string | null;
+	coverImageUrl?: string | null;
+	coverImageFileId?: string | null;
 	visible?: boolean;
 }
 
@@ -52,11 +58,14 @@ interface RestoreProps {
 	status: ProjectStatus;
 	repositoryUrl: string | null;
 	liveUrl: string | null;
+	coverImageUrl: string | null;
+	coverImageFileId: string | null;
 	visible: boolean;
 	createdAt: Date;
 	updatedAt: Date;
 	highlights: ProjectHighlight[];
 	techs: ProjectTech[];
+	socialLinks: ProjectSocialLink[];
 }
 
 export class Project {
@@ -70,11 +79,14 @@ export class Project {
 	readonly status: ProjectStatus;
 	readonly repositoryUrl: string | null;
 	readonly liveUrl: string | null;
+	readonly coverImageUrl: string | null;
+	readonly coverImageFileId: string | null;
 	readonly visible: boolean;
 	readonly createdAt: Date;
 	readonly updatedAt: Date;
 	private readonly _highlights: ProjectHighlight[];
 	private readonly _techs: ProjectTech[];
+	private readonly _socialLinks: ProjectSocialLink[];
 
 	private constructor({
 		id,
@@ -87,11 +99,14 @@ export class Project {
 		status,
 		repositoryUrl,
 		liveUrl,
+		coverImageUrl,
+		coverImageFileId,
 		visible,
 		createdAt,
 		updatedAt,
 		highlights,
 		techs,
+		socialLinks,
 	}: ConstructorProps) {
 		this.id = id;
 		this.title = title;
@@ -103,11 +118,14 @@ export class Project {
 		this.status = status;
 		this.repositoryUrl = repositoryUrl ?? null;
 		this.liveUrl = liveUrl ?? null;
+		this.coverImageUrl = coverImageUrl ?? null;
+		this.coverImageFileId = coverImageFileId ?? null;
 		this.visible = visible;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this._highlights = highlights;
 		this._techs = techs;
+		this._socialLinks = socialLinks;
 	}
 
 	static create({
@@ -119,6 +137,8 @@ export class Project {
 		status,
 		repositoryUrl,
 		liveUrl,
+		coverImageUrl,
+		coverImageFileId,
 		visible,
 	}: CreateProps): Project {
 		const now = new Date();
@@ -133,11 +153,14 @@ export class Project {
 			status,
 			repositoryUrl: repositoryUrl ?? null,
 			liveUrl: liveUrl ?? null,
+			coverImageUrl: coverImageUrl ?? null,
+			coverImageFileId: coverImageFileId ?? null,
 			visible: visible ?? false,
 			createdAt: now,
 			updatedAt: now,
 			highlights: [],
 			techs: [],
+			socialLinks: [],
 		});
 	}
 
@@ -152,11 +175,14 @@ export class Project {
 		status,
 		repositoryUrl,
 		liveUrl,
+		coverImageUrl,
+		coverImageFileId,
 		visible,
 		createdAt,
 		updatedAt,
 		highlights,
 		techs,
+		socialLinks,
 	}: RestoreProps): Project {
 		return new Project({
 			id,
@@ -169,11 +195,14 @@ export class Project {
 			status,
 			repositoryUrl,
 			liveUrl,
+			coverImageUrl,
+			coverImageFileId,
 			visible,
 			createdAt,
 			updatedAt,
 			highlights,
 			techs,
+			socialLinks,
 		});
 	}
 
@@ -183,5 +212,9 @@ export class Project {
 
 	get techs(): ProjectTech[] {
 		return [...this._techs];
+	}
+
+	get socialLinks(): ProjectSocialLink[] {
+		return [...this._socialLinks];
 	}
 }
