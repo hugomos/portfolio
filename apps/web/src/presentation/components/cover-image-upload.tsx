@@ -22,9 +22,12 @@ export const CoverImageUpload: React.FC<CoverImageUploadProps> = ({
 	async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
 		const file = e.target.files?.[0];
 		if (!file) return;
-		const url = await uploadCoverImage(file);
-		onChange(url);
-		if (inputRef.current) inputRef.current.value = "";
+		try {
+			const url = await uploadCoverImage(file);
+			onChange(url);
+		} finally {
+			if (inputRef.current) inputRef.current.value = "";
+		}
 	}
 
 	return (
