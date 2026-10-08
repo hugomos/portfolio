@@ -1,8 +1,10 @@
 import { GithubLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import { Globe } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { categoryLabels, statusColors } from "@/modules/portfolio/project/dto";
+import { SocialLinksDisplay } from "@/presentation/components/social-links-display";
 import {
 	getProjectsServerSide,
 } from "@/lib/server-api";
@@ -51,6 +53,8 @@ export default async function ProjectPage({
 		techs,
 		repositoryUrl,
 		liveUrl,
+		coverImageUrl,
+		socialLinks,
 		highlights,
 		content,
 	} = project;
@@ -60,6 +64,18 @@ export default async function ProjectPage({
 			<BackButton />
 
 			<header className="space-y-3">
+				{coverImageUrl && (
+					<div className="relative aspect-video w-full overflow-hidden rounded-md border border-border">
+						<Image
+							src={coverImageUrl}
+							alt={`Cover image of ${title}`}
+							fill
+							className="object-cover"
+							priority
+							sizes="(max-width: 768px) 100vw, 800px"
+						/>
+					</div>
+				)}
 				<h1 className="font-bold text-xl tracking-tight sm:text-2xl">
 					{title}
 				</h1>
@@ -77,6 +93,10 @@ export default async function ProjectPage({
 					<p className="text-muted-foreground/60 text-xs">{impact}</p>
 				)}
 			</header>
+
+			{socialLinks && socialLinks.length > 0 && (
+				<SocialLinksDisplay socialLinks={socialLinks} />
+			)}
 
 			{(repositoryUrl || liveUrl) && (
 				<div className="flex flex-wrap gap-3">

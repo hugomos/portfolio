@@ -1,4 +1,5 @@
-﻿import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import type React from "react";
 import Link from "next/link";
 import type { ProjectDTO } from "@/modules/portfolio/project/dto";
@@ -8,11 +9,23 @@ interface ProjectItemProps {
 }
 
 export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
-	const { slug, title, summary, impact, techs } = project;
+	const { slug, title, summary, impact, techs, coverImageUrl } = project;
 
 	return (
 		<article className="space-y-2">
 			<span className="sr-only">{techs?.map((t) => t.name).join(", ")}</span>
+
+			{coverImageUrl && (
+				<div className="relative mb-3 aspect-video w-full overflow-hidden rounded-md border border-border">
+					<Image
+						src={coverImageUrl}
+						alt={`Cover image of ${title}`}
+						fill
+						className="object-cover"
+						sizes="(max-width: 768px) 100vw, 600px"
+					/>
+				</div>
+			)}
 
 			<Link
 				href={`/projects/${slug}`}
