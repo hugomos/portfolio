@@ -18,6 +18,7 @@ export function useCreateProjectForm() {
 			repositoryUrl: undefined,
 			liveUrl: undefined,
 			coverImageUrl: null,
+			coverImageFileId: null,
 			highlights: [],
 			socialLinks: [],
 			content: undefined,

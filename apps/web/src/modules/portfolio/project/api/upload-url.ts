@@ -4,6 +4,7 @@ import { type ApiResponse, isApiError } from "@/infra/http/dto/api-response";
 export type GetUploadUrlResponse = {
 	uploadUrl: string;
 	publicUrl: string;
+	keyname: string;
 };
 
 export async function getUploadUrl(

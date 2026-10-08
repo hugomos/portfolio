@@ -8,34 +8,51 @@ import { useUploadCoverImage } from "@/modules/portfolio/project/hooks/use-uploa
 import { Button } from "./ui/button";
 
 interface CoverImageUploadProps {
-	value: string | null;
-	onChange: (url: string | null) => void;
+	url: string | null;
+	fileId: string | null;
+	onUpload: (result: { url: string; fileId: string }) => void;
+	onRemove: () => void;
 }
 
 export const CoverImageUpload: React.FC<CoverImageUploadProps> = ({
-	value,
-	onChange,
+	url,
+	fileId,
+	onUpload,
+	onRemove,
 }) => {
 	const inputRef = useRef<HTMLInputElement>(null);
-	const { uploadCoverImage, isUploading } = useUploadCoverImage();
+	const { uploadCoverImage, removeCoverImage, isUploading, isRemoving } =
+		useUploadCoverImage();
 
 	async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
 		const file = e.target.files?.[0];
 		if (!file) return;
 		try {
-			const url = await uploadCoverImage(file);
-			onChange(url);
+			const result = await uploadCoverImage(file);
+			onUpload(result);
 		} finally {
 			if (inputRef.current) inputRef.current.value = "";
 		}
 	}
 
+	async function handleRemove() {
+		if (!fileId) return;
+		try {
+			await removeCoverImage(fileId);
+			onRemove();
+		} catch {
+			// error already toasted in hook
+		}
+	}
+
+	const isPending = isUploading || isRemoving;
+
 	return (
 		<div className="space-y-3">
-			{value ? (
+			{url ? (
 				<div className="relative aspect-video w-full overflow-hidden rounded-md border border-border">
 					<Image
-						src={value}
+						src={url}
 						alt="Cover image preview"
 						fill
 						className="object-cover"
@@ -52,23 +69,24 @@ export const CoverImageUpload: React.FC<CoverImageUploadProps> = ({
 					type="button"
 					variant="outline"
 					size="sm"
-					disabled={isUploading}
+					disabled={isPending}
 					onClick={() => inputRef.current?.click()}
 				>
 					<UploadSimple data-icon="inline-start" />
-					{isUploading ? "Enviando..." : value ? "Trocar imagem" : "Adicionar imagem"}
+					{isUploading ? "Enviando..." : url ? "Trocar imagem" : "Adicionar imagem"}
 				</Button>
 
-				{value && (
+				{url && (
 					<Button
 						type="button"
 						variant="ghost"
 						size="sm"
 						className="text-muted-foreground hover:text-destructive"
-						onClick={() => onChange(null)}
+						disabled={isPending}
+						onClick={handleRemove}
 					>
 						<Trash data-icon="inline-start" />
-						Remover
+						{isRemoving ? "Removendo..." : "Remover"}
 					</Button>
 				)}
 			</div>

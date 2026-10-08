@@ -16,6 +16,7 @@ export function useEditProjectForm(project: ProjectDTO) {
 			repositoryUrl: project.repositoryUrl ?? undefined,
 			liveUrl: project.liveUrl ?? undefined,
 			coverImageUrl: project.coverImageUrl ?? null,
+			coverImageFileId: project.coverImageFileId ?? null,
 			highlights:
 				project.highlights?.map((h) => ({
 					content: h.content,

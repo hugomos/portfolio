@@ -253,10 +253,24 @@ export const CreateProjectForm: React.FC = () => {
 				<Controller
 					control={control}
 					name="coverImageUrl"
-					render={({ field }) => (
-						<CoverImageUpload
-							value={field.value ?? null}
-							onChange={field.onChange}
+					render={({ field: urlField }) => (
+						<Controller
+							control={control}
+							name="coverImageFileId"
+							render={({ field: fileIdField }) => (
+								<CoverImageUpload
+									url={urlField.value ?? null}
+									fileId={fileIdField.value ?? null}
+									onUpload={({ url, fileId }) => {
+										urlField.onChange(url);
+										fileIdField.onChange(fileId);
+									}}
+									onRemove={() => {
+										urlField.onChange(null);
+										fileIdField.onChange(null);
+									}}
+								/>
+							)}
 						/>
 					)}
 				/>

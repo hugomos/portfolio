@@ -12,6 +12,7 @@ export type CreateProjectInput = {
 	repositoryUrl?: string | null;
 	liveUrl?: string | null;
 	coverImageUrl?: string | null;
+	coverImageFileId?: string | null;
 	visible?: boolean;
 };
 

@@ -13,6 +13,7 @@ export type UpdateProjectInput = {
 	repositoryUrl?: string | null;
 	liveUrl?: string | null;
 	coverImageUrl?: string | null;
+	coverImageFileId?: string | null;
 };
 
 export async function updateProject({

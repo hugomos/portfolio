@@ -76,6 +76,7 @@ export type ProjectDTO = {
 	repositoryUrl: string | null;
 	liveUrl: string | null;
 	coverImageUrl: string | null;
+	coverImageFileId: string | null;
 	visible: boolean;
 	highlights: Array<{ content: string; sortOrder: number }>;
 	techs: Array<{ name: string; sortOrder: number }>;

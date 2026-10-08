@@ -1,19 +1,29 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { deleteFile } from "../api/delete-file";
+import { registerFile } from "../api/register-file";
 import { getUploadUrl } from "../api/upload-url";
 
+export type CoverImageResult = {
+	url: string;
+	fileId: string;
+};
+
 interface UseUploadCoverImage {
-	uploadCoverImage: (file: File) => Promise<string>;
+	uploadCoverImage: (file: File) => Promise<CoverImageResult>;
+	removeCoverImage: (fileId: string) => Promise<void>;
 	isUploading: boolean;
+	isRemoving: boolean;
 }
 
 export function useUploadCoverImage(): UseUploadCoverImage {
 	const [isUploading, setIsUploading] = useState(false);
+	const [isRemoving, setIsRemoving] = useState(false);
 
-	async function uploadCoverImage(file: File): Promise<string> {
+	async function uploadCoverImage(file: File): Promise<CoverImageResult> {
 		setIsUploading(true);
 		try {
-			const { uploadUrl, publicUrl } = await getUploadUrl(
+			const { uploadUrl, publicUrl, keyname } = await getUploadUrl(
 				file.name,
 				file.type,
 			);
@@ -25,7 +35,13 @@ export function useUploadCoverImage(): UseUploadCoverImage {
 			if (!response.ok) {
 				throw new Error(`R2 upload failed: ${response.status}`);
 			}
-			return publicUrl;
+			const { id: fileId } = await registerFile({
+				name: file.name,
+				keyname,
+				contentType: file.type,
+				publicUrl,
+			});
+			return { url: publicUrl, fileId };
 		} catch {
 			toast.error("Erro ao fazer upload da imagem");
 			throw new Error("Upload failed");
@@ -34,5 +50,17 @@ export function useUploadCoverImage(): UseUploadCoverImage {
 		}
 	}
 
-	return { uploadCoverImage, isUploading };
+	async function removeCoverImage(fileId: string): Promise<void> {
+		setIsRemoving(true);
+		try {
+			await deleteFile(fileId);
+		} catch {
+			toast.error("Erro ao remover imagem");
+			throw new Error("Delete failed");
+		} finally {
+			setIsRemoving(false);
+		}
+	}
+
+	return { uploadCoverImage, removeCoverImage, isUploading, isRemoving };
 }

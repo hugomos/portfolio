@@ -24,6 +24,7 @@ export const editProjectFormSchema = z.object({
 	repositoryUrl: optionalUrl,
 	liveUrl: optionalUrl,
 	coverImageUrl: z.string().nullable().optional(),
+	coverImageFileId: z.string().nullable().optional(),
 	highlights: z.array(
 		z.object({
 			content: z.string(),
