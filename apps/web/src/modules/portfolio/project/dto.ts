@@ -1,3 +1,30 @@
+export type SocialPlatform =
+	| "instagram"
+	| "x"
+	| "linkedin"
+	| "github"
+	| "youtube"
+	| "tiktok";
+
+export type SocialLinkDTO = {
+	platform: SocialPlatform;
+	username: string;
+	sortOrder: number;
+};
+
+export const socialPlatformLabels: Record<SocialPlatform, string> = {
+	instagram: "Instagram",
+	x: "X (Twitter)",
+	linkedin: "LinkedIn",
+	github: "GitHub",
+	youtube: "YouTube",
+	tiktok: "TikTok",
+};
+
+export const socialPlatformKeys = Object.keys(
+	socialPlatformLabels,
+) as SocialPlatform[];
+
 export type ProjectCategory =
 	| "fullstack"
 	| "frontend"
@@ -48,7 +75,9 @@ export type ProjectDTO = {
 	status: ProjectStatus;
 	repositoryUrl: string | null;
 	liveUrl: string | null;
+	coverImageUrl: string | null;
 	visible: boolean;
 	highlights: Array<{ content: string; sortOrder: number }>;
 	techs: Array<{ name: string; sortOrder: number }>;
+	socialLinks: SocialLinkDTO[];
 };

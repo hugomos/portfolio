@@ -12,6 +12,7 @@ export const project = sqliteTable("project", {
 	status: text("status").$type<ProjectStatus>().notNull(),
 	repositoryUrl: text("repository_url"),
 	liveUrl: text("live_url"),
+	coverImageUrl: text("cover_image_url"),
 	visible: integer("visible", { mode: "boolean" }).notNull().default(false),
 	createdAt: text("created_at").notNull(),
 	updatedAt: text("updated_at").notNull(),
