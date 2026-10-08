@@ -30,7 +30,7 @@ export class UploadR2Adapter implements Upload {
 	}: Upload.GetInput): Promise<Upload.GetOutput> {
 		const ext = extname(filename);
 		const keyname = `${randomUUID()}${ext}`;
-		const publicUrl = `${env.CLOUDFLARE_R2_ENDPOINT}/${env.CLOUDFLARE_R2_BUCKET}/${keyname}`;
+		const publicUrl = `${env.CLOUDFLARE_R2_PUBLIC_URL}/${keyname}`;
 
 		const uploadUrl = await getSignedUrl(
 			this.r2,
