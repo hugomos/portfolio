@@ -1,22 +1,23 @@
-import { Label as LabelPrimitive } from "radix-ui";
-import type * as React from "react";
+"use client"
 
-import { cn } from "@/presentation/lib/utils";
+import * as React from "react"
+import { cn } from "cn"
+import { Label as LabelPrimitive } from "radix-ui"
 
 function Label({
-	className,
-	...props
+  className,
+  ...props
 }: React.ComponentProps<typeof LabelPrimitive.Root>) {
-	return (
-		<LabelPrimitive.Root
-			data-slot="label"
-			className={cn(
-				"flex select-none items-center gap-2 font-semibold text-xs uppercase tracking-wide peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-data-[slot=checkbox]:font-normal peer-data-[slot=radio-group-item]:font-normal peer-data-[slot=switch]:font-normal peer-data-[slot=checkbox]:text-sm peer-data-[slot=radio-group-item]:text-sm peer-data-[slot=switch]:text-sm peer-data-[slot=checkbox]:normal-case peer-data-[slot=radio-group-item]:normal-case peer-data-[slot=switch]:normal-case peer-data-[slot=checkbox]:tracking-normal peer-data-[slot=radio-group-item]:tracking-normal peer-data-[slot=switch]:tracking-normal",
-				className,
-			)}
-			{...props}
-		/>
-	);
+  return (
+    <LabelPrimitive.Root
+      data-slot="label"
+      className={cn(
+        "flex items-center gap-2 text-xs leading-none select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
+        className
+      )}
+      {...props}
+    />
+  )
 }
 
-export { Label };
+export { Label }

@@ -31,13 +31,16 @@ async function seed(email: string, password: string) {
 	const passwordHash = await hash(password);
 
 	await db.transaction(async (tx) => {
-		await tx.insert(user).values({
-			id: randomUUID(),
-			email,
-			passwordHash,
-			createdAt: now,
-			updatedAt: now,
-		});
+		await tx
+			.insert(user)
+			.values({
+				id: randomUUID(),
+				email,
+				passwordHash,
+				createdAt: now,
+				updatedAt: now,
+			})
+			.onConflictDoNothing();
 
 		await tx.insert(hero).values({
 			id: randomUUID(),

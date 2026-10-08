@@ -1,10 +1,25 @@
 {
-	"permissions": {
-		"allow": [
-			"Bash(find /c/github/hugomos/portfolio/node_modules/.pnpm/@blocknote+core@0.51.4_@lez_379338dd4c86d8ced787bd1bcaccee3c/node_modules/@blocknote/core -name *.d.ts)",
-			"Bash(xargs grep -l \"insertBlocks\\\\|insertOrUpdate\")",
-			"Bash(find /c/github/hugomos/portfolio/node_modules/.pnpm/@blocknote+react@0.51.4_@lez_5a31daa67e3d7d3e2d44e78b7e11d8db/node_modules/@blocknote/react -name SuggestionMenu*.d.ts)",
-			"Bash(xargs grep -l \"Controller\\\\|getItems\")"
-		]
-	}
+  "permissions": {
+    "allow": [
+      "Bash(find /c/github/hugomos/portfolio/node_modules/.pnpm/@blocknote+core@0.51.4_@lez_379338dd4c86d8ced787bd1bcaccee3c/node_modules/@blocknote/core -name *.d.ts)",
+      "Bash(xargs grep -l \"insertBlocks\\\\|insertOrUpdate\")",
+      "Bash(find /c/github/hugomos/portfolio/node_modules/.pnpm/@blocknote+react@0.51.4_@lez_5a31daa67e3d7d3e2d44e78b7e11d8db/node_modules/@blocknote/react -name SuggestionMenu*.d.ts)",
+      "Bash(xargs grep -l \"Controller\\\\|getItems\")",
+      "Bash(xargs cat)",
+      "Bash(git *)",
+      "Bash(bash *)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm --filter web build)",
+      "Bash(Get-Content *)",
+      "Bash(npx tsc *)",
+      "Read(//proc/**)",
+      "Bash(node -e \"require\\('C:/github/hugomos/portfolio/apps/web/node_modules/typescript/package.json'\\).version\")",
+      "Bash(node *)",
+      "Bash(pnpm --filter server build)",
+      "WebFetch(domain:ui.shadcn.com)",
+      "Bash(pnpm *)",
+      "PowerShell(Rece)",
+      "mcp__ide__getDiagnostics"
+    ]
+  }
 }

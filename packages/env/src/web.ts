@@ -9,6 +9,9 @@ export const env = createEnv({
 	server: {
 		REVALIDATION_SECRET: z.string().min(1),
 	},
-	runtimeEnv: process.env,
+	runtimeEnv: {
+		NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL,
+		REVALIDATION_SECRET: process.env.REVALIDATION_SECRET,
+	},
 	emptyStringAsUndefined: true,
 });
