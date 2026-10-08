@@ -5,7 +5,11 @@
 		"build": {
 			"dependsOn": ["^build"],
 			"inputs": ["$TURBO_DEFAULT$", ".env*"],
-			"outputs": ["dist/**", ".next/**"]
+			"outputs": ["dist/**", ".next/**"],
+			"env": [
+				"NEXT_PUBLIC_SERVER_URL",
+				"REVALIDATION_SECRET"
+			]
 		},
 		"lint": {
 			"dependsOn": ["^lint"]
