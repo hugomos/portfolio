@@ -2,6 +2,7 @@
 import "@blocknote/shadcn/style.css";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/shadcn";
+import { pasteAsMarkdown } from "@/lib/blocknote";
 import { GripVertical, Plus, X } from "lucide-react";
 import type React from "react";
 import { useEffect, useState } from "react";
@@ -66,7 +67,7 @@ export const EditProjectForm: React.FC<EditProjectFormProps> = ({
 		name: "highlights",
 	});
 
-	const editor = useCreateBlockNote();
+	const editor = useCreateBlockNote({ pasteHandler: pasteAsMarkdown });
 
 	useEffect(() => {
 		if (!initialContent) return;
