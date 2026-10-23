@@ -8,6 +8,7 @@ import {
 	getExperiencesServerSide,
 	getHeroServerSide,
 	getProjectsServerSide,
+	isBuildPhase,
 } from "@/lib/server-api";
 
 export const revalidate = 3600;
@@ -23,8 +24,9 @@ export default async function HomePage() {
 			getProjectsServerSide(),
 			getExperiencesServerSide(),
 		]);
-	} catch {
-		// API unavailable — ISR will populate on next revalidation
+	} catch (error) {
+		// API unavailable at build — ship empty, ISR will populate on next revalidation
+		if (!isBuildPhase) throw error;
 	}
 
 	const projects = allProjects.filter((p) => p.visible);

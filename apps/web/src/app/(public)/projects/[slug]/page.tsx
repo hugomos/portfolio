@@ -34,12 +34,7 @@ export default async function ProjectPage({
 	params: Promise<{ slug: string }>;
 }) {
 	const { slug } = await params;
-	let projects: Awaited<ReturnType<typeof getProjectsServerSide>> = [];
-	try {
-		projects = await getProjectsServerSide();
-	} catch {
-		notFound();
-	}
+	const projects = await getProjectsServerSide();
 	const project = projects.find((p) => p.slug === slug && p.visible);
 
 	if (!project) notFound();
